@@ -1,3 +1,47 @@
+F1stats to aplikacja która będzie moim projektem końcowym w szkole programowania Coders Lab - JavaScript Developer: React.
+
+Aplikacja będzie bazowała na Ergast API które udostępnia informacje o historycznych i aktualnych wyścigach Formuły 1. Na bazie pobranych danych będą generowane różnego rodzaju statystyki w postaci wykresów lub list. 
+
+Na tą chwilę aplikacja posiada 6 komponentów które obsługują następujące funkcje:
+
+1. Komponent "FinishResult" wyświetlający statystyki kierowców z konkretnego sezonu:
+- komponent posiada input tekstowy służący do wpisania sezonu np. 2018,
+- pole select które pozwala na wyświetlenie statystyk według zdobytych punktów lub wygranych wyścigów w danym sezonie,
+- pole select które pozwala na wybór wykresu jaki powstanie na bazie danych z API - wykres blokowy lub liniowy,
+- przycisk "Szukaj Sezonu",
+- przycisk "Kolejny Sezon",
+- przycisk "Poprzedni Sezon",
+- oprócz wykresu komponent wyświetla również numer sezonu oraz ilość wyścigów jaka odbyła się w danym sezonie,
+- wykres jako legendę wyświetla informację którego sezonu dotyczy wykres.
+
+2. Komponent "RaceResults" wyświetlający statystyki kierowców w konkretnym wyścigu w danym sezonie:
+- komponent posiada input tekstowy służący do wpisania sezonu np. 2018 oraz input tekstowy do wpisania numeru wyścigu,
+- pole select które pozwala na wyświetlenie statystyk według zdobytych punktów lub ukończonych okrążeń w danym wyścigu,
+- pole select które pozwala na wybór wykresu jaki powstanie na bazie danych z API - wykres blokowy lub liniowy,
+- przycisk "Szukaj wyścigu",
+- przycisk "Kolejny Wyścig",
+- przycisk "Poprzedni Sezon",
+- oprócz wykresu komponent wyświetla numer sezonu, numer wyścigu, nazwę wyścigu, tor na jakim odbył się wyścig oraz datę wyścigu,
+- wykres jako legendę wyświetla informację którego sezonu oraz wyścigu dotyczy wykres.
+
+Poniższe informacje dotyczą powyższych dwóch komponentów:
+- jeżeli komponent nie znajdzie konkretnego sezonu np. sezon 2020 to wówczas wyświetli odpowiedni komunikat,
+- dane są aktualizowane od razu po zmianie wartości w polu select lub rodzaju wykresu, nie trzeba ponownie klikać przycisku szukaj,
+- wykresy powstają w oparciu o bibliotekę Chart.js, docelowo chciałbym wykorzystać w projekcie bibliotekę D3.js.
+
+3. Komponent "CurrentSeason" wyświetlający wyścigi z aktualnego sezonu:
+- moduł wyświetla listę z datami oraz nazwą danego wyścigu,
+- jeżeli jakiś wyścig już się odbył to wówczas font jest w kolorze czerwonym, jeżeli wyścig dopiero nastąpi to wówczas font jest w kolorze zielonym. Aby obsłużyć tą funkcjonalność wykorzystałem obiekt Date, a więc wszystko jest dynamiczne, zarówno numer sezonu jak i daty wyścigów,
+- komponent wyświetla napis "Loading..." podczas ładowania zasobów.
+
+4. Komponent "Home" - wyświetlający tekst powitania, jest to strona główna.
+
+5. Komponent "Navigation" wyświetlający menu.
+
+6. Komponent "NotFound" obsługujący brak zasobu.
+
+
+
 <<<<<<< HEAD
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
