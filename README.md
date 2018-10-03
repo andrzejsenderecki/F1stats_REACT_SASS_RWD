@@ -14,6 +14,7 @@ Na tą chwilę aplikacja posiada 6 komponentów które obsługują następujące
 - oprócz wykresu komponent wyświetla również numer sezonu oraz ilość wyścigów jaka odbyła się w danym sezonie,
 - wykres jako legendę wyświetla informację którego sezonu dotyczy wykres.
 
+
 2. Komponent "RaceResults" wyświetlający statystyki kierowców w konkretnym wyścigu w danym sezonie:
 - komponent posiada input tekstowy służący do wpisania sezonu np. 2018 oraz input tekstowy do wpisania numeru wyścigu,
 - pole select które pozwala na wyświetlenie statystyk według zdobytych punktów lub ukończonych okrążeń w danym wyścigu,
@@ -28,6 +29,7 @@ Poniższe informacje dotyczą powyższych dwóch komponentów:
 - jeżeli komponent nie znajdzie konkretnego sezonu np. sezon 2020 to wówczas wyświetli odpowiedni komunikat,
 - dane są aktualizowane od razu po zmianie wartości w polu select lub rodzaju wykresu, nie trzeba ponownie klikać przycisku szukaj,
 - wykresy powstają w oparciu o bibliotekę Chart.js, docelowo chciałbym wykorzystać w projekcie bibliotekę D3.js.
+
 
 3. Komponent "CurrentSeason" wyświetlający wyścigi z aktualnego sezonu:
 - moduł wyświetla listę z datami oraz nazwą danego wyścigu,
