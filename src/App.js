@@ -5,26 +5,30 @@ import NotFound from './components/NotFound';
 import CurrentSeason from './components/CurrentSeason';
 import FinishResults from './components/FinishResults';
 import RaceResults from './components/RaceResults';
-import Home from './components/Home'
-import './App.css';
+import ReasonsForEndingRaces from "./components/ReasonsForEndingRaces";
+import Home from './components/Home';
+import Footer from './components/Footer';
+import './App.scss';
 
 class App extends Component {
   render() {
     return (
-      <div>
+        <div>
           <BrowserRouter>
               <div>
                 <Navigation />
                 <Switch>
                     <Route path='/' component={Home} exact />
                     <Route path='/season' component={FinishResults} />
-                    <Route path='/race' component={RaceResults} />
+                    <Route path='/race' render={() => <RaceResults season='' round='' />} />
                     <Route path='/current' component={CurrentSeason} />
+                    <Route path='/reason' component={ReasonsForEndingRaces} />
                     <Route component={NotFound} exact />
                 </Switch>
               </div>
           </BrowserRouter>
-      </div>
+          <Footer />
+        </div>
     );
   }
 }

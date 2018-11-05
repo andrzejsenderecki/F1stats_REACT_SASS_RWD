@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Bar, Line} from 'react-chartjs-2';
+import Chart from 'react-google-charts';
 
 class FinishResults extends Component {
     constructor(props) {
@@ -9,20 +9,12 @@ class FinishResults extends Component {
             sortBy: 'points',
             chart: 'bar',
             seasonNumber:'',
-            roundCount: '',
             err: '',
-            chartData: {
-                labels: [],
-                datasets: [
-                    {
-                        label: '',
-                        data: [],
-                        backgroundColor: ''
-                    }
-                ]
-            }
+            data: '',
+            loading: false
         }
     }
+
     seasonValue = (event) => {
         this.setState({
             season: event.target.value
@@ -46,6 +38,7 @@ class FinishResults extends Component {
         season = season + 1;
         this.setState({
             season: Number(season),
+            loading: true
         }, this.searchSeason);
     };
 
@@ -54,6 +47,7 @@ class FinishResults extends Component {
         season = season - 1;
         this.setState({
             season: Number(season),
+            loading: true
         }, this.searchSeason);
     };
 
@@ -62,35 +56,50 @@ class FinishResults extends Component {
         fetch(url).then(resp => {
             return resp.json();
         }).then(json => {
-            let driversArray = json.MRData.StandingsTable.StandingsLists.map((element) => {
-                let driver = element.DriverStandings.map((element) => {
-                    return element.Driver.familyName;
+
+            let resultArray = json.MRData.StandingsTable.StandingsLists.map((element) => {
+                let result = element.DriverStandings.map((element) => {
+                    let data = [];
+                    data.push(element.Driver.familyName);
+                    if(this.state.sortBy === 'points') {
+                        data.push(Number(element.points));
+                    } else {
+                        data.push(Number(element.wins));
+                    }
+                    return data;
                 });
-                return driver;
+                return result;
             });
-            let drivers = [];
-            for(let i=0; i<driversArray[0].length; i++) {
-                drivers.push(driversArray[0][i]);
+
+            let sortWinsArray = [];
+            let winsArray = [[]];
+            if(this.state.sortBy === 'wins') {
+                for(let i=0; i<resultArray[0].length; i++) {
+                    let driver = resultArray[0][i][0];
+
+                    let count = resultArray[0][i][1];
+
+                    sortWinsArray.push({count: count, driver: driver})
+                }
+                sortWinsArray.sort((a,b) => {
+                    return Number(a.count) - Number(b.count);
+                });
+                sortWinsArray.reverse();
+                for (let i=0; i<sortWinsArray.length; i++) {
+                    winsArray[0].push([sortWinsArray[i].driver, sortWinsArray[i].count]);
+                }
             }
 
-            let sortByArray = json.MRData.StandingsTable.StandingsLists.map((element) => {
-                let sortBy;
-                if(this.state.sortBy === "points") {
-                    sortBy = element.DriverStandings.map((element) => {
-                        return Number(element.points);
-                    });
-                } else {
-                    sortBy = element.DriverStandings.map((element) => {
-                        return Number(element.wins);
-                    });
-                    sortBy.sort((a,b) => a - b);
-                    sortBy.reverse();
-                }
-                return sortBy;
-            });
-            let sort = [];
-            for(let i=0; i<sortByArray[0].length; i++) {
-                sort.push(sortByArray[0][i]);
+            if(this.state.sortBy === 'points') {
+                resultArray[0].unshift(['', 'Punkty']);
+                this.setState({
+                    data: resultArray,
+                });
+            } else {
+                winsArray[0].unshift(['', 'Wygrane rundy']);
+                this.setState({
+                    data: winsArray,
+                });
             }
 
             let seasonNumber = json.MRData.StandingsTable.season;
@@ -102,91 +111,214 @@ class FinishResults extends Component {
             this.setState({
                 seasonNumber: seasonNumber,
                 roundNumber: roundNumber,
+                loading: false,
                 err: '',
-                chartData: {
-                    labels: drivers,
-                    datasets: [
-                        {
-                            label: `F1stats - ranking kierowców w sezonie ${this.state.season}`,
-                            data: sort,
-                            backgroundColor: 'rgba(250, 0, 0, 0.7)'
-                        }
-                    ]
-                }
             })
+
         }).catch(() => {
             this.setState({
                 seasonNumber: 'Error',
+                loading: false,
                 err: 'Error',
             })
         });
     };
+
     render() {
-        let formAndBtn =
-            <div>
-                <div className='content'>
-                    <form className='formSeason'>
-                        <input type="text" placeholder='Podaj rok' value={this.state.season} onChange={this.seasonValue} />
-                        <select onChange={this.sortByValue}>
-                            <option value="points">Zdobyte punkty</option>
-                            <option value="wins">Wygrane wyścigi</option>
-                        </select>
-                        <select onChange={this.chartValue}>
-                            <option value="bar">Wykres blokowy</option>
-                            <option value="line">Wykres liniowy</option>
-                        </select>
-                    </form>
+
+        let loading =
+            <div className='col-10 loadingPosition'>
+                <div className='loading' />
+            </div>;
+
+        let title =
+            <div className='col-12'>
+                <div className='title'>
+                    <h1 className='title'>Ranking sezonu</h1>
+                    <p>Klasyfikacja ze względu na ilość zdobytych punktów lub wygranych wyścigów w danym
+                        sezonie.</p>
                 </div>
-                <div className='content'>
+            </div>;
+
+        let formAndBtn =
+            <div className='col-2 formContent'>
+                <form className='formSeason'>
+                    <input type="text" placeholder='Podaj rok' value={this.state.season} onChange={this.seasonValue}/>
+                </form>
+                <div className='btnContent'>
                     <button className='button' onClick={this.searchSeason}>Szukaj Sezonu</button>
                     <button className='button' onClick={this.prevSeason}>Poprzedni Sezon</button>
                     <button className='button' onClick={this.nextSeason}>Kolejny Sezon</button>
                 </div>
+                <form className='formSeason'>
+                    <select onChange={this.sortByValue}>
+                        <option value="points">Zdobyte punkty</option>
+                        <option value="wins">Wygrane wyścigi</option>
+                    </select>
+                    <select onChange={this.chartValue}>
+                        <option value="bar">Wykres blokowy</option>
+                        <option value="line">Wykres liniowy</option>
+                    </select>
+                </form>
             </div>;
 
         let titleAndRaces =
-            <div>
+            <div className='col-12'>
                 <ul className='dataList'>
-                    <li>Sezon {this.state.seasonNumber}</li>
-                    <li>Ilość wyścigów: {this.state.roundNumber}</li>
+                    <li><span>Sezon:</span> {this.state.seasonNumber}</li>
+                    <li><span>Ilość rund:</span> {this.state.roundNumber}</li>
                 </ul>
             </div>;
 
-        if(this.state.seasonNumber === '') {
+        if (this.state.seasonNumber === '') {
             return (
                 <div>
-                    {formAndBtn}
+                    <div className='row'>
+                        {title}
+                    </div>
+                    <div className='row'>
+                        {titleAndRaces}
+                    </div>
+                    <div className='row'>
+                        {formAndBtn}
+                    </div>
                 </div>
             );
+        } else if(this.state.loading === true) {
+            return (
+                <div>
+                    <div className='row'>
+                        {title}
+                    </div>
+                    <div className='row'>
+                        {titleAndRaces}
+                    </div>
+                    <div className='row'>
+                        {formAndBtn}
+                        {loading}
+                    </div>
+                </div>
+            )
         } else if(this.state.err !== '') {
             return (
                 <div>
-                    {formAndBtn}
-                    <ul className='dataList'>
-                        <li>Nie znaleziono takiego sezonu</li>
-                    </ul>
+                    <div className='row'>
+                        {title}
+                    </div>
+                    <div className='row'>
+                        {titleAndRaces}
+                    </div>
+                    <div className='row'>
+                        {formAndBtn}
+                    </div>
+                    <div className='row'>
+                        <div className='col-12'>
+                            <ul className='dataList'>
+                                <li>Nie znaleziono takiego sezonu</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             );
         } else {
             if(this.state.chart === 'bar') {
                 return (
                     <div>
-                        {formAndBtn}
-                        {titleAndRaces}
-                        <div className="chart">
-                            <Bar data={this.state.chartData} height={90} />
+                        <div className='row'>
+                            {title}
+                        </div>
+                        <div className='row'>
+                            {titleAndRaces}
+                        </div>
+                        <div className='row'>
+                            {formAndBtn}
+                            <div className='col-10'>
+                                <Chart
+                                    key="ColumnChart"
+                                    height={500}
+                                    chartType="ColumnChart"
+                                    loader={loading}
+                                    data={
+                                        [...this.state.data[0]]
+                                    }
+                                    options={{
+                                        chartArea: { left: 80, right: 40, top: 20, bottom: 130 },
+                                        legend: {position: 'none'},
+                                        fontSize: 12,
+                                        colors: ['darkorange'],
+                                        animation: {
+                                            duration: 500,
+                                            easing: 'out',
+                                            startup: true,
+                                        },
+                                        hAxis: {
+                                            showTextEvery: 1,
+                                            textStyle : {
+                                                fontSize: 12
+                                            },
+                                            slantedText: true,
+                                            slantedTextAngle: 60
+                                        },
+                                        vAxis: {
+                                            textStyle : {
+                                                fontSize: 12,
+                                            },
+                                        },
+                                    }}
+                                />
+                            </div>
                         </div>
                     </div>
                 )
             } else if (this.state.chart === 'line') {
                 return (
                     <div>
-                        {formAndBtn}
-                        {titleAndRaces}
-                        <div className="chart">
-                            <Line data={this.state.chartData} height={90} />
+                        <div className='row'>
+                            {title}
+                        </div>
+                        <div className='row'>
+                            {titleAndRaces}
+                        </div>
+                        <div className='row'>
+                            {formAndBtn}
+                            <div className='col-10'>
+                                <Chart
+                                    key="LineChart"
+                                    height={500}
+                                    chartType="LineChart"
+                                    loader={loading}
+                                    data={
+                                        [...this.state.data[0]]
+                                    }
+                                    options={{
+                                        chartArea: { left: 80, right: 40, top: 20, bottom: 130 },
+                                        legend: {position: 'none'},
+                                        fontSize: 12,
+                                        colors: ['darkorange'],
+                                        animation: {
+                                            duration: 500,
+                                            easing: 'out',
+                                            startup: true,
+                                        },
+                                        hAxis: {
+                                            showTextEvery: 1,
+                                            textStyle : {
+                                                fontSize: 12
+                                            },
+                                            slantedText: true,
+                                            slantedTextAngle: 60
+                                        },
+                                        vAxis: {
+                                            textStyle : {
+                                                fontSize: 12,
+                                            },
+                                        },
+                                    }}
+                                />
+                            </div>
                         </div>
                     </div>
+
                 )
             }
         }
