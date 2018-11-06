@@ -42,7 +42,8 @@ class ReasonsForEndingRaces extends Component {
         }, this.searchSeason);
     };
 
-    nextSeasonPrev = () => {
+    nextSeasonPrev = (event) => {
+        event.preventDefault();
         let season = Number(this.state.seasonTo);
         season = season - 1;
         this.setState({
@@ -51,7 +52,8 @@ class ReasonsForEndingRaces extends Component {
         }, this.searchSeason);
     };
 
-    prevSeasonNext = () => {
+    prevSeasonNext = (event) => {
+        event.preventDefault();
         let season = Number(this.state.seasonFrom);
         season = season + 1;
         this.setState({
@@ -60,7 +62,8 @@ class ReasonsForEndingRaces extends Component {
         }, this.searchSeason);
     };
 
-    prevSeasonPrev = () => {
+    prevSeasonPrev = (event) => {
+        event.preventDefault();
         let season = Number(this.state.seasonFrom);
         season = season - 1;
         this.setState({
@@ -69,7 +72,8 @@ class ReasonsForEndingRaces extends Component {
         }, this.searchSeason);
     };
 
-    nextSeasonNext = () => {
+    nextSeasonNext = (event) => {
+        event.preventDefault();
         let season = Number(this.state.seasonTo);
         season = season + 1;
         this.setState({
@@ -198,58 +202,51 @@ class ReasonsForEndingRaces extends Component {
     render() {
 
         let loading =
-            <div className='row'>
-                <div className='col-12 loadingPosition'>
-                    <div className='loading'/>
+            <div className='col-10 loadingPosition'>
+                <div className='loading' />
+            </div>;
+
+        let title =
+            <div className='col-12'>
+                <div className='title'>
+                    <h1 className='title'>Statusy ukończenia wyścigów</h1>
+                    <p>Statystyka prezentuje przyczyny z jakich kierowcy kończyli wyścigi na przestrzeni podanych lat</p>
                 </div>
             </div>;
 
 
         let formAndBtn =
-            <div>
-                <div className='col-4'>
-                    <div className='title'>
-                        <h1 className='title'>Statusy ukończenia wyścigów</h1>
-                        <p>Statystyka prezentuje przyczyny z jakich kierowcy kończyli wyścigi na przestrzeni podanych
-                            lat.</p>
-                    </div>
+            <div className='col-2 formContent'>
+                <form className='formStatus'>
+                    <input type="text" placeholder='Rok od' value={this.state.seasonFrom}
+                           onChange={this.seasonFromValue}/>
+                    <button className='buttonMini' onClick={this.prevSeasonPrev}>&lt;</button>
+                    <button className='buttonMini' onClick={this.prevSeasonNext}>&gt;</button>
+                    <input type="text" placeholder='Rok do' value={this.state.seasonTo}
+                           onChange={this.seasonToValue}/>
+                    <button className='buttonMini' onClick={this.nextSeasonPrev}>&lt;</button>
+                    <button className='buttonMini' onClick={this.nextSeasonNext}>&gt;</button>
+                </form>
+                <div className='btnContent '>
+                    <button type='button' className='button' onClick={this.searchSeason}>Szukaj Sezonu</button>
                 </div>
-                <div className='col-8'>
-                    <form className='formSeason formContent'>
-                        <input type="text" placeholder='Podaj rok - od' value={this.state.seasonFrom}
-                               onChange={this.seasonFromValue}/>
-                        <input type="text" placeholder='Podaj rok - do' value={this.state.seasonTo}
-                               onChange={this.seasonToValue}/>
-                        <button type='button' className='button' onClick={this.searchSeason}>Szukaj Sezonu</button>
-                    </form>
-                </div>
-                <div className='col-8'>
-                    <div className='btnContent '>
-                        <button className='buttonMini' onClick={this.prevSeasonPrev}>Prev</button>
-                        <button className='buttonMini' onClick={this.prevSeasonNext}>Next</button>
-                        <button className='buttonMini' onClick={this.nextSeasonPrev}>Prev</button>
-                        <button className='buttonMini' onClick={this.nextSeasonNext}>Next</button>
-                        <form className='formSeason'>
-                            <select onChange={this.chartValue}>
-                                <option value="bar">Wykres blokowy</option>
-                                <option value="line">Wykres liniowy</option>
-                            </select>
-                        </form>
-                    </div>
-                </div>
-                <div className='col-8'>
-                    <form className='formSeason '>
-                        <select onChange={this.countResultsValue}>
-                            <option value='all'>Wszystkie wyniki</option>
-                            <option value='5'>5 wyników</option>
-                            <option value='10'>10 wyników</option>
-                            <option value='15'>15 wyników</option>
-                        </select>
-                        <input type="text" placeholder='O ile przesuwać' value={this.state.move} onChange={this.move}/>
-                        <button type='button' className='buttonMini' onClick={this.prevResults}>Poprzednie</button>
-                        <button type='button' className='buttonMini' onClick={this.nextResults}>Kolejne</button>
-                    </form>
-                </div>
+                <form className='formStatus'>
+                <input type="text" placeholder='O ile przesuwać' value={this.state.move} onChange={this.move}/>
+                <button type='button' className='buttonMini' onClick={this.prevResults}>&lt;</button>
+                <button type='button' className='buttonMini' onClick={this.nextResults}>&gt;</button>
+                    <select onChange={this.countResultsValue}>
+                        <option value='all'>Wszystkie wyniki</option>
+                        <option value='5'>5 wyników</option>
+                        <option value='10'>10 wyników</option>
+                        <option value='15'>15 wyników</option>
+                    </select>
+                </form>
+                <form className='formStatus'>
+                    <select onChange={this.chartValue}>
+                        <option value="bar">Wykres blokowy</option>
+                        <option value="line">Wykres liniowy</option>
+                    </select>
+                </form>
             </div>;
 
         let titleAndRaces =
@@ -261,17 +258,29 @@ class ReasonsForEndingRaces extends Component {
 
         if (this.state.seasonFrom === '' || this.state.data === '') {
             return (
-                <div className='row'>
-                    {formAndBtn}
+                <div>
+                    <div className='row'>
+                        {title}
+                    </div>
+                    <div className='row'>
+                        {titleAndRaces}
+                    </div>
+                    <div className='row'>
+                        {formAndBtn}
+                    </div>
                 </div>
             );
         } else if(this.state.loading === true) {
             return (
                 <div>
                     <div className='row'>
-                        {formAndBtn}
+                        {title}
                     </div>
-                    <div>
+                    <div className='row'>
+                        {titleAndRaces}
+                    </div>
+                    <div className='row'>
+                        {formAndBtn}
                         {loading}
                     </div>
                 </div>
@@ -280,35 +289,38 @@ class ReasonsForEndingRaces extends Component {
             return (
                 <div className='row'>
                     {formAndBtn}
-                    <div className='col-12'>
-                        <ul className='dataList'>
-                            <li>Nie znaleziono takiego sezonu</li>
-                        </ul>
+                    <div className='row'>
+                        <div className='col-12'>
+                            <ul className='dataList'>
+                                <li>Nie znaleziono takiego sezonu lub wyścigu</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            );
+            )
         } else {
             if(this.state.chart === 'bar') {
                 return (
                     <div>
                         <div className='row'>
-                            {formAndBtn}
+                            {title}
                         </div>
                         <div className='row'>
                             {titleAndRaces}
                         </div>
                         <div className='row'>
-                            <div className='col-12'>
+                            {formAndBtn}
+                            <div className='col-10'>
                                 <Chart
                                     key="ColumnChart"
-                                    height={400}
+                                    height={500}
                                     chartType="ColumnChart"
-                                    loader={<div>Loading Chart</div>}
+                                    loader={loading}
                                     data={
                                         [...this.state.data]
                                     }
                                     options={{
-                                        chartArea: { left: 100, right: 100, top: 20, bottom: 130 },
+                                        chartArea: { left: 80, right: 40, top: 20, bottom: 130 },
                                         legend: {position: 'none'},
                                         fontSize: 12,
                                         colors: ['darkorange'],
@@ -323,10 +335,9 @@ class ReasonsForEndingRaces extends Component {
                                                 fontSize: 12
                                             },
                                             slantedText: true,
-                                            slantedTextAngle: 60,
+                                            slantedTextAngle: 60
                                         },
                                         vAxis: {
-                                            title: 'Ilość',
                                             textStyle : {
                                                 fontSize: 12,
                                             },
@@ -341,23 +352,24 @@ class ReasonsForEndingRaces extends Component {
                 return (
                     <div>
                         <div className='row'>
-                            {formAndBtn}
+                            {title}
                         </div>
                         <div className='row'>
                             {titleAndRaces}
                         </div>
                         <div className='row'>
-                            <div className='col-12'>
+                            {formAndBtn}
+                            <div className='col-10'>
                                 <Chart
                                     key="LineChart"
-                                    height={400}
+                                    height={500}
                                     chartType="LineChart"
-                                    loader={<div>Loading Chart</div>}
+                                    loader={loading}
                                     data={
                                         [...this.state.data]
                                     }
                                     options={{
-                                        chartArea: { left: 100, right: 100, top: 20, bottom: 130 },
+                                        chartArea: { left: 80, right: 40, top: 20, bottom: 130 },
                                         legend: {position: 'none'},
                                         fontSize: 12,
                                         colors: ['darkorange'],
@@ -372,10 +384,9 @@ class ReasonsForEndingRaces extends Component {
                                                 fontSize: 12
                                             },
                                             slantedText: true,
-                                            slantedTextAngle: 60,
+                                            slantedTextAngle: 60
                                         },
                                         vAxis: {
-                                            title: 'Ilość',
                                             textStyle : {
                                                 fontSize: 12,
                                             },

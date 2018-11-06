@@ -267,6 +267,11 @@ class RaceResults extends Component {
                                         legend: {position: 'none'},
                                         fontSize: 12,
                                         colors: ['darkorange'],
+                                        animation: {
+                                            duration: 500,
+                                            easing: 'out',
+                                            startup: true,
+                                        },
                                         hAxis: {
                                             showTextEvery: 1,
                                             textStyle : {
@@ -307,6 +312,11 @@ class RaceResults extends Component {
                                     legend: {position: 'none'},
                                     fontSize: 12,
                                     colors: ['darkorange'],
+                                    animation: {
+                                        duration: 500,
+                                        easing: 'out',
+                                        startup: true,
+                                    },
                                     hAxis: {
                                         showTextEvery: 1,
                                         textStyle : {

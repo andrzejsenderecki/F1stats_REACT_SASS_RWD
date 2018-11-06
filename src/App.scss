@@ -182,7 +182,6 @@
             font-size: 15px;
         }
     }
-
 }
 
 .title {
@@ -230,9 +229,7 @@
             text-align: left;
             padding: 0 0 30px 70px;
         }
-
     }
-
 }
 
 .dataList {
@@ -249,21 +246,55 @@
         display: inline-block;
         padding: 0 20px 0 0;
     }
+}
 
+.dataListCurrent {
+    text-align: left;
+    padding-left: 60px;
+    margin-bottom: 30px;
+
+    li {
+        font-family: 'Roboto', sans-serif;
+        color: darkslategray;
+        font-size: 20px;
+        font-weight: normal;
+        text-decoration: none;
+        list-style: none;
+        display: inline-block;
+        padding: 14px 20px 0 0;
+    }
+
+    span {
+        color: rgba(245, 0, 0, 0.8);
+    }
 }
 
 .dataRace {
     font-family: 'Roboto', sans-serif;
     font-weight: normal;
-    text-align: center;
+    text-align: left;
+    font-size: 15px;
+    margin-bottom: 40px;
 
     li {
         margin-top: 5px;
         margin-bottom: 5px;
-        padding-left: 10px;
-        padding-right: 10px;
+        padding: 10px 10px 10px 50px;
         text-decoration: none;
         list-style: none;
+        transition: 0.3s;
+
+        &:hover {
+            cursor: pointer;
+            padding: 10px 10px 10px 30px;
+        }
+
+        &:before {
+            content: '';
+            padding-right: 5px;
+            margin-right: 10px;
+            background: rgba(245, 0, 0, 0.8);
+        }
     }
 }
 
@@ -294,8 +325,6 @@
     font-size: 15px;
     transition: 0.4s;
 
-
-
     &:hover {
         color: orange;
         padding-right: 40px;
@@ -305,8 +334,20 @@
 .buttonMini {
     cursor: pointer;
     margin: 5px;
-    width: 95px;
-    height: 24px;
+    width: 33px;
+    height: 33px;
+    border: 0;
+    border-radius: 2px;
+    background: #505050;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-weight: normal;
+    font-size: 15px;
+    transition: 0.4s;
+
+    &:hover {
+        color: orange;
+    }
 }
 
 .formSeason  {
@@ -315,16 +356,13 @@
     flex-wrap: wrap;
 
     @media (min-width: 900px) {
-
         justify-content: flex-end;
         padding-left: 40px;
-
-
     }
 
     input {
         margin: 5px;
-        width: 157px;
+        width: 154px;
         height: 30px;
         border: 1px solid gray;
         border-radius: 2px;
@@ -348,8 +386,6 @@
         font-size: 15px;
         transition: 0.4s;
     }
-
-
 }
 
 .formBanner  {
@@ -370,7 +406,26 @@
         font-family: 'Roboto', sans-serif;
         font-weight: normal;
         font-size: 15px;
-        transition: 0.4s;
+    }
+}
+
+.formCurrent  {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    select {
+        cursor: pointer;
+        margin: 5px;
+        width: 170px;
+        height: 40px;
+        border: 0;
+        padding-left: 20px;
+        border-radius: 2px;
+        background: darkslategray;
+        color: white;
+        font-family: 'Roboto', sans-serif;
+        font-weight: normal;
+        font-size: 15px;
     }
 }
 
@@ -382,6 +437,55 @@
     @media (min-width: 900px) {
 
         justify-content: flex-end;
+        padding-left: 40px;
+
+    }
+
+    input {
+        margin: 5px;
+        width: 66px;
+        height: 30px;
+        border: 1px solid gray;
+        border-radius: 2px;
+        font-size: 18px;
+        padding-left: 10px;
+        color: darkslategray;
+    }
+
+    select {
+        cursor: pointer;
+        margin: 5px;
+        width: 200px;
+        height: 30px;
+        border: 0;
+        padding-left: 20px;
+        border-radius: 2px;
+        background: gray;
+        color: white;
+        font-family: 'Roboto', sans-serif;
+        font-weight: normal;
+        font-size: 15px;
+        transition: 0.4s;
+    }
+}
+
+.info {
+    font-family: 'Roboto', sans-serif;
+    font-size: 25px;
+    text-align: center;
+    font-weight: normal;
+    color: darkslategray;
+    padding: 20px 20px 20px 20px;
+}
+
+.formStatus {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    @media (min-width: 900px) {
+
+        justify-content: flex-start;
         padding-left: 40px;
 
     }
@@ -468,6 +572,12 @@
     display: flex;
     justify-content: center;
     padding: 100px 0 0 143px;
+}
+
+.loadingCurrentPosition {
+    display: flex;
+    justify-content: center;
+    padding: 30px 0 100px 0;
 }
 
 @keyframes spin {

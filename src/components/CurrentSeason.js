@@ -62,7 +62,7 @@ class CurrentSeason extends Component {
                     let data = [];
                     data.push(element.Driver.familyName);
                     if (this.state.sortBy === 'points') {
-                        data.pusph(Number(element.points));
+                        data.push(Number(element.points));
                     } else {
                         data.push(Number(element.laps));
                     }
@@ -140,15 +140,28 @@ class CurrentSeason extends Component {
 
     render() {
 
+        let loading =
+            <div className='col-12 loadingCurrentPosition'>
+                <div className='loading' />
+            </div>;
+
+        let title =
+            <div className='col-12'>
+                <div className='title'>
+                    <h1 className='title'>Ranking sezonu</h1>
+                    <p>Klasyfikacja ze względu na ilość zdobytych punktów lub wygranych wyścigów w danym
+                        sezonie.</p>
+                </div>
+            </div>;
 
         let titleAndData =
-            <div className='content'>
-                <ul className='dataList'>
-                    <li>Sezon {this.state.seasonNumber}</li>
-                    <li>Runda numer: {this.state.roundNumber}</li>
-                    <li>Wyścig: {this.state.raceName}</li>
-                    <li>Tor: {this.state.circuitName}</li>
-                    <li>Data: {this.state.raceDate}</li>
+            <div className='col-12'>
+                <ul className='dataListCurrent'>
+                    <li>Sezon: <span>{this.state.seasonNumber}</span></li>
+                    <li>Runda numer: <span>{this.state.roundNumber}</span></li>
+                    <li>Wyścig: <span>{this.state.raceName}</span></li>
+                    <li>Tor: <span>{this.state.circuitName}</span></li>
+                    <li>Data: <span>{this.state.raceDate}</span></li>
                 </ul>
             </div>;
 
@@ -162,186 +175,164 @@ class CurrentSeason extends Component {
             console.log(currentDate);
         }
         if (this.state.data === '') {
-            return <p className='title'>Loading...</p>
+            return (
+                <div>
+                    <div className='row'>
+                        {title}
+                    </div>
+                    <div className='row'>
+                        {loading}
+                    </div>
+                </div>
+            )
         } else {
             if (this.state.dataChart === '') {
                 return (
-                    <div className='content'>
-                        <h3 className='title'>Sezon {this.state.data.RaceTable.season}</h3>
-                        <ul className='dataRace'>
-                            {this.state.data.RaceTable.Races.map((element, index) => {
-                                if (element.date < currentDate) {
-                                    return <li key={index} className='pastRaces'
-                                               onClick={() => this.displayRound(element.season, element.round)}>{element.date} | {element.raceName}</li>
-                                } else {
-                                    return <li key={index} className='futureRaces'
-                                               onClick={() => this.displayRound(element.season, element.round)}>{element.date} | {element.raceName}</li>
-                                }
-                            })}
-                        </ul>
+                    <div>
+                        <div className='row'>
+                            {title}
+                        </div>
+                        <div className='row'>
+                            <div className='col-3'>
+                                <ul className='dataRace'>
+                                    {this.state.data.RaceTable.Races.map((element, index) => {
+                                        if (element.date < currentDate) {
+                                            return <li key={index} className='pastRaces'
+                                                       onClick={() => this.displayRound(element.season, element.round)}>{element.date} | {element.raceName}</li>
+                                        } else {
+                                            return <li key={index} className='futureRaces'
+                                                       onClick={() => this.displayRound(element.season, element.round)}>{element.date} | {element.raceName}</li>
+                                        }
+                                    })}
+                                </ul>
+                            </div>
+                            <div className='col-9'>
+                                <p className='info'>Kliknij wybraną rundę, aby wyświetlić statystyki.</p>
+                            </div>
+                        </div>
                     </div>
                 )
             } else {
                 if (this.state.chart === 'bar') {
                     return (
-                        <div className='content'>
-                            <h3 className='title'>Sezon {this.state.data.RaceTable.season}</h3>
-                            <ul className='dataRace'>
-                                {this.state.data.RaceTable.Races.map((element, index) => {
-                                    if (element.date <= currentDate) {
-                                        console.log('EL');
-                                        console.log(element.date);
-                                        console.log(currentDate);
-                                        console.log('EL');
-                                        if(element.round === this.state.round) {
-                                            return <li key={index} className='pastRaces' onClick={() => this.displayRound(element.season, element.round)}>
-                                                {element.date} | {element.raceName} {this.state.round}
-                                                <div className="chart">
-                                                    <div className='content'>
-                                                        <form className='formRace'>
-                                                            <select onChange={this.sortByValue}>
-                                                                <option value="points">Zdobyte punkty</option>
-                                                                <option value="laps">Ukończone okrążenia</option>
-                                                            </select>
-                                                            <select onChange={this.chartValue}>
-                                                                <option value="bar">Wykres blokowy</option>
-                                                                <option value="line">Wykres liniowy</option>
-                                                            </select>
-                                                        </form>
-                                                    </div>
-                                                    {titleAndData}
-                                                    <Chart
-                                                        key="ColumnChart"
-                                                        height={500}
-                                                        chartType="ColumnChart"
-                                                        loader={<div>Loading Chart</div>}
-                                                        data={
-                                                            [...this.state.dataChart[0]]
-                                                        }
-                                                        options={{
-                                                            title: 'Przyczyny z jakich kierowcy kończyli wyścigi',
-                                                            chartArea: {left: 100, right: 100, top: 60, bottom: 130},
-                                                            legend: {position: 'none'},
-                                                            fontSize: 12,
-                                                            color: 'yellow',
-                                                            hAxis: {
-                                                                showTextEvery: 1,
-                                                                textStyle: {
-                                                                    fontSize: 12
-                                                                },
-                                                                slantedText: true,
-                                                                slantedTextAngle: 60,
-                                                                title: 'Przyczyny ukończenia wyścigów'
-                                                            },
-                                                            vAxis: {
-                                                                title: 'Ilość',
-                                                                textStyle: {
-                                                                    fontSize: 12,
-                                                                },
-                                                            },
-                                                        }}
-                                                    />
-                                                </div>
-                                            </li>
-                                        } else {
-                                            return <li className='pastRaces'
-                                                       onClick={() => this.displayRound(element.season, element.round)}>{element.date} | {element.raceName} {this.state.round}</li>
+                        <div>
+                            <div className='row'>
+                                {title}
+                            </div>
+                            <div className='row'>
+                                <div className='col-3'>
+                                    <ul className='dataRace'>
+                                        {this.state.data.RaceTable.Races.map((element, index) => {
+                                            if (element.date < currentDate) {
+                                                return <li key={index} className='pastRaces'
+                                                           onClick={() => this.displayRound(element.season, element.round)}>{element.date} | {element.raceName}</li>
+                                            } else {
+                                                return <li key={index} className='futureRaces'
+                                                           onClick={() => this.displayRound(element.season, element.round)}>{element.date} | {element.raceName}</li>
+                                            }
+                                        })}
+                                    </ul>
+                                </div>
+                                <div className='col-9'>
+                                        <div className='row'>
+                                            {titleAndData}
+                                        </div>
+                                    <Chart
+                                        key="ColumnChart"
+                                        height={500}
+                                        chartType="ColumnChart"
+                                        loader={loading}
+                                        data={
+                                            [...this.state.dataChart[0]]
                                         }
-                                    } else {
-                                        if(element.round === this.state.round) {
-                                            return <li className='futureRaces' onClick={() => this.displayRound(element.season, element.round)}>
-                                                {element.date} | {element.raceName} {this.state.round}
-                                                <div>
-                                                    Jeszcze nie było takiego wyścigu
-                                                </div>
-                                            </li>
-                                        } else {
-                                            return <li className='futureRaces' onClick={() => this.displayRound(element.season, element.round)}>{element.date} | {element.raceName} {this.state.round}</li>
-                                        }
-                                    }
-                                })}
-                            </ul>
+                                        options={{
+                                            chartArea: { left: 80, right: 20, top: 20, bottom: 130 },
+                                            legend: {position: 'none'},
+                                            fontSize: 12,
+                                            colors: ['darkorange'],
+                                            animation: {
+                                                duration: 1000,
+                                                easing: 'out',
+                                                startup: true,
+                                            },
+                                            hAxis: {
+                                                showTextEvery: 1,
+                                                textStyle : {
+                                                    fontSize: 12
+                                                },
+                                                slantedText: true,
+                                                slantedTextAngle: 60
+                                            },
+                                            vAxis: {
+                                                textStyle : {
+                                                    fontSize: 12,
+                                                },
+                                            },
+                                        }}
+                                    />
+                                </div>
+                                <div className='col-9'>
+                                    <form className='formCurrent'>
+                                        <select onChange={this.sortByValue}>
+                                            <option value="points">Zdobyte punkty</option>
+                                            <option value="laps">Ukończone okrążenia</option>
+                                        </select>
+                                        <select onChange={this.chartValue}>
+                                            <option value="bar">Wykres blokowy</option>
+                                            <option value="line">Wykres liniowy</option>
+                                        </select>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     )
                 } else {
                     return (
-                        <div className='content'>
-                            <h3 className='title'>Sezon {this.state.data.RaceTable.season}</h3>
-                            <ul className='dataRace'>
-                                {this.state.data.RaceTable.Races.map((element, index) => {
-                                    if (element.date <= currentDate) {
-                                        console.log('EL');
-                                        console.log(element.date);
-                                        console.log(currentDate);
-                                        console.log('EL');
-                                        if(element.round === this.state.round) {
-                                            return <li key={index} className='pastRaces' onClick={() => this.displayRound(element.season, element.round)}>
-                                                {element.date} | {element.raceName} {this.state.round}
-                                                <div className="chart">
-                                                    <div className='content'>
-                                                        <form className='formRace'>
-                                                            <select onChange={this.sortByValue}>
-                                                                <option value="points">Zdobyte punkty</option>
-                                                                <option value="laps">Ukończone okrążenia</option>
-                                                            </select>
-                                                            <select onChange={this.chartValue}>
-                                                                <option value="bar">Wykres blokowy</option>
-                                                                <option value="line">Wykres liniowy</option>
-                                                            </select>
-                                                        </form>
-                                                    </div>
-                                                    {titleAndData}
-                                                    <Chart
-                                                        key="LineChart"
-                                                        height={500}
-                                                        chartType="LineChart"
-                                                        loader={<div>Loading Chart</div>}
-                                                        data={
-                                                            [...this.state.dataChart[0]]
-                                                        }
-                                                        options={{
-                                                            title: 'Przyczyny z jakich kierowcy kończyli wyścigi',
-                                                            chartArea: {left: 100, right: 100, top: 60, bottom: 130},
-                                                            legend: {position: 'none'},
-                                                            fontSize: 12,
-                                                            color: 'yellow',
-                                                            hAxis: {
-                                                                showTextEvery: 1,
-                                                                textStyle: {
-                                                                    fontSize: 12
-                                                                },
-                                                                slantedText: true,
-                                                                slantedTextAngle: 60,
-                                                                title: 'Przyczyny ukończenia wyścigów'
-                                                            },
-                                                            vAxis: {
-                                                                title: 'Ilość',
-                                                                textStyle: {
-                                                                    fontSize: 12,
-                                                                },
-                                                            },
-                                                        }}
-                                                    />
-                                                </div>
-                                            </li>
-                                        } else {
-                                            return <li className='pastRaces'
-                                                       onClick={() => this.displayRound(element.season, element.round)}>{element.date} | {element.raceName} {this.state.round}</li>
+                        <div>
+                            <div className='row'>
+                                {title}
+                            </div>
+                            <div className='row'>
+                                {titleAndData}
+                            </div>
+                            <div className='row'>
+
+                                <div className='col-9'>
+                                    <Chart
+                                        key="ColumnChart"
+                                        height={500}
+                                        chartType="ColumnChart"
+                                        loader={loading}
+                                        data={
+                                            [...this.state.dataChar[0]]
                                         }
-                                    } else {
-                                        if(element.round === this.state.round) {
-                                            return <li className='futureRaces' onClick={() => this.displayRound(element.season, element.round)}>
-                                                {element.date} | {element.raceName} {this.state.round}
-                                                <div>
-                                                    Jeszcze nie było takiego wyścigu
-                                                </div>
-                                            </li>
-                                        } else {
-                                            return <li className='futureRaces' onClick={() => this.displayRound(element.season, element.round)}>{element.date} | {element.raceName} {this.state.round}</li>
-                                        }
-                                    }
-                                })}
-                            </ul>
+                                        options={{
+                                            chartArea: { left: 80, right: 40, top: 20, bottom: 130 },
+                                            legend: {position: 'none'},
+                                            fontSize: 12,
+                                            colors: ['darkorange'],
+                                            animation: {
+                                                duration: 500,
+                                                easing: 'out',
+                                                startup: true,
+                                            },
+                                            hAxis: {
+                                                showTextEvery: 1,
+                                                textStyle : {
+                                                    fontSize: 12
+                                                },
+                                                slantedText: true,
+                                                slantedTextAngle: 60
+                                            },
+                                            vAxis: {
+                                                textStyle : {
+                                                    fontSize: 12,
+                                                },
+                                            },
+                                        }}
+                                    />
+                                </div>
+                            </div>
                         </div>
                     )
                 }
