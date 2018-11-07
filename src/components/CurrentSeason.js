@@ -246,7 +246,7 @@ class CurrentSeason extends Component {
                                             [...this.state.dataChart[0]]
                                         }
                                         options={{
-                                            chartArea: { left: 80, right: 20, top: 20, bottom: 130 },
+                                            chartArea: { left: 80, right: 60, top: 20, bottom: 130 },
                                             legend: {position: 'none'},
                                             fontSize: 12,
                                             colors: ['darkorange'],
@@ -293,26 +293,38 @@ class CurrentSeason extends Component {
                                 {title}
                             </div>
                             <div className='row'>
-                                {titleAndData}
-                            </div>
-                            <div className='row'>
-
+                                <div className='col-3'>
+                                    <ul className='dataRace'>
+                                        {this.state.data.RaceTable.Races.map((element, index) => {
+                                            if (element.date < currentDate) {
+                                                return <li key={index} className='pastRaces'
+                                                           onClick={() => this.displayRound(element.season, element.round)}>{element.date} | {element.raceName}</li>
+                                            } else {
+                                                return <li key={index} className='futureRaces'
+                                                           onClick={() => this.displayRound(element.season, element.round)}>{element.date} | {element.raceName}</li>
+                                            }
+                                        })}
+                                    </ul>
+                                </div>
                                 <div className='col-9'>
+                                        <div className='row'>
+                                            {titleAndData}
+                                        </div>
                                     <Chart
-                                        key="ColumnChart"
+                                        key="LineChart"
                                         height={500}
-                                        chartType="ColumnChart"
+                                        chartType="LineChart"
                                         loader={loading}
                                         data={
-                                            [...this.state.dataChar[0]]
+                                            [...this.state.dataChart[0]]
                                         }
                                         options={{
-                                            chartArea: { left: 80, right: 40, top: 20, bottom: 130 },
+                                            chartArea: { left: 80, right: 20, top: 20, bottom: 130 },
                                             legend: {position: 'none'},
                                             fontSize: 12,
                                             colors: ['darkorange'],
                                             animation: {
-                                                duration: 500,
+                                                duration: 1000,
                                                 easing: 'out',
                                                 startup: true,
                                             },
@@ -331,6 +343,18 @@ class CurrentSeason extends Component {
                                             },
                                         }}
                                     />
+                                </div>
+                                <div className='col-9'>
+                                    <form className='formCurrent'>
+                                        <select onChange={this.sortByValue}>
+                                            <option value="points">Zdobyte punkty</option>
+                                            <option value="laps">Ukończone okrążenia</option>
+                                        </select>
+                                        <select onChange={this.chartValue}>
+                                            <option value="bar">Wykres blokowy</option>
+                                            <option value="line">Wykres liniowy</option>
+                                        </select>
+                                    </form>
                                 </div>
                             </div>
                         </div>

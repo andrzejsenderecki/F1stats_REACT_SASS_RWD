@@ -99,7 +99,7 @@
 
 .banner {
 
-    @media (max-width: 899px) {
+    @media (max-width: 830px) {
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
@@ -107,39 +107,44 @@
     }
 
     h1 {
+        font-size: 40px;
         padding-top: 20px;
         font-family: 'Roboto', sans-serif;
         color: #616161;
         font-weight: bold;
-        font-size: 40px;
     }
 
     h5 {
         font-family: 'Roboto', sans-serif;
         color: darkorange;
         font-weight: bold;
-        text-align: center;
         font-size: 20px;
         line-height: 40px;
-        padding: 10px 20px 10px 20px;
+        text-align: center;
+        padding: 10px;
     }
 
     p {
+        font-family: 'Roboto', sans-serif;
         padding: 20px 20px 10px 20px;
-        font-size: 15px;
+        font-size: 16px;
         text-align: center;
     }
 
     @media (min-width: 200px) {
         h1 {
-            font-size: 60px;
-            text-align: center;
+            font-size: 50px;
         }
+
+        p {
+            font-size: 17px;
+        }
+
     }
 
-    @media (min-width: 380px) {
+    @media (min-width: 280px) {
         h1 {
-            font-size: 80px;
+            font-size: 70px;
             text-align: center;
         }
 
@@ -148,14 +153,19 @@
         }
     }
 
+    @media (min-width: 390px) {
+        h1 {
+            font-size: 90px;
+        }
+    }
+
     @media (min-width: 570px) {
         h1 {
-            font-size: 120px;
-            text-align: center;
+            font-size: 90px;
         }
 
         h5 {
-            font-size: 40px;
+            font-size: 35px;
         }
     }
 
@@ -165,7 +175,7 @@
 
         h1 {
             padding-top: 50px;
-            font-size: 100px;
+            font-size: 70px;
             text-align: right;
         }
 
@@ -178,9 +188,57 @@
         p {
             text-align: right;
             padding-top: 30px;
-            padding-left: 100px;
-            font-size: 15px;
+            padding-left: 40px;
+            font-size: 14px;
         }
+    }
+
+    @media (min-width: 1000px) {
+        h1 {
+            font-size: 80px;
+        }
+
+        p {
+            padding-left: 60px;
+        }
+    }
+
+    @media (min-width: 1000px) {
+        h1 {
+            font-size: 90px;
+        }
+    }
+}
+
+.formBanner  {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-top: 20px;
+
+    select {
+        cursor: pointer;
+        margin: 5px;
+        width: 100%;
+        height: 40px;
+        border: 0;
+        padding-left: 20px;
+        border-radius: 2px;
+        background: darkslategray;
+        color: white;
+        font-family: 'Roboto', sans-serif;
+        font-weight: normal;
+        font-size: 15px;
+    }
+
+    @media (min-width: 367px) {
+        select {
+            width: 170px;
+        }
+    }
+
+    @media (min-width: 900px) {
+        justify-content: flex-end;
     }
 }
 
@@ -197,20 +255,23 @@
 
     p {
         font-family: 'Roboto', sans-serif;
-        font-size: 12px;
+        font-size: 15px;
         text-align: center;
         font-weight: normal;
         color: darkslategray;
-        padding: 20px 20px 20px 20px;
+        padding: 10px 20px 20px 20px;
     }
 
-    @media (min-width: 900px) {
+    @media (min-width: 260px) {
 
         h1 {
-            font-size: 45px;
-            text-align: left;
-            padding: 20px 0 20px 45px;
+            font-size: 40px;
+        }
 
+    }
+
+    @media (min-width: 412px) {
+        h1 {
             &:before {
                 content: '';
                 width: 100%;
@@ -219,6 +280,25 @@
                 margin-right: 10px;
                 background: darkorange;
             }
+        }
+
+        p {
+            font-size: 16px;
+        }
+    }
+
+    @media (min-width: 515px) {
+        h1 {
+            font-size: 45px;
+        }
+    }
+
+    @media (min-width: 900px) {
+
+        h1 {
+            font-size: 45px;
+            text-align: left;
+            padding: 20px 0 20px 45px;
         }
 
         p {
@@ -233,8 +313,7 @@
 }
 
 .dataList {
-    text-align: left;
-    padding-left: 300px;
+    text-align: center;
 
     li {
         font-family: 'Roboto', sans-serif;
@@ -244,8 +323,14 @@
         text-decoration: none;
         list-style: none;
         display: inline-block;
-        padding: 0 20px 0 0;
+        padding: 0 10px 0 10px;
     }
+
+    @media (min-width: 900px) {
+        text-align: left;
+        padding-left: 300px;
+    }
+
 }
 
 .dataListCurrent {
@@ -304,17 +389,16 @@
     flex-wrap: wrap;
 
     @media (min-width: 900px) {
-
         justify-content: flex-end;
-        padding-left: 40px;
 
     }
+
 }
 
 .button {
     cursor: pointer;
     margin: 5px;
-    width: 200px;
+    width: 100%;
     height: 30px;
     border: 0;
     border-radius: 2px;
@@ -328,6 +412,14 @@
     &:hover {
         color: orange;
         padding-right: 40px;
+    }
+
+    @media (min-width: 420px) {
+        width: 170px;
+    }
+
+    @media (min-width: 900px) {
+        width: 170px;
     }
 }
 
@@ -355,14 +447,9 @@
     justify-content: center;
     flex-wrap: wrap;
 
-    @media (min-width: 900px) {
-        justify-content: flex-end;
-        padding-left: 40px;
-    }
-
     input {
         margin: 5px;
-        width: 154px;
+        width: 100%;
         height: 30px;
         border: 1px solid gray;
         border-radius: 2px;
@@ -374,7 +461,7 @@
     select {
         cursor: pointer;
         margin: 5px;
-        width: 200px;
+        width: 100%;
         height: 30px;
         border: 0;
         padding-left: 20px;
@@ -386,27 +473,40 @@
         font-size: 15px;
         transition: 0.4s;
     }
-}
 
-.formBanner  {
-    display: flex;
-    justify-content: flex-end;
-    flex-wrap: wrap;
-    padding-top: 20px;
-    select {
-        cursor: pointer;
-        margin: 5px;
-        width: 170px;
-        height: 40px;
-        border: 0;
-        padding-left: 20px;
-        border-radius: 2px;
-        background: darkslategray;
-        color: white;
-        font-family: 'Roboto', sans-serif;
-        font-weight: normal;
-        font-size: 15px;
+    @media (min-width: 420px) {
+        input {
+            width: 148px;
+        }
+
+        select {
+            width: 170px;
+        }
     }
+
+    @media (min-width: 900px) {
+        justify-content: flex-end;
+        input {
+            width: 100%;
+        }
+
+        select {
+            width: 100%;
+        }
+    }
+
+    @media (min-width: 1076px) {
+        input {
+            width: 157px;
+        }
+
+        select {
+            width: 170px;
+        }
+    }
+
+
+
 }
 
 .formCurrent  {
@@ -615,7 +715,7 @@
     width: 16.66667%; }
 
 .col-3 {
-    width: 25%; }
+    width: 24.33333%; }
 
 .col-4 {
     width: 33.33333%; }

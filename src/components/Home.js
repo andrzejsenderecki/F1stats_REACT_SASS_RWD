@@ -169,6 +169,7 @@ class Home extends Component {
                     <div className='row'>
                         {bannerAndBtn}
                         <div className='col-8'>
+                            <div className='chartSize'>
                             <Chart
                                 key="ColumnChart"
                                 height={500}
@@ -178,7 +179,7 @@ class Home extends Component {
                                     [...this.state.data[0]]
                                 }
                                 options={{
-                                    chartArea: { left: 100, right: 100, top: 60, bottom: 100 },
+                                    chartArea: { left: 60, right: 60, top: 60, bottom: 100 },
                                     legend: {position: 'none'},
                                     fontSize: 12,
                                     colors: ['darkorange'],
@@ -203,6 +204,7 @@ class Home extends Component {
                                     },
                                 }}
                             />
+                            </div>
 
                         </div>
                     </div>

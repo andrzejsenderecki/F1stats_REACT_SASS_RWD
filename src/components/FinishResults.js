@@ -242,7 +242,7 @@ class FinishResults extends Component {
                                         [...this.state.data[0]]
                                     }
                                     options={{
-                                        chartArea: { left: 80, right: 40, top: 20, bottom: 130 },
+                                        chartArea: { left: 80, right: 60, top: 20, bottom: 130 },
                                         legend: {position: 'none'},
                                         fontSize: 12,
                                         colors: ['darkorange'],
