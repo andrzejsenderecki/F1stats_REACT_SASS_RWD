@@ -218,30 +218,35 @@ class ReasonsForEndingRaces extends Component {
         let formAndBtn =
             <div className='col-2 formContent'>
                 <form className='formStatus'>
-                    <input type="text" placeholder='Rok od' value={this.state.seasonFrom}
-                           onChange={this.seasonFromValue}/>
-                    <button className='buttonMini' onClick={this.prevSeasonPrev}>&lt;</button>
-                    <button className='buttonMini' onClick={this.prevSeasonNext}>&gt;</button>
-                    <input type="text" placeholder='Rok do' value={this.state.seasonTo}
-                           onChange={this.seasonToValue}/>
-                    <button className='buttonMini' onClick={this.nextSeasonPrev}>&lt;</button>
-                    <button className='buttonMini' onClick={this.nextSeasonNext}>&gt;</button>
+                    <div className='formStatusWrap'>
+                        <button className='buttonMini' onClick={this.prevSeasonPrev}>&lt;</button>
+                        <input type="text" placeholder='Rok od' value={this.state.seasonFrom}
+                               onChange={this.seasonFromValue}/>
+                        <button className='buttonMini' onClick={this.prevSeasonNext}>&gt;</button>
+                    </div>
+                    <div className='formStatusWrap'>
+                        <button className='buttonMini' onClick={this.nextSeasonPrev}>&lt;</button>
+                        <input type="text" placeholder='Rok do' value={this.state.seasonTo}
+                               onChange={this.seasonToValue}/>
+                        <button className='buttonMini' onClick={this.nextSeasonNext}>&gt;</button>
+                    </div>
                 </form>
                 <div className='btnContent '>
                     <button type='button' className='button' onClick={this.searchSeason}>Szukaj Sezonu</button>
                 </div>
                 <form className='formStatus'>
-                <input type="text" placeholder='O ile przesuwać' value={this.state.move} onChange={this.move}/>
-                <button type='button' className='buttonMini' onClick={this.prevResults}>&lt;</button>
-                <button type='button' className='buttonMini' onClick={this.nextResults}>&gt;</button>
+                    <select onChange={this.move}>
+                        <option value='1'>Przesuń o 1</option>
+                        <option value='3'>Przesuń o 3</option>
+                        <option value='5'>Przesuń o 5</option>
+                        <option value='10'>Przesuń o 10</option>
+                    </select>
                     <select onChange={this.countResultsValue}>
-                        <option value='all'>Wszystkie wyniki</option>
+                        <option value='all'>Wszystkie</option>
                         <option value='5'>5 wyników</option>
                         <option value='10'>10 wyników</option>
                         <option value='15'>15 wyników</option>
                     </select>
-                </form>
-                <form className='formStatus'>
                     <select onChange={this.chartValue}>
                         <option value="bar">Wykres blokowy</option>
                         <option value="line">Wykres liniowy</option>
@@ -311,6 +316,11 @@ class ReasonsForEndingRaces extends Component {
                         <div className='row'>
                             {formAndBtn}
                             <div className='col-10'>
+
+                                <button type='button' className='buttonMini' onClick={this.prevResults}>&lt;</button>
+
+                                <button type='button' className='buttonMini' onClick={this.nextResults}>&gt;</button>
+
                                 <Chart
                                     key="ColumnChart"
                                     height={500}

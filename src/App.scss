@@ -389,8 +389,11 @@
     flex-wrap: wrap;
 
     @media (min-width: 900px) {
-        justify-content: flex-end;
+        display: block;
+    }
 
+    @media (min-width: 1200px) {
+        padding-left: 40px;
     }
 
 }
@@ -419,8 +422,14 @@
     }
 
     @media (min-width: 900px) {
-        width: 170px;
+        width: 150px;
+        flex-shrink: 0;
     }
+
+    @media (min-width: 1200px) {
+        width: 165px;
+    }
+
 }
 
 .buttonMini {
@@ -464,7 +473,7 @@
         width: 100%;
         height: 30px;
         border: 0;
-        padding-left: 20px;
+        padding-left: 10px;
         border-radius: 2px;
         background: gray;
         color: white;
@@ -485,23 +494,28 @@
     }
 
     @media (min-width: 900px) {
-        justify-content: flex-end;
+        display: block;
+
         input {
-            width: 100%;
+            width: 138px;
         }
 
         select {
-            width: 100%;
+            width: 150px;
         }
     }
 
-    @media (min-width: 1076px) {
+    @media (min-width: 1200px) {
+        padding-left: 40px;
+
         input {
-            width: 157px;
+
+            width: 146px;
+
         }
 
         select {
-            width: 170px;
+            width: 158px;
         }
     }
 
@@ -534,12 +548,6 @@
     justify-content: center;
     flex-wrap: wrap;
 
-    @media (min-width: 900px) {
-
-        justify-content: flex-end;
-        padding-left: 40px;
-
-    }
 
     input {
         margin: 5px;
@@ -558,7 +566,7 @@
         width: 200px;
         height: 30px;
         border: 0;
-        padding-left: 20px;
+        padding-left: 10px;
         border-radius: 2px;
         background: gray;
         color: white;
@@ -566,6 +574,40 @@
         font-weight: normal;
         font-size: 15px;
         transition: 0.4s;
+    }
+    @media (min-width: 420px) {
+        input {
+            width: 148px;
+        }
+
+        select {
+            width: 170px;
+        }
+    }
+
+    @media (min-width: 900px) {
+        display: block;
+
+        input {
+            width: 138px;
+        }
+
+        select {
+            width: 150px;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        padding-left: 40px;
+
+        input {
+            width: 65px;
+
+        }
+
+        select {
+            width: 165px;
+        }
     }
 }
 
@@ -578,21 +620,22 @@
     padding: 20px 20px 20px 20px;
 }
 
+.formStatusWrap {
+    @media (min-width: 900px) {
+        display: flex;
+        flex-wrap: nowrap;
+
+    }
+}
+
 .formStatus {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
 
-    @media (min-width: 900px) {
-
-        justify-content: flex-start;
-        padding-left: 40px;
-
-    }
-
     input {
         margin: 5px;
-        width: 66px;
+        width: 100px;
         height: 30px;
         border: 1px solid gray;
         border-radius: 2px;
@@ -604,10 +647,10 @@
     select {
         cursor: pointer;
         margin: 5px;
-        width: 200px;
+        width: 100%;
         height: 30px;
         border: 0;
-        padding-left: 20px;
+        padding-left: 10px;
         border-radius: 2px;
         background: gray;
         color: white;
@@ -615,6 +658,42 @@
         font-weight: normal;
         font-size: 15px;
         transition: 0.4s;
+    }
+
+    @media (min-width: 420px) {
+        input {
+            width: 155px;
+        }
+
+        select {
+            width: 170px;
+        }
+    }
+
+    @media (min-width: 900px) {
+        display: block;
+
+        input {
+            width: 50px;
+        }
+
+        select {
+            width: 150px;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        padding-left: 40px;
+
+        input {
+
+            width: 58px;
+
+        }
+
+        select {
+            width: 158px;
+        }
     }
 }
 
