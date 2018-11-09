@@ -172,7 +172,7 @@ class Home extends Component {
                             <div className='chartSize'>
                             <Chart
                                 key="ColumnChart"
-                                height={500}
+                                height='80vh'
                                 chartType="ColumnChart"
                                 loader={loadingChart}
                                 data={

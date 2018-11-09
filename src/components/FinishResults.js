@@ -235,7 +235,7 @@ class FinishResults extends Component {
                             <div className='col-10'>
                                 <Chart
                                     key="ColumnChart"
-                                    height={500}
+                                    height='60vh'
                                     chartType="ColumnChart"
                                     loader={loading}
                                     data={

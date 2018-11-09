@@ -8,10 +8,10 @@ class ReasonsForEndingRaces extends Component {
             seasonFrom: '',
             seasonTo: '',
             chart: 'bar',
-            countResults: 'all',
+            countResults: '10',
             seasonNumber:'',
             resultLine: 0,
-            move: 0,
+            move: '1',
             err: '',
             data: '',
             loading: false
@@ -241,7 +241,7 @@ class ReasonsForEndingRaces extends Component {
                         <option value='5'>Przesuń o 5</option>
                         <option value='10'>Przesuń o 10</option>
                     </select>
-                    <select onChange={this.countResultsValue}>
+                    <select value={this.state.countResults} onChange={this.countResultsValue}>
                         <option value='all'>Wszystkie</option>
                         <option value='5'>5 wyników</option>
                         <option value='10'>10 wyników</option>

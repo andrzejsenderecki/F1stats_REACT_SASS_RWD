@@ -17,9 +17,9 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    background: rgba(245, 0, 0, 0.8);
-    border-top: 30px solid #505050;
-    border-bottom: 5px solid #505050;
+    background: rgba(190, 0, 0, 1);
+    border-top: 30px solid #202020;
+    border-bottom: 5px solid #202020;
 
     @media (min-width: 900px) {
         height: 100px;
@@ -59,7 +59,7 @@
         padding-right: 50px;
         a {
             &:hover {
-                background: #505050;
+                background: #202020;
                 font-size: 20px;
                 padding: 45px 30px 36px 30px;
                 &:after {
@@ -246,7 +246,7 @@
 
     h1 {
         font-family: 'Roboto', sans-serif;
-        font-size: 35px;
+        font-size: 25px;
         text-align: center;
         color: darkslategray;
         font-weight: bold;
@@ -298,7 +298,7 @@
         h1 {
             font-size: 45px;
             text-align: left;
-            padding: 20px 0 20px 45px;
+            padding: 20px 0 20px 6px;
         }
 
         p {
@@ -307,7 +307,37 @@
             font-weight: normal;
             color: darkslategray;
             text-align: left;
+            padding: 0 0 30px 32px;
+        }
+    }
+
+    @media (min-width: 1130px) {
+        h1 {
+            padding-left: 35px;
+        }
+
+        p {
+            padding: 0 0 30px 60px;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        h1 {
+            padding-left: 45px;
+        }
+
+        p {
             padding: 0 0 30px 70px;
+        }
+    }
+
+    @media (min-width: 1490px) {
+        h1 {
+            padding-left: 75px;
+        }
+
+        p {
+            padding: 0 0 30px 100px;
         }
     }
 }
@@ -318,17 +348,39 @@
     li {
         font-family: 'Roboto', sans-serif;
         color: darkslategray;
-        font-size: 15px;
+        font-size: 20px;
         font-weight: normal;
         text-decoration: none;
         list-style: none;
         display: inline-block;
-        padding: 0 10px 0 10px;
+        padding-left: 20px;
     }
 
     @media (min-width: 900px) {
         text-align: left;
-        padding-left: 300px;
+
+        padding: 0 0 30px 185px;
+
+        li {
+            padding-left: 50px;
+        }
+
+    }
+
+    @media (min-width: 1130px) {
+        padding: 0 0 30px 220px;
+    }
+
+    @media (min-width: 1340px) {
+        padding: 0 0 30px 260px;
+    }
+
+    @media (min-width: 1570px) {
+        padding: 0 0 30px 300px;
+    }
+
+    @media (min-width: 1800px) {
+        padding: 0 0 30px 340px;
     }
 
 }
@@ -390,10 +442,19 @@
 
     @media (min-width: 900px) {
         display: block;
+
+    }
+
+    @media (min-width: 1130px) {
+        padding-left: 30px;
     }
 
     @media (min-width: 1200px) {
         padding-left: 40px;
+    }
+
+    @media (min-width: 1490px) {
+        padding-left: 70px;
     }
 
 }
@@ -405,29 +466,39 @@
     height: 30px;
     border: 0;
     border-radius: 2px;
-    background: #505050;
+    background: #202020;
     color: white;
     font-family: 'Roboto', sans-serif;
     font-weight: normal;
     font-size: 15px;
     transition: 0.4s;
 
-    &:hover {
-        color: orange;
-        padding-right: 40px;
-    }
-
     @media (min-width: 420px) {
         width: 170px;
     }
 
     @media (min-width: 900px) {
-        width: 150px;
+        width: 145px;
         flex-shrink: 0;
+
+        &:hover {
+            color: orange;
+            padding-right: 20px;
+        }
     }
 
     @media (min-width: 1200px) {
-        width: 165px;
+        width: 157px;
+
+        &:hover {
+            color: orange;
+            padding-right: 40px;
+        }
+
+    }
+
+    @media (min-width: 1490px) {
+        width: 172px;
     }
 
 }
@@ -446,8 +517,10 @@
     font-size: 15px;
     transition: 0.4s;
 
-    &:hover {
-        color: orange;
+    @media (min-width: 900px) {
+        &:hover {
+            color: orange;
+        }
     }
 }
 
@@ -497,30 +570,47 @@
         display: block;
 
         input {
-            width: 138px;
+            width: 133px;
         }
 
         select {
-            width: 150px;
+            width: 145px;
         }
     }
 
+    @media (min-width: 1130px) {
+        padding-left: 30px;
+    }
+
+
+
     @media (min-width: 1200px) {
-        padding-left: 40px;
+        padding-left:40px;
 
         input {
 
-            width: 146px;
+            width: 145px;
 
         }
 
         select {
-            width: 158px;
+            width: 157px;
         }
     }
 
+    @media (min-width: 1490px) {
+        padding-left: 70px;
 
+        input {
 
+            width: 160px;
+
+        }
+
+        select {
+            width: 172px;
+        }
+    }
 }
 
 .formCurrent  {
@@ -597,16 +687,37 @@
         }
     }
 
+    @media (min-width: 1130px) {
+        padding-left: 30px;
+    }
+
+
+
     @media (min-width: 1200px) {
-        padding-left: 40px;
+        padding-left:40px;
 
         input {
-            width: 65px;
+
+            width: 61px;
 
         }
 
         select {
-            width: 165px;
+            width: 157px;
+        }
+    }
+
+    @media (min-width: 1490px) {
+        padding-left: 70px;
+
+        input {
+
+            width: 69px;
+
+        }
+
+        select {
+            width: 172px;
         }
     }
 }
@@ -624,7 +735,9 @@
     @media (min-width: 900px) {
         display: flex;
         flex-wrap: nowrap;
-
+        button {
+            flex-shrink: 0;
+        }
     }
 }
 
@@ -639,8 +752,8 @@
         height: 30px;
         border: 1px solid gray;
         border-radius: 2px;
-        font-size: 18px;
-        padding-left: 10px;
+        font-size: 14px;
+        padding-left: 4px;
         color: darkslategray;
     }
 
@@ -662,7 +775,7 @@
 
     @media (min-width: 420px) {
         input {
-            width: 155px;
+            width: 163px;
         }
 
         select {
@@ -674,25 +787,45 @@
         display: block;
 
         input {
-            width: 50px;
+            width: 53px;
         }
 
         select {
-            width: 150px;
+            width: 145px;
         }
     }
 
+    @media (min-width: 1130px) {
+        padding-left: 30px;
+    }
+
+
+
     @media (min-width: 1200px) {
-        padding-left: 40px;
+        padding-left:40px;
 
         input {
 
-            width: 58px;
+            width: 66px;
 
         }
 
         select {
-            width: 158px;
+            width: 157px;
+        }
+    }
+
+    @media (min-width: 1490px) {
+        padding-left: 70px;
+
+        input {
+
+            width: 80px;
+
+        }
+
+        select {
+            width: 172px;
         }
     }
 }
