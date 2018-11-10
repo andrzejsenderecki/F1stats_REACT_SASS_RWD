@@ -5,8 +5,8 @@ class RaceResults extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            season: '',
-            round: '',
+            season: '2018',
+            round: '1',
             sortBy: 'points',
             chart: 'bar',
             seasonNumber:'',
@@ -19,6 +19,11 @@ class RaceResults extends Component {
             loading: true,
         }
     }
+
+    componentDidMount() {
+        this.searchRound();
+    }
+
     seasonValue = (event) => {
         this.setState({
             season: event.target.value
@@ -43,7 +48,28 @@ class RaceResults extends Component {
         }, this.searchRound);
     };
 
-    nextRound = () => {
+    nextSeason = (event) => {
+        event.preventDefault();
+        let season = Number(this.state.season);
+        season = season + 1;
+        this.setState({
+            season: Number(season),
+            loading: true
+        }, this.searchRound);
+    };
+
+    prevSeason = (event) => {
+        event.preventDefault();
+        let season = Number(this.state.season);
+        season = season - 1;
+        this.setState({
+            season: Number(season),
+            loading: true
+        }, this.searchRound);
+    };
+
+    nextRound = (event) => {
+        event.preventDefault();
         let round = Number(this.state.round);
         round = round + 1;
         this.setState({
@@ -52,7 +78,8 @@ class RaceResults extends Component {
         }, this.searchRound);
     };
 
-    prevRound = () => {
+    prevRound = (event) => {
+        event.preventDefault();
         let round = Number(this.state.round);
         round = round - 1;
         this.setState({
@@ -144,8 +171,9 @@ class RaceResults extends Component {
             });
         }).catch(() => {
             this.setState({
-                seasonNumber: 'Error',
-                err: 'Error',
+                seasonNumber: 'Nie znaleziono takiego sezonu lub rundy',
+                err: 'Nie znaleziono takiego sezonu lub rundy',
+                loading: false
             })
         });
     };
@@ -168,13 +196,19 @@ class RaceResults extends Component {
 
                 <div className='col-2 formContent'>
                     <form className='formRace'>
-                        <input type="text" value={this.state.season} placeholder='Rok' onChange={this.seasonValue} />
-                        <input type="text" value={this.state.round} placeholder='Runda' onChange={this.roundValue} />
+                        <div className='formStatusWrap'>
+                            <button className='buttonMini' onClick={this.prevSeason}>&lt;</button>
+                            <input type="text" value={this.state.season} placeholder='Rok' onChange={this.seasonValue} />
+                            <button className='buttonMini' onClick={this.nextSeason}>&gt;</button>
+                        </div>
+                        <div className='formStatusWrap'>
+                            <button className='buttonMini' onClick={this.prevRound}>&lt;</button>
+                            <input type="text" value={this.state.round} placeholder='Runda' onChange={this.roundValue} />
+                            <button className='buttonMini' onClick={this.nextRound}>&gt;</button>
+                        </div>
                     </form>
                     <div className="btnContent">
                         <button className='button' onClick={this.searchRound}>Szukaj Wyścigu</button>
-                        <button className='button' onClick={this.prevRound}>Poprzedni Wyścig</button>
-                        <button className='button' onClick={this.nextRound}>Kolejny Wyścig</button>
                     </div>
                     <form className='formRace'>
                         <select onChange={this.sortByValue}>
@@ -191,11 +225,11 @@ class RaceResults extends Component {
         let titleAndData =
             <div className='col-12'>
                 <ul className='dataList'>
-                    <li>Sezon {this.state.seasonNumber}</li>
-                    <li>Runda numer: {this.state.roundNumber}</li>
-                    <li>Wyścig: {this.state.raceName}</li>
-                    <li>Tor: {this.state.circuitName}</li>
-                    <li>Data: {this.state.raceDate}</li>
+                    <li>Sezon: <span>{this.state.seasonNumber}</span></li>
+                    <li>Runda numer: <span>{this.state.roundNumber}</span></li>
+                    <li>Wyścig: <span>{this.state.raceName}</span></li>
+                    <li>Tor: <span>{this.state.circuitName}</span></li>
+                    <li>Data: <span>{this.state.raceDate}</span></li>
                 </ul>
             </div>;
 
@@ -230,13 +264,17 @@ class RaceResults extends Component {
             )
         } else if(this.state.err !== '' || this.state.round <= 0) {
             return (
-                <div className='row'>
-                    {formAndBtn}
+                <div>
                     <div className='row'>
-                        <div className='col-12'>
-                            <ul className='dataList'>
-                                <li>Nie znaleziono takiego sezonu lub wyścigu</li>
-                            </ul>
+                        {title}
+                    </div>
+                    <div className='row'>
+                        {titleAndData}
+                    </div>
+                    <div className='row'>
+                        {formAndBtn}
+                        <div className='col-10 loadingPosition'>
+                            <p className='info'>Nie znaleziono takiego sezonu lub rundy</p>
                         </div>
                     </div>
                 </div>
@@ -256,7 +294,7 @@ class RaceResults extends Component {
                             <div className='col-10'>
                                 <Chart
                                     key="ColumnChart"
-                                    height={500}
+                                    height='60vh'
                                     chartType="ColumnChart"
                                     loader={loading}
                                     data={
@@ -293,46 +331,50 @@ class RaceResults extends Component {
                 )
             } else if(this.state.chart === 'line') {
                 return (
-                    <div className='row'>
-                            {formAndBtn}
+                    <div>
+                        <div className='row'>
+                            {title}
+                        </div>
                         <div className='row'>
                             {titleAndData}
                         </div>
-                        <div className="col-12">
-                            <Chart
-                                key="LineChart"
-                                height={500}
-                                chartType="LineChart"
-                                loader={<div>Loading Chart</div>}
-                                data={
-                                    [...this.state.data[0]]
-                                }
-                                options={{
-                                    chartArea: { left: 100, right: 100, top: 20, bottom: 130 },
-                                    legend: {position: 'none'},
-                                    fontSize: 12,
-                                    colors: ['darkorange'],
-                                    animation: {
-                                        duration: 500,
-                                        easing: 'out',
-                                        startup: true,
-                                    },
-                                    hAxis: {
-                                        showTextEvery: 1,
-                                        textStyle : {
-                                            fontSize: 12
+                        <div className='row'>
+                            {formAndBtn}
+                            <div className='col-10'>
+                                <Chart
+                                    key="LineChart"
+                                    height='60vh'
+                                    chartType="LineChart"
+                                    loader={loading}
+                                    data={
+                                        [...this.state.data[0]]
+                                    }
+                                    options={{
+                                        chartArea: { left: 80, right: 40, top: 20, bottom: 130 },
+                                        legend: {position: 'none'},
+                                        fontSize: 12,
+                                        colors: ['darkorange'],
+                                        animation: {
+                                            duration: 500,
+                                            easing: 'out',
+                                            startup: true,
                                         },
-                                        slantedText: true,
-                                        slantedTextAngle: 60
-                                    },
-                                    vAxis: {
-                                        title: 'Ilość',
-                                        textStyle : {
-                                            fontSize: 12,
+                                        hAxis: {
+                                            showTextEvery: 1,
+                                            textStyle : {
+                                                fontSize: 12
+                                            },
+                                            slantedText: true,
+                                            slantedTextAngle: 60
                                         },
-                                    },
-                                }}
-                            />
+                                        vAxis: {
+                                            textStyle : {
+                                                fontSize: 12,
+                                            },
+                                        },
+                                    }}
+                                />
+                            </div>
                         </div>
                     </div>
                 )

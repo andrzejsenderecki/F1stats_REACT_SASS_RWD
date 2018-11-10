@@ -1,14 +1,40 @@
+$mainColor: rgba(190, 0, 0, 1);
+$secondColor: #ff8800;
+$headerMainColor: rgba(190, 0, 0, 1);
+$headerSecondColor: #202020;
+$footerMainColor: rgba(190, 0, 0, 1);
+$footerSecondColor: #202020;
+$menuLineColor: #ff8800;
+$titleMainColor: #202020;
+$titleSecondColor: #ff8800;
+$logoColor: #FFFFFF;
+$buttonBgColor: #202020;
+$buttonTextHoverColor: orange;
+$selectBgColor: #202020;
+$inputBorderColor: #202020;
+$fontDarkColor: #000000;
+$fontMediumColor: #202020;
+$fontLightColor: #FFFFFF;
+$spanColor: rgba(190, 0, 0, 1);
+$loadingMainColor: #ff8800;
+$loadingSecondColor: #dedede;
+
 *{
     margin: 0;
     padding: 0;
 }
 
+html {
+    font-size: 62.5%;
+}
+
 .pastRaces {
-    color: rgba(255, 0, 0, 0.7);
+    color: $mainColor;
 }
 
 .futureRaces {
-    color: #00bd00;
+    color: $secondColor;
+;
 }
 
 .header {
@@ -17,9 +43,9 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    background: rgba(190, 0, 0, 1);
-    border-top: 30px solid #202020;
-    border-bottom: 5px solid #202020;
+    background: $headerMainColor;
+    border-top: 30px solid $headerSecondColor;
+    border-bottom: 5px solid $headerSecondColor;
 
     @media (min-width: 900px) {
         height: 100px;
@@ -44,10 +70,10 @@
     a {
         display: flex;
         flex-wrap: wrap;
-        color: white;
+        color: $fontLightColor;
         font-weight: bold;
         font-style: italic;
-        font-size: 13px;
+        font-size: 1.3rem;
         text-transform: uppercase;
         padding: 45px 30px 40px 30px;
         text-decoration: none;
@@ -59,15 +85,15 @@
         padding-right: 50px;
         a {
             &:hover {
-                background: #202020;
-                font-size: 20px;
+                background: $headerSecondColor;
+                font-size: 2rem;
                 padding: 45px 30px 36px 30px;
                 &:after {
                     content: '';
                     width: 100%;
                     height: 5px;
                     padding-right: 60px;
-                    background: darkorange;
+                    background: $menuLineColor;
                 }
             }
         }
@@ -83,9 +109,9 @@
     p {
         font-family: 'Roboto', sans-serif;
         font-weight: bold;
-        color: white;
+        color: $logoColor;
         font-style: italic;
-        font-size: 40px;
+        font-size: 4rem;
         padding: 15px 0 0 0;
     }
 
@@ -107,18 +133,18 @@
     }
 
     h1 {
-        font-size: 40px;
+        font-size: 4rem;
         padding-top: 20px;
         font-family: 'Roboto', sans-serif;
-        color: #616161;
+        color: $titleMainColor;
         font-weight: bold;
     }
 
     h5 {
         font-family: 'Roboto', sans-serif;
-        color: darkorange;
+        color: $titleSecondColor;
         font-weight: bold;
-        font-size: 20px;
+        font-size: 2rem;
         line-height: 40px;
         text-align: center;
         padding: 10px;
@@ -126,61 +152,66 @@
 
     p {
         font-family: 'Roboto', sans-serif;
-        padding: 20px 20px 10px 20px;
-        font-size: 16px;
+        padding: 20px 10px 10px 20px;
+        font-size: 1.8rem;
         text-align: center;
+        color: $fontMediumColor;
+    }
+
+    span {
+        color: $spanColor;
     }
 
     @media (min-width: 200px) {
         h1 {
-            font-size: 50px;
+            font-size: 5rem;
         }
 
         p {
-            font-size: 17px;
+            font-size: 1.7rem;
         }
 
     }
 
     @media (min-width: 280px) {
         h1 {
-            font-size: 70px;
+            font-size: 7rem;
             text-align: center;
         }
 
         h5 {
-            font-size: 28px;
+            font-size: 2.8rem;
         }
     }
 
     @media (min-width: 390px) {
         h1 {
-            font-size: 90px;
+            font-size: 9rem;
         }
     }
 
     @media (min-width: 570px) {
         h1 {
-            font-size: 90px;
+            font-size: 9rem;
         }
 
         h5 {
-            font-size: 35px;
+            font-size: 3.5rem;
         }
     }
 
     @media (min-width: 900px) {
         width: 300px;
-        height: 80vh;
+        height: 65vh;
 
         h1 {
             padding-top: 50px;
-            font-size: 70px;
+            font-size: 7rem;
             text-align: right;
         }
 
         h5 {
-            font-size: 20px;
+            font-size: 2rem;
             text-align: right;
             line-height: 5px;
         }
@@ -189,13 +220,13 @@
             text-align: right;
             padding-top: 30px;
             padding-left: 40px;
-            font-size: 14px;
+            font-size: 1.6rem;
         }
     }
 
     @media (min-width: 1000px) {
         h1 {
-            font-size: 80px;
+            font-size: 8rem;
         }
 
         p {
@@ -203,9 +234,13 @@
         }
     }
 
-    @media (min-width: 1000px) {
+    @media (min-width: 1200px) {
         h1 {
-            font-size: 90px;
+            font-size: 12rem;
+        }
+
+        p {
+            padding-left: 140px;
         }
     }
 }
@@ -224,11 +259,11 @@
         border: 0;
         padding-left: 20px;
         border-radius: 2px;
-        background: darkslategray;
-        color: white;
+        background: $selectBgColor;
+        color: $fontLightColor;
         font-family: 'Roboto', sans-serif;
         font-weight: normal;
-        font-size: 15px;
+        font-size: 1.5rem;
     }
 
     @media (min-width: 367px) {
@@ -246,26 +281,26 @@
 
     h1 {
         font-family: 'Roboto', sans-serif;
-        font-size: 25px;
+        font-size:2.5rem;
         text-align: center;
-        color: darkslategray;
+        color: $titleMainColor;
         font-weight: bold;
         padding: 20px 20px 20px 20px;
     }
 
     p {
         font-family: 'Roboto', sans-serif;
-        font-size: 15px;
+        font-size: 1.5rem;
         text-align: center;
         font-weight: normal;
-        color: darkslategray;
+        color: $fontMediumColor;
         padding: 10px 20px 20px 20px;
     }
 
     @media (min-width: 260px) {
 
         h1 {
-            font-size: 40px;
+            font-size: 4rem;
         }
 
     }
@@ -278,34 +313,29 @@
                 height: 5px;
                 padding-right: 10px;
                 margin-right: 10px;
-                background: darkorange;
+                background: $titleSecondColor;
             }
         }
 
         p {
-            font-size: 16px;
+            font-size: 1.6rem;
         }
     }
 
     @media (min-width: 515px) {
         h1 {
-            font-size: 45px;
+            font-size: 4.5rem;
         }
     }
 
     @media (min-width: 900px) {
 
         h1 {
-            font-size: 45px;
             text-align: left;
             padding: 20px 0 20px 6px;
         }
 
         p {
-            font-family: 'Roboto', sans-serif;
-            font-size: 16px;
-            font-weight: normal;
-            color: darkslategray;
             text-align: left;
             padding: 0 0 30px 32px;
         }
@@ -347,13 +377,17 @@
 
     li {
         font-family: 'Roboto', sans-serif;
-        color: darkslategray;
-        font-size: 20px;
+        color: $fontMediumColor;
+        font-size: 2rem;
         font-weight: normal;
         text-decoration: none;
         list-style: none;
         display: inline-block;
         padding-left: 20px;
+    }
+
+    span {
+        color: $spanColor;
     }
 
     @media (min-width: 900px) {
@@ -392,8 +426,8 @@
 
     li {
         font-family: 'Roboto', sans-serif;
-        color: darkslategray;
-        font-size: 20px;
+        color: $fontMediumColor;
+        font-size: 2rem;
         font-weight: normal;
         text-decoration: none;
         list-style: none;
@@ -402,7 +436,7 @@
     }
 
     span {
-        color: rgba(245, 0, 0, 0.8);
+        color: $spanColor;
     }
 }
 
@@ -410,7 +444,7 @@
     font-family: 'Roboto', sans-serif;
     font-weight: normal;
     text-align: left;
-    font-size: 15px;
+    font-size: 1.5rem;
     margin-bottom: 40px;
 
     li {
@@ -430,7 +464,7 @@
             content: '';
             padding-right: 5px;
             margin-right: 10px;
-            background: rgba(245, 0, 0, 0.8);
+            background: $mainColor;
         }
     }
 }
@@ -442,7 +476,6 @@
 
     @media (min-width: 900px) {
         display: block;
-
     }
 
     @media (min-width: 1130px) {
@@ -456,72 +489,88 @@
     @media (min-width: 1490px) {
         padding-left: 70px;
     }
-
 }
 
 .button {
     cursor: pointer;
     margin: 5px;
     width: 100%;
-    height: 30px;
+    height: 40px;
     border: 0;
     border-radius: 2px;
-    background: #202020;
-    color: white;
+    background: $buttonBgColor;
+    color: $fontLightColor;
     font-family: 'Roboto', sans-serif;
     font-weight: normal;
-    font-size: 15px;
+    font-size: 1.5rem;
     transition: 0.4s;
 
     @media (min-width: 420px) {
-        width: 170px;
+        width: 100%;
     }
 
     @media (min-width: 900px) {
-        width: 145px;
-        flex-shrink: 0;
+        width: 95%;
 
         &:hover {
-            color: orange;
+            color: $buttonTextHoverColor;
             padding-right: 20px;
         }
     }
 
     @media (min-width: 1200px) {
-        width: 157px;
-
         &:hover {
-            color: orange;
             padding-right: 40px;
         }
-
     }
-
-    @media (min-width: 1490px) {
-        width: 172px;
-    }
-
 }
 
 .buttonMini {
     cursor: pointer;
     margin: 5px;
-    width: 33px;
-    height: 33px;
+    width: 40px;
+    height: 40px;
     border: 0;
     border-radius: 2px;
-    background: #505050;
-    color: white;
+    background: $buttonBgColor;
+    color: $fontLightColor;
     font-family: 'Roboto', sans-serif;
     font-weight: normal;
-    font-size: 15px;
+    font-size: 1.5rem;
     transition: 0.4s;
 
     @media (min-width: 900px) {
         &:hover {
-            color: orange;
+            color: $buttonTextHoverColor;
         }
     }
+}
+
+.buttonMove {
+    cursor: pointer;
+    margin: 5px;
+    width: 10%;
+    height: 40px;
+    border: 0;
+    border-radius: 2px;
+    background: $buttonBgColor;
+    color: $fontLightColor;
+    font-family: 'Roboto', sans-serif;
+    font-weight: normal;
+    font-size: 1.5rem;
+    transition: 0.4s;
+
+    @media (min-width: 900px) {
+        &:hover {
+            color: $buttonTextHoverColor;
+        }
+    }
+}
+
+.btnStatusPosition {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .formSeason  {
@@ -532,37 +581,34 @@
     input {
         margin: 5px;
         width: 100%;
-        height: 30px;
-        border: 1px solid gray;
+        border: 1px solid $inputBorderColor;
         border-radius: 2px;
-        font-size: 18px;
-        padding-left: 10px;
-        color: darkslategray;
+        font-size: 1.8rem;
+        color: $fontMediumColor;
     }
 
     select {
         cursor: pointer;
         margin: 5px;
         width: 100%;
-        height: 30px;
+        height: 40px;
         border: 0;
-        padding-left: 10px;
         border-radius: 2px;
-        background: gray;
-        color: white;
+        background: $selectBgColor;
+        color: $fontLightColor;
         font-family: 'Roboto', sans-serif;
         font-weight: normal;
-        font-size: 15px;
+        font-size: 1.5rem;
         transition: 0.4s;
     }
 
     @media (min-width: 420px) {
         input {
-            width: 148px;
+            width: 100%;
         }
 
         select {
-            width: 170px;
+            width: 100%;
         }
     }
 
@@ -570,11 +616,11 @@
         display: block;
 
         input {
-            width: 133px;
+            width: 95%;
         }
 
         select {
-            width: 145px;
+            width: 95%;
         }
     }
 
@@ -582,34 +628,12 @@
         padding-left: 30px;
     }
 
-
-
     @media (min-width: 1200px) {
-        padding-left:40px;
-
-        input {
-
-            width: 145px;
-
-        }
-
-        select {
-            width: 157px;
-        }
+        padding-left: 40px;
     }
 
     @media (min-width: 1490px) {
         padding-left: 70px;
-
-        input {
-
-            width: 160px;
-
-        }
-
-        select {
-            width: 172px;
-        }
     }
 }
 
@@ -617,6 +641,7 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+
     select {
         cursor: pointer;
         margin: 5px;
@@ -625,8 +650,8 @@
         border: 0;
         padding-left: 20px;
         border-radius: 2px;
-        background: darkslategray;
-        color: white;
+        background: $selectBgColor;
+        color:  $fontLightColor;
         font-family: 'Roboto', sans-serif;
         font-weight: normal;
         font-size: 15px;
@@ -641,37 +666,35 @@
 
     input {
         margin: 5px;
-        width: 66px;
-        height: 30px;
-        border: 1px solid gray;
+        width: 100%;
+        border: 1px solid $inputBorderColor;
         border-radius: 2px;
-        font-size: 18px;
-        padding-left: 10px;
-        color: darkslategray;
+        font-size: 1.8rem;
+        color: $fontMediumColor;
     }
 
     select {
         cursor: pointer;
         margin: 5px;
-        width: 200px;
-        height: 30px;
+        width: 100%;
+        height: 40px;
         border: 0;
-        padding-left: 10px;
         border-radius: 2px;
-        background: gray;
-        color: white;
+        background: $selectBgColor;
+        color: $fontLightColor;
         font-family: 'Roboto', sans-serif;
         font-weight: normal;
-        font-size: 15px;
+        font-size: 1.5rem;
         transition: 0.4s;
     }
+
     @media (min-width: 420px) {
         input {
-            width: 148px;
+            width: 100%;
         }
 
         select {
-            width: 170px;
+            width: 100%;
         }
     }
 
@@ -679,11 +702,11 @@
         display: block;
 
         input {
-            width: 138px;
+            width: 95%;
         }
 
         select {
-            width: 150px;
+            width: 95%;
         }
     }
 
@@ -691,53 +714,32 @@
         padding-left: 30px;
     }
 
-
-
     @media (min-width: 1200px) {
-        padding-left:40px;
-
-        input {
-
-            width: 61px;
-
-        }
-
-        select {
-            width: 157px;
-        }
+        padding-left: 40px;
     }
 
     @media (min-width: 1490px) {
         padding-left: 70px;
-
-        input {
-
-            width: 69px;
-
-        }
-
-        select {
-            width: 172px;
-        }
     }
 }
 
 .info {
     font-family: 'Roboto', sans-serif;
-    font-size: 25px;
+    font-size: 2.5rem;
     text-align: center;
     font-weight: normal;
-    color: darkslategray;
-    padding: 20px 20px 20px 20px;
+    color: $fontMediumColor;
+    padding-top: 40px;
 }
 
 .formStatusWrap {
-    @media (min-width: 900px) {
-        display: flex;
-        flex-wrap: nowrap;
-        button {
-            flex-shrink: 0;
-        }
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    width: 100%;
+
+    button {
+        flex-shrink: 0;
     }
 }
 
@@ -748,50 +750,39 @@
 
     input {
         margin: 5px;
-        width: 100px;
-        height: 30px;
-        border: 1px solid gray;
+        width: 100%;
+        height: 38px;
+        border: 1px solid $inputBorderColor;
         border-radius: 2px;
-        font-size: 14px;
-        padding-left: 4px;
-        color: darkslategray;
+        font-size: 1.7rem;
+        color: $fontMediumColor;
     }
 
     select {
         cursor: pointer;
         margin: 5px;
         width: 100%;
-        height: 30px;
+        height: 40px;
         border: 0;
-        padding-left: 10px;
         border-radius: 2px;
-        background: gray;
-        color: white;
+        background: $selectBgColor;
+        color: $fontLightColor;
         font-family: 'Roboto', sans-serif;
         font-weight: normal;
-        font-size: 15px;
+        font-size: 1.5rem;
         transition: 0.4s;
     }
 
-    @media (min-width: 420px) {
-        input {
-            width: 163px;
-        }
-
-        select {
-            width: 170px;
-        }
-    }
 
     @media (min-width: 900px) {
         display: block;
 
         input {
-            width: 53px;
+            width: 100%;
         }
 
         select {
-            width: 145px;
+            width: 95%;
         }
     }
 
@@ -799,34 +790,54 @@
         padding-left: 30px;
     }
 
-
-
     @media (min-width: 1200px) {
-        padding-left:40px;
-
-        input {
-
-            width: 66px;
-
-        }
-
-        select {
-            width: 157px;
-        }
+        padding-left: 40px;
     }
 
     @media (min-width: 1490px) {
         padding-left: 70px;
+    }
+}
 
-        input {
+.formStatusMove {
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
 
-            width: 80px;
+    select {
+        cursor: pointer;
+        margin: 5px;
+        width: 40%;
+        height: 40px;
+        border: 0;
+        border-radius: 2px;
+        background: $selectBgColor;
+        color: $fontLightColor;
+        font-family: 'Roboto', sans-serif;
+        font-weight: normal;
+        font-size: 1.5rem;
+        transition: 0.4s;
+    }
 
-        }
+
+    @media (min-width: 900px) {
+        display: block;
 
         select {
-            width: 172px;
+            width: 60%;
         }
+    }
+
+    @media (min-width: 1130px) {
+        padding-left: 30px;
+    }
+
+    @media (min-width: 1200px) {
+        padding-left: 40px;
+    }
+
+    @media (min-width: 1490px) {
+        width: auto;
     }
 }
 
@@ -834,43 +845,37 @@
     padding: 13px 0 60px 0;
 }
 
-.paragraph {
-    font-family: 'Roboto', sans-serif;
-    font-size: 20px;
-    text-align: center;
-}
-
 .footer {
     height: 60px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    background: rgba(245, 0, 0, 0.8);
-    border-top: 20px solid #505050;
-    border-bottom: 5px solid #505050;
+    background: $footerMainColor;
+    border-top: 20px solid $footerSecondColor;
+    border-bottom: 5px solid $footerSecondColor;
 }
 
 .logoFooter {
     font-family: 'Roboto', sans-serif;
     padding: 15px 60px 15px 0;
-    color: white;
+    color: $fontLightColor;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 2rem;
 }
-
 
 .loadingPosition {
     display: flex;
     justify-content: center;
-    padding: 50px 0 368px 0;
+    padding: 50px 0 0 0;
+    height: 55.5vh;
 }
 
 .loading {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    border: 10px solid #dedede;
-    border-top: 10px solid darkorange;
+    border: 10px solid $loadingSecondColor;
+    border-top: 10px solid $loadingMainColor;
     animation: spin 0.5s linear infinite;
 }
 
@@ -883,7 +888,7 @@
 .loadingHomeChartPosition {
     display: flex;
     justify-content: center;
-    padding: 100px 0 0 143px;
+    padding: 100px 0 0 208px;
 }
 
 .loadingCurrentPosition {

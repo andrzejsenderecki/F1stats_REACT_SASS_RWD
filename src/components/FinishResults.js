@@ -5,7 +5,7 @@ class FinishResults extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            season: '',
+            season: '2018',
             sortBy: 'points',
             chart: 'bar',
             seasonNumber:'',
@@ -13,6 +13,10 @@ class FinishResults extends Component {
             data: '',
             loading: false
         }
+    }
+
+    componentDidMount() {
+        this.searchSeason();
     }
 
     seasonValue = (event) => {
@@ -33,7 +37,8 @@ class FinishResults extends Component {
         });
     };
 
-    nextSeason = () => {
+    nextSeason = (event) => {
+        event.preventDefault();
         let season = Number(this.state.season);
         season = season + 1;
         this.setState({
@@ -42,7 +47,8 @@ class FinishResults extends Component {
         }, this.searchSeason);
     };
 
-    prevSeason = () => {
+    prevSeason = (event) => {
+        event.preventDefault();
         let season = Number(this.state.season);
         season = season - 1;
         this.setState({
@@ -117,9 +123,9 @@ class FinishResults extends Component {
 
         }).catch(() => {
             this.setState({
-                seasonNumber: 'Error',
+                seasonNumber: 'Nie znaleziono takiego sezonu',
                 loading: false,
-                err: 'Error',
+                err: 'Nie znaleziono takiego sezonu',
             })
         });
     };
@@ -143,12 +149,14 @@ class FinishResults extends Component {
         let formAndBtn =
             <div className='col-2 formContent'>
                 <form className='formSeason'>
+                <div className='formStatusWrap'>
+                    <button className='buttonMini' onClick={this.prevSeason}>&lt;</button>
                     <input type="text" placeholder='Podaj rok' value={this.state.season} onChange={this.seasonValue}/>
+                    <button className='buttonMini' onClick={this.nextSeason}>&gt;</button>
+                </div>
                 </form>
                 <div className='btnContent'>
                     <button className='button' onClick={this.searchSeason}>Szukaj Sezonu</button>
-                    <button className='button' onClick={this.prevSeason}>Poprzedni Sezon</button>
-                    <button className='button' onClick={this.nextSeason}>Kolejny Sezon</button>
                 </div>
                 <form className='formSeason'>
                     <select onChange={this.sortByValue}>
@@ -165,8 +173,8 @@ class FinishResults extends Component {
         let titleAndRaces =
             <div className='col-12'>
                 <ul className='dataList'>
-                    <li><span>Sezon:</span> {this.state.seasonNumber}</li>
-                    <li><span>Ilość rund:</span> {this.state.roundNumber}</li>
+                    <li>Sezon: <span>{this.state.seasonNumber}</span></li>
+                    <li>Ilość rund: <span>{this.state.roundNumber}</span></li>
                 </ul>
             </div>;
 
@@ -210,12 +218,8 @@ class FinishResults extends Component {
                     </div>
                     <div className='row'>
                         {formAndBtn}
-                    </div>
-                    <div className='row'>
-                        <div className='col-12'>
-                            <ul className='dataList'>
-                                <li>Nie znaleziono takiego sezonu</li>
-                            </ul>
+                        <div className='col-10 loadingPosition'>
+                            <p className='info'>Nie znaleziono takiego sezonu</p>
                         </div>
                     </div>
                 </div>
@@ -284,7 +288,7 @@ class FinishResults extends Component {
                             <div className='col-10'>
                                 <Chart
                                     key="LineChart"
-                                    height={500}
+                                    height='60vh'
                                     chartType="LineChart"
                                     loader={loading}
                                     data={

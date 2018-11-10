@@ -5,8 +5,8 @@ class ReasonsForEndingRaces extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            seasonFrom: '',
-            seasonTo: '',
+            seasonFrom: '2010',
+            seasonTo: '2018',
             chart: 'bar',
             countResults: '10',
             seasonNumber:'',
@@ -16,6 +16,10 @@ class ReasonsForEndingRaces extends Component {
             data: '',
             loading: false
         }
+    }
+
+    componentDidMount() {
+        this.searchSeason();
     }
 
     seasonFromValue = (event) => {
@@ -195,7 +199,12 @@ class ReasonsForEndingRaces extends Component {
                 loading: false
             })
         }).catch((err) => {
-            console.log(err);
+            this.setState({
+                seasonFrom: 'Nie znaleziono takiego sezonu lub rundy',
+                seasonTo: 'Nie znaleziono takiego sezonu lub rundy',
+                err: 'Nie znaleziono takiego sezonu lub rundy',
+                loading: false
+            })
         });
     };
 
@@ -214,19 +223,18 @@ class ReasonsForEndingRaces extends Component {
                 </div>
             </div>;
 
-
         let formAndBtn =
             <div className='col-2 formContent'>
                 <form className='formStatus'>
                     <div className='formStatusWrap'>
                         <button className='buttonMini' onClick={this.prevSeasonPrev}>&lt;</button>
-                        <input type="text" placeholder='Rok od' value={this.state.seasonFrom}
+                        <input type="text" placeholder='Od' value={this.state.seasonFrom}
                                onChange={this.seasonFromValue}/>
                         <button className='buttonMini' onClick={this.prevSeasonNext}>&gt;</button>
                     </div>
                     <div className='formStatusWrap'>
                         <button className='buttonMini' onClick={this.nextSeasonPrev}>&lt;</button>
-                        <input type="text" placeholder='Rok do' value={this.state.seasonTo}
+                        <input type="text" placeholder='Do' value={this.state.seasonTo}
                                onChange={this.seasonToValue}/>
                         <button className='buttonMini' onClick={this.nextSeasonNext}>&gt;</button>
                     </div>
@@ -257,7 +265,7 @@ class ReasonsForEndingRaces extends Component {
         let titleAndRaces =
             <div className='col-12'>
                 <ul className='dataList'>
-                    <li>Sezony od {this.state.seasonFrom} do {this.state.seasonTo}</li>
+                    <li>Sezony od <span>{this.state.seasonFrom}</span> do <span>{this.state.seasonTo}</span></li>
                 </ul>
             </div>;
 
@@ -292,13 +300,17 @@ class ReasonsForEndingRaces extends Component {
             )
         } else if(this.state.err !== '') {
             return (
-                <div className='row'>
-                    {formAndBtn}
+                <div>
                     <div className='row'>
-                        <div className='col-12'>
-                            <ul className='dataList'>
-                                <li>Nie znaleziono takiego sezonu lub wyścigu</li>
-                            </ul>
+                        {title}
+                    </div>
+                    <div className='row'>
+                        {titleAndRaces}
+                    </div>
+                    <div className='row'>
+                        {formAndBtn}
+                        <div className='col-10 loadingPosition'>
+                            <p className='info'>Nie znaleziono takiego sezonu lub rundy</p>
                         </div>
                     </div>
                 </div>
@@ -317,13 +329,27 @@ class ReasonsForEndingRaces extends Component {
                             {formAndBtn}
                             <div className='col-10'>
 
-                                <button type='button' className='buttonMini' onClick={this.prevResults}>&lt;</button>
-
-                                <button type='button' className='buttonMini' onClick={this.nextResults}>&gt;</button>
-
+                                <div className='btnStatusPosition'>
+                                    <button type='button' className='buttonMove' onClick={this.prevResults}>&lt; Przewiń</button>
+                                    <button type='button' className='buttonMove' onClick={this.nextResults}>Przewiń &gt;</button>
+                                    <form className='formStatusMove'>
+                                        <select onChange={this.move}>
+                                            <option value='1'>Przewiń wyniki o 1</option>
+                                            <option value='3'>Przewiń wyniki o 3</option>
+                                            <option value='5'>Przewiń wyniki o 5</option>
+                                            <option value='10'>Przewiń wyniki o 10</option>
+                                        </select>
+                                        <select value={this.state.countResults} onChange={this.countResultsValue}>
+                                            <option value='all'>Pokaż wszystkie</option>
+                                            <option value='5'>Pokaż 5 wyników</option>
+                                            <option value='10'>Pokaż 10 wyników</option>
+                                            <option value='15'>Pokaż 15 wyników</option>
+                                        </select>
+                                    </form>
+                                </div>
                                 <Chart
                                     key="ColumnChart"
-                                    height={500}
+                                    height='60vh'
                                     chartType="ColumnChart"
                                     loader={loading}
                                     data={
@@ -370,10 +396,15 @@ class ReasonsForEndingRaces extends Component {
                         <div className='row'>
                             {formAndBtn}
                             <div className='col-10'>
+
+                                <button type='button' className='buttonMini' onClick={this.prevResults}>&lt;</button>
+
+                                <button type='button' className='buttonMini' onClick={this.nextResults}>&gt;</button>
+
                                 <Chart
-                                    key="LineChart"
-                                    height={500}
-                                    chartType="LineChart"
+                                    key="ColumnChart"
+                                    height='60vh'
+                                    chartType="ColumnChart"
                                     loader={loading}
                                     data={
                                         [...this.state.data]

@@ -142,8 +142,7 @@ class Home extends Component {
             <div className='col-4 banner'>
                 <h1>F1stats!</h1>
                 <h5>Statystyki wyścigów Formuły 1</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus hic iste nostrum numquam quaerat
-                    quibusdam! Fugiat natus necessitatibus non veniam? Eos eum omnis unde? A adipisci.</p>
+                <p>Projekt jest oparty na takich technologiach jak React, Sass, RWD i przetwarza dane pobrane z <span><b>Ergast API</b></span>, które udostępnia informacje na temat historycznych i aktualnych wyścigów F1. Na podstawie przetworzonych danych generowane są wykresy ze statystykami dotyczącymi najbardziej prestiżowego sportu motorowego na świecie. Link do projektu już wkrótce!</p>
                 {formAndBtn}
             </div>;
 
@@ -172,16 +171,16 @@ class Home extends Component {
                             <div className='chartSize'>
                             <Chart
                                 key="ColumnChart"
-                                height='80vh'
+                                height='60vh'
                                 chartType="ColumnChart"
                                 loader={loadingChart}
                                 data={
                                     [...this.state.data[0]]
                                 }
                                 options={{
-                                    chartArea: { left: 60, right: 60, top: 60, bottom: 100 },
+                                    chartArea: { left: 60, right: 60, top: 60, bottom: 130 },
                                     legend: {position: 'none'},
-                                    fontSize: 12,
+                                    fontSize: 14,
                                     colors: ['darkorange'],
                                     animation: {
                                         duration: 500,
@@ -205,28 +204,27 @@ class Home extends Component {
                                 }}
                             />
                             </div>
-
                         </div>
                     </div>
-
                 )
             } else if (this.state.chart === 'line') {
                 return (
                     <div className='row'>
                         {bannerAndBtn}
                         <div className='col-8'>
+                            <div className='chartSize'>
                             <Chart
                                 key="LineChart"
-                                height={500}
+                                height='60vh'
                                 chartType="LineChart"
                                 loader={loadingChart}
                                 data={
                                     [...this.state.data[0]]
                                 }
                                 options={{
-                                    chartArea: { left: 100, right: 100, top: 60, bottom: 100 },
+                                    chartArea: { left: 60, right: 60, top: 60, bottom: 130 },
                                     legend: {position: 'none'},
-                                    fontSize: 12,
+                                    fontSize: 14,
                                     colors: ['darkorange'],
                                     animation: {
                                         duration: 500,
@@ -249,6 +247,7 @@ class Home extends Component {
                                     },
                                 }}
                             />
+                            </div>
                         </div>
                     </div>
                 )
