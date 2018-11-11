@@ -107,11 +107,6 @@ class Home extends Component {
                 <div className='loading'/>
             </div>;
 
-        let loadingChart =
-            <div className='col-8 loadingHomeChartPosition'>
-                <div className='loading'/>
-            </div>;
-
         if (this.state.data === '') {
             this.searchSeason();
         }
@@ -132,17 +127,16 @@ class Home extends Component {
 
         let banner =
             <div className='col-4 banner'>
-                <h1>F1stats!</h1>
-                <h5>Statystyki wyścigów Formuły 1</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus hic iste nostrum numquam quaerat
-                    quibusdam! Fugiat natus necessitatibus non veniam? Eos eum omnis unde? A adipisci.</p>
+            <h1>F1stats!</h1>
+            <h5>Statystyki wyścigów Formuły 1</h5>
+            <p>Witaj na F1stats! Projekt przedstawia statystyki z wyścigów F1 na bazie danych pobranych z <span><b>Ergast API</b></span>, które udostępnia informacje na temat historycznych i aktualnych wyścigów F1. Na podstawie przetworzonych danych generowane są wykresy ze statystykami dotyczącymi najbardziej prestiżowego sportu motorowego na świecie!</p>
             </div>;
 
         let bannerAndBtn =
             <div className='col-4 banner'>
                 <h1>F1stats!</h1>
                 <h5>Statystyki wyścigów Formuły 1</h5>
-                <p>Projekt jest oparty na takich technologiach jak React, Sass, RWD i przetwarza dane pobrane z <span><b>Ergast API</b></span>, które udostępnia informacje na temat historycznych i aktualnych wyścigów F1. Na podstawie przetworzonych danych generowane są wykresy ze statystykami dotyczącymi najbardziej prestiżowego sportu motorowego na świecie. Link do projektu już wkrótce!</p>
+                <p>Witaj na F1stats! Projekt przedstawia statystyki z wyścigów F1 na bazie danych pobranych z <span><b>Ergast API</b></span>, które udostępnia informacje na temat historycznych i aktualnych wyścigów F1. Na podstawie przetworzonych danych generowane są wykresy ze statystykami dotyczącymi najbardziej prestiżowego sportu motorowego na świecie!</p>
                 {formAndBtn}
             </div>;
 
@@ -171,16 +165,15 @@ class Home extends Component {
                             <div className='chartSize'>
                             <Chart
                                 key="ColumnChart"
-                                height='60vh'
+                                height='80vh'
                                 chartType="ColumnChart"
-                                loader={loadingChart}
                                 data={
                                     [...this.state.data[0]]
                                 }
                                 options={{
                                     chartArea: { left: 60, right: 60, top: 60, bottom: 130 },
                                     legend: {position: 'none'},
-                                    fontSize: 14,
+                                    fontSize: 16,
                                     colors: ['darkorange'],
                                     animation: {
                                         duration: 500,
@@ -217,7 +210,6 @@ class Home extends Component {
                                 key="LineChart"
                                 height='60vh'
                                 chartType="LineChart"
-                                loader={loadingChart}
                                 data={
                                     [...this.state.data[0]]
                                 }

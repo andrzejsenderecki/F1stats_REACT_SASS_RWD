@@ -189,6 +189,7 @@ class FinishResults extends Component {
                     </div>
                     <div className='row'>
                         {formAndBtn}
+                        {loading}
                     </div>
                 </div>
             );
@@ -239,9 +240,8 @@ class FinishResults extends Component {
                             <div className='col-10'>
                                 <Chart
                                     key="ColumnChart"
-                                    height='60vh'
+                                    height='70vh'
                                     chartType="ColumnChart"
-                                    loader={loading}
                                     data={
                                         [...this.state.data[0]]
                                     }
@@ -288,14 +288,13 @@ class FinishResults extends Component {
                             <div className='col-10'>
                                 <Chart
                                     key="LineChart"
-                                    height='60vh'
+                                    height='70vh'
                                     chartType="LineChart"
-                                    loader={loading}
                                     data={
                                         [...this.state.data[0]]
                                     }
                                     options={{
-                                        chartArea: { left: 80, right: 40, top: 20, bottom: 130 },
+                                        chartArea: { left: 80, right: 60, top: 20, bottom: 130 },
                                         legend: {position: 'none'},
                                         fontSize: 12,
                                         colors: ['darkorange'],
@@ -322,7 +321,6 @@ class FinishResults extends Component {
                             </div>
                         </div>
                     </div>
-
                 )
             }
         }

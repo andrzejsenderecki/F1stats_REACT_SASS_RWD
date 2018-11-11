@@ -243,18 +243,6 @@ class ReasonsForEndingRaces extends Component {
                     <button type='button' className='button' onClick={this.searchSeason}>Szukaj Sezonu</button>
                 </div>
                 <form className='formStatus'>
-                    <select onChange={this.move}>
-                        <option value='1'>Przesuń o 1</option>
-                        <option value='3'>Przesuń o 3</option>
-                        <option value='5'>Przesuń o 5</option>
-                        <option value='10'>Przesuń o 10</option>
-                    </select>
-                    <select value={this.state.countResults} onChange={this.countResultsValue}>
-                        <option value='all'>Wszystkie</option>
-                        <option value='5'>5 wyników</option>
-                        <option value='10'>10 wyników</option>
-                        <option value='15'>15 wyników</option>
-                    </select>
                     <select onChange={this.chartValue}>
                         <option value="bar">Wykres blokowy</option>
                         <option value="line">Wykres liniowy</option>
@@ -280,6 +268,7 @@ class ReasonsForEndingRaces extends Component {
                     </div>
                     <div className='row'>
                         {formAndBtn}
+                        {loading}
                     </div>
                 </div>
             );
@@ -328,11 +317,9 @@ class ReasonsForEndingRaces extends Component {
                         <div className='row'>
                             {formAndBtn}
                             <div className='col-10'>
-
-                                <div className='btnStatusPosition'>
-                                    <button type='button' className='buttonMove' onClick={this.prevResults}>&lt; Przewiń</button>
-                                    <button type='button' className='buttonMove' onClick={this.nextResults}>Przewiń &gt;</button>
                                     <form className='formStatusMove'>
+                                        <button type='button' className='buttonMove buttonMoveLeft' onClick={this.prevResults}>&lt;</button>
+                                        <button type='button' className='buttonMove buttonMoveRight' onClick={this.nextResults}>&gt;</button>
                                         <select onChange={this.move}>
                                             <option value='1'>Przewiń wyniki o 1</option>
                                             <option value='3'>Przewiń wyniki o 3</option>
@@ -346,12 +333,10 @@ class ReasonsForEndingRaces extends Component {
                                             <option value='15'>Pokaż 15 wyników</option>
                                         </select>
                                     </form>
-                                </div>
                                 <Chart
                                     key="ColumnChart"
-                                    height='60vh'
+                                    height='70vh'
                                     chartType="ColumnChart"
-                                    loader={loading}
                                     data={
                                         [...this.state.data]
                                     }
@@ -396,16 +381,26 @@ class ReasonsForEndingRaces extends Component {
                         <div className='row'>
                             {formAndBtn}
                             <div className='col-10'>
-
-                                <button type='button' className='buttonMini' onClick={this.prevResults}>&lt;</button>
-
-                                <button type='button' className='buttonMini' onClick={this.nextResults}>&gt;</button>
-
+                                    <form className='formStatusMove'>
+                                        <button type='button' className='buttonMoveLeft' onClick={this.prevResults}>&lt;</button>
+                                        <button type='button' className='buttonMoveRight' onClick={this.nextResults}>&gt;</button>
+                                        <select onChange={this.move}>
+                                            <option value='1'>Przewiń wyniki o 1</option>
+                                            <option value='3'>Przewiń wyniki o 3</option>
+                                            <option value='5'>Przewiń wyniki o 5</option>
+                                            <option value='10'>Przewiń wyniki o 10</option>
+                                        </select>
+                                        <select value={this.state.countResults} onChange={this.countResultsValue}>
+                                            <option value='all'>Pokaż wszystkie</option>
+                                            <option value='5'>Pokaż 5 wyników</option>
+                                            <option value='10'>Pokaż 10 wyników</option>
+                                            <option value='15'>Pokaż 15 wyników</option>
+                                        </select>
+                                    </form>
                                 <Chart
                                     key="ColumnChart"
-                                    height='60vh'
+                                    height='70vh'
                                     chartType="ColumnChart"
-                                    loader={loading}
                                     data={
                                         [...this.state.data]
                                     }

@@ -244,6 +244,7 @@ class RaceResults extends Component {
                     </div>
                     <div className='row'>
                         {formAndBtn}
+                        {loading}
                     </div>
                 </div>
             );
@@ -294,9 +295,8 @@ class RaceResults extends Component {
                             <div className='col-10'>
                                 <Chart
                                     key="ColumnChart"
-                                    height='60vh'
+                                    height='70vh'
                                     chartType="ColumnChart"
-                                    loader={loading}
                                     data={
                                         [...this.state.data[0]]
                                     }
@@ -343,9 +343,8 @@ class RaceResults extends Component {
                             <div className='col-10'>
                                 <Chart
                                     key="LineChart"
-                                    height='60vh'
+                                    height='70vh'
                                     chartType="LineChart"
-                                    loader={loading}
                                     data={
                                         [...this.state.data[0]]
                                     }

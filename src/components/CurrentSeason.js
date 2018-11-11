@@ -16,7 +16,8 @@ class CurrentSeason extends Component {
             raceName: '',
             circuitName: '',
             raceDate: '',
-            chart: 'bar'
+            chart: 'bar',
+            err: ''
         }
     }
 
@@ -132,8 +133,13 @@ class CurrentSeason extends Component {
             });
         }).catch(() => {
             this.setState({
-                seasonNumber: 'Error',
-                err: 'Error',
+                seasonNumber: '',
+                roundNumber: '',
+                raceName: '',
+                circuitName: '',
+                raceDate: '',
+                seasonNumber: 'Jeszcze nie było tej rundy',
+                err: 'Jeszcze nie było tej rundy',
             })
         });
     };
@@ -155,24 +161,21 @@ class CurrentSeason extends Component {
             </div>;
 
         let titleAndData =
-            <div className='col-12'>
+
                 <ul className='dataListCurrent'>
                     <li>Sezon: <span>{this.state.seasonNumber}</span></li>
                     <li>Runda numer: <span>{this.state.roundNumber}</span></li>
                     <li>Wyścig: <span>{this.state.raceName}</span></li>
                     <li>Tor: <span>{this.state.circuitName}</span></li>
                     <li>Data: <span>{this.state.raceDate}</span></li>
-                </ul>
-            </div>;
+                </ul>;
 
         let date = new Date();
         let currentDate;
         if (date.getMonth() <= 8) {
             currentDate = `${date.getFullYear()}-0${date.getMonth() + 1}-${date.getDate()}`;
-            console.log(currentDate);
         } else {
             currentDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
-            console.log(currentDate);
         }
         if (this.state.data === '') {
             return (
@@ -182,6 +185,36 @@ class CurrentSeason extends Component {
                     </div>
                     <div className='row'>
                         {loading}
+                    </div>
+                </div>
+            )
+        } else if (this.state.err != '') {
+            return (
+                <div>
+                    <div className='row'>
+                        {title}
+                    </div>
+                    <div className='row'>
+                        <div className='col-3'>
+                            <ul className='dataRace'>
+                                {this.state.data.RaceTable.Races.map((element, index) => {
+                                    if (element.date < currentDate) {
+                                        return <li key={index} className='pastRaces'
+                                                   onClick={() => this.displayRound(element.season, element.round)}>{element.round}. {element.raceName}</li>
+                                    } else {
+                                        return <li key={index} className='futureRaces'
+                                                   onClick={() => this.displayRound(element.season, element.round)}>{element.round}. {element.raceName}</li>
+                                    }
+                                })}
+                            </ul>
+                        </div>
+
+                        <div className='col-9'>
+                            {titleAndData}
+                            <div className='loadingPosition'>
+                                <p className='info'>Jeszcze nie było tej rundy</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             )
@@ -198,10 +231,10 @@ class CurrentSeason extends Component {
                                     {this.state.data.RaceTable.Races.map((element, index) => {
                                         if (element.date < currentDate) {
                                             return <li key={index} className='pastRaces'
-                                                       onClick={() => this.displayRound(element.season, element.round)}>{element.date} | {element.raceName}</li>
+                                                       onClick={() => this.displayRound(element.season, element.round)}>{element.round}. {element.raceName}</li>
                                         } else {
                                             return <li key={index} className='futureRaces'
-                                                       onClick={() => this.displayRound(element.season, element.round)}>{element.date} | {element.raceName}</li>
+                                                       onClick={() => this.displayRound(element.season, element.round)}>{element.round}. {element.raceName}</li>
                                         }
                                     })}
                                 </ul>
@@ -225,23 +258,32 @@ class CurrentSeason extends Component {
                                         {this.state.data.RaceTable.Races.map((element, index) => {
                                             if (element.date < currentDate) {
                                                 return <li key={index} className='pastRaces'
-                                                           onClick={() => this.displayRound(element.season, element.round)}>{element.date} | {element.raceName}</li>
+                                                           onClick={() => this.displayRound(element.season, element.round)}>{element.round}. {element.raceName}</li>
                                             } else {
                                                 return <li key={index} className='futureRaces'
-                                                           onClick={() => this.displayRound(element.season, element.round)}>{element.date} | {element.raceName}</li>
+                                                           onClick={() => this.displayRound(element.season, element.round)}>{element.round}. {element.raceName}</li>
                                             }
                                         })}
                                     </ul>
                                 </div>
                                 <div className='col-9'>
-                                        <div className='row'>
-                                            {titleAndData}
-                                        </div>
+                                    <div className='row'>
+                                        {titleAndData}
+                                        <form className='formCurrent'>
+                                            <select onChange={this.sortByValue}>
+                                                <option value="points">Zdobyte punkty</option>
+                                                <option value="laps">Ukończone okrążenia</option>
+                                            </select>
+                                            <select onChange={this.chartValue}>
+                                                <option value="bar">Wykres blokowy</option>
+                                                <option value="line">Wykres liniowy</option>
+                                            </select>
+                                        </form>
+                                    </div>
                                     <Chart
                                         key="ColumnChart"
-                                        height={500}
+                                        height='70vh'
                                         chartType="ColumnChart"
-                                        loader={loading}
                                         data={
                                             [...this.state.dataChart[0]]
                                         }
@@ -271,18 +313,6 @@ class CurrentSeason extends Component {
                                         }}
                                     />
                                 </div>
-                                <div className='col-9'>
-                                    <form className='formCurrent'>
-                                        <select onChange={this.sortByValue}>
-                                            <option value="points">Zdobyte punkty</option>
-                                            <option value="laps">Ukończone okrążenia</option>
-                                        </select>
-                                        <select onChange={this.chartValue}>
-                                            <option value="bar">Wykres blokowy</option>
-                                            <option value="line">Wykres liniowy</option>
-                                        </select>
-                                    </form>
-                                </div>
                             </div>
                         </div>
                     )
@@ -298,28 +328,37 @@ class CurrentSeason extends Component {
                                         {this.state.data.RaceTable.Races.map((element, index) => {
                                             if (element.date < currentDate) {
                                                 return <li key={index} className='pastRaces'
-                                                           onClick={() => this.displayRound(element.season, element.round)}>{element.date} | {element.raceName}</li>
+                                                           onClick={() => this.displayRound(element.season, element.round)}>{element.round}. {element.raceName}</li>
                                             } else {
                                                 return <li key={index} className='futureRaces'
-                                                           onClick={() => this.displayRound(element.season, element.round)}>{element.date} | {element.raceName}</li>
+                                                           onClick={() => this.displayRound(element.season, element.round)}>{element.round}. {element.raceName}</li>
                                             }
                                         })}
                                     </ul>
                                 </div>
                                 <div className='col-9'>
-                                        <div className='row'>
-                                            {titleAndData}
-                                        </div>
+                                    <div className='row'>
+                                        {titleAndData}
+                                        <form className='formCurrent'>
+                                            <select onChange={this.sortByValue}>
+                                                <option value="points">Zdobyte punkty</option>
+                                                <option value="laps">Ukończone okrążenia</option>
+                                            </select>
+                                            <select onChange={this.chartValue}>
+                                                <option value="bar">Wykres blokowy</option>
+                                                <option value="line">Wykres liniowy</option>
+                                            </select>
+                                        </form>
+                                    </div>
                                     <Chart
                                         key="LineChart"
-                                        height={500}
+                                        height='100vh'
                                         chartType="LineChart"
-                                        loader={loading}
                                         data={
                                             [...this.state.dataChart[0]]
                                         }
                                         options={{
-                                            chartArea: { left: 80, right: 20, top: 20, bottom: 130 },
+                                            chartArea: { left: 80, right: 60, top: 20, bottom: 130 },
                                             legend: {position: 'none'},
                                             fontSize: 12,
                                             colors: ['darkorange'],
@@ -343,18 +382,6 @@ class CurrentSeason extends Component {
                                             },
                                         }}
                                     />
-                                </div>
-                                <div className='col-9'>
-                                    <form className='formCurrent'>
-                                        <select onChange={this.sortByValue}>
-                                            <option value="points">Zdobyte punkty</option>
-                                            <option value="laps">Ukończone okrążenia</option>
-                                        </select>
-                                        <select onChange={this.chartValue}>
-                                            <option value="bar">Wykres blokowy</option>
-                                            <option value="line">Wykres liniowy</option>
-                                        </select>
-                                    </form>
                                 </div>
                             </div>
                         </div>
