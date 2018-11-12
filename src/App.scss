@@ -55,6 +55,16 @@ html {
 }
 
 .navigation {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    @media (min-width: 900px) {
+            justify-content: flex-end;
+    }
+}
+
+.navigationList {
 
     display: flex;
     flex-wrap: wrap;
@@ -70,10 +80,11 @@ html {
     a {
         display: flex;
         flex-wrap: wrap;
+        justify-content: center;
         color: $fontLightColor;
         font-weight: bold;
         font-style: italic;
-        font-size: 1.3rem;
+        font-size: 1.5rem;
         text-transform: uppercase;
         padding: 45px 30px 40px 30px;
         text-decoration: none;
@@ -81,9 +92,12 @@ html {
     }
 
     @media (min-width: 900px) {
-        justify-content: flex-end;
+        position: relative;
         padding-right: 50px;
+
         a {
+            font-size: 1.3rem;
+            justify-content: flex-start;
             &:hover {
                 background: $headerSecondColor;
                 font-size: 2rem;
@@ -96,6 +110,71 @@ html {
                     background: $menuLineColor;
                 }
             }
+        }
+
+        ul > li:hover > a {
+            background: $headerSecondColor;
+            font-size: 2rem;
+            padding: 45px 30px 36px 30px;
+            &:after {
+                content: '';
+                width: 100%;
+                height: 5px;
+                padding-right: 60px;
+                background: $menuLineColor;
+            }
+        }
+
+        ul > li > ul {
+            display:none;
+        }
+
+        ul > li:hover > ul {
+            display:block;
+            a {
+                &:hover {
+                    background: $headerSecondColor;
+                    font-size: 1.5rem;
+                    padding: 15px 0 20px 20px;
+                    color: $secondColor;
+                    &:after {
+                        content: '';
+                        width: 0;
+                        height: 0;
+                        padding-right: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.navigationSubList {
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-align: center;
+
+    a {
+        color: $headerSecondColor;
+        padding: 45px 10px 36px 10px;
+    }
+
+    @media (min-width: 900px) {
+        z-index: 1;
+        position: absolute;
+        top: 100px;
+        left: 15.1%;
+        background: $headerSecondColor;
+        transition: 0.2s opacity;
+        width: 232px;
+        text-align: left;
+
+        a {
+            font-size: 1.5rem;
+            color: $fontLightColor;
+            padding: 15px 0 20px 20px;
         }
     }
 }

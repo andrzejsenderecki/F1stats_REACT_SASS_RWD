@@ -208,7 +208,7 @@ class Home extends Component {
                             <div className='chartSize'>
                             <Chart
                                 key="LineChart"
-                                height='60vh'
+                                height='80vh'
                                 chartType="LineChart"
                                 data={
                                     [...this.state.data[0]]
@@ -216,7 +216,7 @@ class Home extends Component {
                                 options={{
                                     chartArea: { left: 60, right: 60, top: 60, bottom: 130 },
                                     legend: {position: 'none'},
-                                    fontSize: 14,
+                                    fontSize: 16,
                                     colors: ['darkorange'],
                                     animation: {
                                         duration: 500,
