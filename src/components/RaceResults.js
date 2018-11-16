@@ -180,7 +180,7 @@ class RaceResults extends Component {
     render() {
 
         let loading =
-            <div className='col-10 loadingPosition'>
+            <div className='col-10 chartContent loadingPosition'>
                 <div className='loading' />
             </div>;
 
@@ -293,38 +293,40 @@ class RaceResults extends Component {
                         <div className='row'>
                             {formAndBtn}
                             <div className='col-10'>
-                                <Chart
-                                    key="ColumnChart"
-                                    height='70vh'
-                                    chartType="ColumnChart"
-                                    data={
-                                        [...this.state.data[0]]
-                                    }
-                                    options={{
-                                        chartArea: { left: 80, right: 40, top: 20, bottom: 130 },
-                                        legend: {position: 'none'},
-                                        fontSize: 12,
-                                        colors: ['darkorange'],
-                                        animation: {
-                                            duration: 500,
-                                            easing: 'out',
-                                            startup: true,
-                                        },
-                                        hAxis: {
-                                            showTextEvery: 1,
-                                            textStyle : {
-                                                fontSize: 12
+                                <div className='chartContent'>
+                                    <Chart
+                                        key="ColumnChart"
+                                        height='100%'
+                                        chartType="ColumnChart"
+                                        data={
+                                            [...this.state.data[0]]
+                                        }
+                                        options={{
+                                            chartArea: { left: 80, right: 40, top: 20, bottom: 130 },
+                                            legend: {position: 'none'},
+                                            fontSize: 12,
+                                            colors: ['darkorange'],
+                                            animation: {
+                                                duration: 1000,
+                                                easing: 'out',
+                                                startup: true,
                                             },
-                                            slantedText: true,
-                                            slantedTextAngle: 60
-                                        },
-                                        vAxis: {
-                                            textStyle : {
-                                                fontSize: 12,
+                                            hAxis: {
+                                                showTextEvery: 1,
+                                                textStyle : {
+                                                    fontSize: 14
+                                                },
+                                                slantedText: true,
+                                                slantedTextAngle: 60
                                             },
-                                        },
-                                    }}
-                                />
+                                            vAxis: {
+                                                textStyle : {
+                                                    fontSize: 12,
+                                                },
+                                            },
+                                        }}
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -341,38 +343,40 @@ class RaceResults extends Component {
                         <div className='row'>
                             {formAndBtn}
                             <div className='col-10'>
-                                <Chart
-                                    key="LineChart"
-                                    height='70vh'
-                                    chartType="LineChart"
-                                    data={
-                                        [...this.state.data[0]]
-                                    }
-                                    options={{
-                                        chartArea: { left: 80, right: 40, top: 20, bottom: 130 },
-                                        legend: {position: 'none'},
-                                        fontSize: 12,
-                                        colors: ['darkorange'],
-                                        animation: {
-                                            duration: 500,
-                                            easing: 'out',
-                                            startup: true,
-                                        },
-                                        hAxis: {
-                                            showTextEvery: 1,
-                                            textStyle : {
-                                                fontSize: 12
+                                <div className='chartContent'>
+                                    <Chart
+                                        key="LineChart"
+                                        height='100%'
+                                        chartType="LineChart"
+                                        data={
+                                            [...this.state.data[0]]
+                                        }
+                                        options={{
+                                            chartArea: { left: 80, right: 40, top: 20, bottom: 130 },
+                                            legend: {position: 'none'},
+                                            fontSize: 12,
+                                            colors: ['darkorange'],
+                                            animation: {
+                                                duration: 1000,
+                                                easing: 'out',
+                                                startup: true,
                                             },
-                                            slantedText: true,
-                                            slantedTextAngle: 60
-                                        },
-                                        vAxis: {
-                                            textStyle : {
-                                                fontSize: 12,
+                                            hAxis: {
+                                                showTextEvery: 1,
+                                                textStyle : {
+                                                    fontSize: 14
+                                                },
+                                                slantedText: true,
+                                                slantedTextAngle: 60
                                             },
-                                        },
-                                    }}
-                                />
+                                            vAxis: {
+                                                textStyle : {
+                                                    fontSize: 12,
+                                                },
+                                            },
+                                        }}
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>

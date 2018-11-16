@@ -211,7 +211,7 @@ class ReasonsForEndingRaces extends Component {
     render() {
 
         let loading =
-            <div className='col-10 loadingPosition'>
+            <div className='col-10 chartContent loadingPosition'>
                 <div className='loading' />
             </div>;
 
@@ -317,6 +317,7 @@ class ReasonsForEndingRaces extends Component {
                         <div className='row'>
                             {formAndBtn}
                             <div className='col-10'>
+                                <div className='chartContent'>
                                     <form className='formStatusMove'>
                                         <button type='button' className='buttonMove buttonMoveLeft' onClick={this.prevResults}>&lt;</button>
                                         <button type='button' className='buttonMove buttonMoveRight' onClick={this.nextResults}>&gt;</button>
@@ -333,38 +334,39 @@ class ReasonsForEndingRaces extends Component {
                                             <option value='15'>Pokaż 15 wyników</option>
                                         </select>
                                     </form>
-                                <Chart
-                                    key="ColumnChart"
-                                    height='70vh'
-                                    chartType="ColumnChart"
-                                    data={
-                                        [...this.state.data]
-                                    }
-                                    options={{
-                                        chartArea: { left: 80, right: 40, top: 20, bottom: 130 },
-                                        legend: {position: 'none'},
-                                        fontSize: 12,
-                                        colors: ['darkorange'],
-                                        animation: {
-                                            duration: 1000,
-                                            easing: 'out',
-                                            startup: true,
-                                        },
-                                        hAxis: {
-                                            showTextEvery: 1,
-                                            textStyle : {
-                                                fontSize: 12
+                                    <Chart
+                                        key="ColumnChart"
+                                        height='96%'
+                                        chartType="ColumnChart"
+                                        data={
+                                            [...this.state.data]
+                                        }
+                                        options={{
+                                            chartArea: { left: 80, right: 40, top: 20, bottom: 130 },
+                                            legend: {position: 'none'},
+                                            fontSize: 12,
+                                            colors: ['darkorange'],
+                                            animation: {
+                                                duration: 1000,
+                                                easing: 'out',
+                                                startup: true,
                                             },
-                                            slantedText: true,
-                                            slantedTextAngle: 60
-                                        },
-                                        vAxis: {
-                                            textStyle : {
-                                                fontSize: 12,
+                                            hAxis: {
+                                                showTextEvery: 1,
+                                                textStyle : {
+                                                    fontSize: 14
+                                                },
+                                                slantedText: true,
+                                                slantedTextAngle: 60
                                             },
-                                        },
-                                    }}
-                                />
+                                            vAxis: {
+                                                textStyle : {
+                                                    fontSize: 12,
+                                                },
+                                            },
+                                        }}
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -381,9 +383,10 @@ class ReasonsForEndingRaces extends Component {
                         <div className='row'>
                             {formAndBtn}
                             <div className='col-10'>
+                                <div className='chartContent'>
                                     <form className='formStatusMove'>
-                                        <button type='button' className='buttonMoveLeft' onClick={this.prevResults}>&lt;</button>
-                                        <button type='button' className='buttonMoveRight' onClick={this.nextResults}>&gt;</button>
+                                        <button type='button' className='buttonMove buttonMoveLeft' onClick={this.prevResults}>&lt;</button>
+                                        <button type='button' className='buttonMove buttonMoveRight' onClick={this.nextResults}>&gt;</button>
                                         <select onChange={this.move}>
                                             <option value='1'>Przewiń wyniki o 1</option>
                                             <option value='3'>Przewiń wyniki o 3</option>
@@ -397,38 +400,39 @@ class ReasonsForEndingRaces extends Component {
                                             <option value='15'>Pokaż 15 wyników</option>
                                         </select>
                                     </form>
-                                <Chart
-                                    key="ColumnChart"
-                                    height='70vh'
-                                    chartType="ColumnChart"
-                                    data={
-                                        [...this.state.data]
-                                    }
-                                    options={{
-                                        chartArea: { left: 80, right: 40, top: 20, bottom: 130 },
-                                        legend: {position: 'none'},
-                                        fontSize: 12,
-                                        colors: ['darkorange'],
-                                        animation: {
-                                            duration: 1000,
-                                            easing: 'out',
-                                            startup: true,
-                                        },
-                                        hAxis: {
-                                            showTextEvery: 1,
-                                            textStyle : {
-                                                fontSize: 12
+                                    <Chart
+                                        key="LineChart"
+                                        height='96%'
+                                        chartType="LineChart"
+                                        data={
+                                            [...this.state.data]
+                                        }
+                                        options={{
+                                            chartArea: { left: 80, right: 40, top: 20, bottom: 130 },
+                                            legend: {position: 'none'},
+                                            fontSize: 12,
+                                            colors: ['darkorange'],
+                                            animation: {
+                                                duration: 1000,
+                                                easing: 'out',
+                                                startup: true,
                                             },
-                                            slantedText: true,
-                                            slantedTextAngle: 60
-                                        },
-                                        vAxis: {
-                                            textStyle : {
-                                                fontSize: 12,
+                                            hAxis: {
+                                                showTextEvery: 1,
+                                                textStyle : {
+                                                    fontSize: 14
+                                                },
+                                                slantedText: true,
+                                                slantedTextAngle: 60
                                             },
-                                        },
-                                    }}
-                                />
+                                            vAxis: {
+                                                textStyle : {
+                                                    fontSize: 12,
+                                                },
+                                            },
+                                        }}
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -5,7 +5,7 @@ class Drivers extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            driver: 'lauda',
+            driver: 'Lauda',
             data: [],
             driverData: '',
             loading: true,
@@ -33,7 +33,7 @@ class Drivers extends Component {
         console.log(this.state.driver);
         let urlArr = () => {
             let arr = [];
-            for(let i=1; i<=1; i++) {
+            for(let i=1; i<=3; i++) {
                 arr.push(`http://ergast.com/api/f1/drivers/${this.state.driver}/driverStandings/${i}.json`);
             }
             return arr;
@@ -105,7 +105,7 @@ class Drivers extends Component {
     render() {
 
         let loading =
-            <div className='col-10 loadingPosition'>
+            <div className='col-10 tableContent loadingPosition'>
                 <div className='loading' />
             </div>;
 

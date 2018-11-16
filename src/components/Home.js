@@ -176,18 +176,17 @@ class Home extends Component {
                                     fontSize: 16,
                                     colors: ['darkorange'],
                                     animation: {
-                                        duration: 500,
+                                        duration: 1000,
                                         easing: 'out',
                                         startup: true,
                                     },
                                     hAxis: {
                                         showTextEvery: 1,
                                         textStyle : {
-                                            fontSize: 12
+                                            fontSize: 14
                                         },
                                         slantedText: true,
-                                        slantedTextAngle: 60,
-                                        title: 'Ranking sezonu 2018'
+                                        slantedTextAngle: 60
                                     },
                                     vAxis: {
                                         textStyle : {

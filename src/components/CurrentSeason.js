@@ -154,8 +154,8 @@ class CurrentSeason extends Component {
         let title =
             <div className='col-12'>
                 <div className='title'>
-                    <h1 className='title'>Ranking sezonu</h1>
-                    <p>Klasyfikacja ze względu na ilość zdobytych punktów lub wygranych wyścigów w danym
+                    <h1 className='title'>Aktualny sezon</h1>
+                    <p>Klasyfikacja ze względu na ilość zdobytych punktów lub wygranych wyścigów w aktualnym
                         sezonie.</p>
                 </div>
             </div>;
@@ -300,7 +300,7 @@ class CurrentSeason extends Component {
                                             hAxis: {
                                                 showTextEvery: 1,
                                                 textStyle : {
-                                                    fontSize: 12
+                                                    fontSize: 14
                                                 },
                                                 slantedText: true,
                                                 slantedTextAngle: 60
@@ -352,7 +352,7 @@ class CurrentSeason extends Component {
                                     </div>
                                     <Chart
                                         key="LineChart"
-                                        height='100vh'
+                                        height='70vh'
                                         chartType="LineChart"
                                         data={
                                             [...this.state.dataChart[0]]
@@ -370,7 +370,7 @@ class CurrentSeason extends Component {
                                             hAxis: {
                                                 showTextEvery: 1,
                                                 textStyle : {
-                                                    fontSize: 12
+                                                    fontSize: 14
                                                 },
                                                 slantedText: true,
                                                 slantedTextAngle: 60
