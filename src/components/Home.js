@@ -128,15 +128,15 @@ class Home extends Component {
         let banner =
             <div className='col-4 banner'>
             <h1>F1stats!</h1>
-            <h5>Statystyki wyścigów Formuły 1</h5>
-            <p>Witaj na F1stats! Projekt przedstawia statystyki z wyścigów F1 na bazie danych pobranych z <span><b>Ergast API</b></span>, które udostępnia informacje na temat historycznych i aktualnych wyścigów F1. Na podstawie przetworzonych danych generowane są wykresy ze statystykami dotyczącymi najbardziej prestiżowego sportu motorowego na świecie!</p>
+            <h2>Statystyki wyścigów Formuły 1</h2>
+            <p>Witaj na F1stats! Projekt przedstawia statystyki z wyścigów F1 na bazie danych pobranych z <span><b>Ergast API</b></span>. Na podstawie przetworzonych danych generowane są wykresy lub tabele ze statystykami dotyczącymi najbardziej prestiżowego sportu motorowego na świecie!</p>
             </div>;
 
         let bannerAndBtn =
             <div className='col-4 banner'>
                 <h1>F1stats!</h1>
-                <h5>Statystyki wyścigów Formuły 1</h5>
-                <p>Witaj na F1stats! Projekt przedstawia statystyki z wyścigów F1 na bazie danych pobranych z <span><b>Ergast API</b></span>, które udostępnia informacje na temat historycznych i aktualnych wyścigów F1. Na podstawie przetworzonych danych generowane są wykresy ze statystykami dotyczącymi najbardziej prestiżowego sportu motorowego na świecie!</p>
+                <h2>Statystyki wyścigów Formuły 1</h2>
+                <p>Witaj na F1stats! Projekt przedstawia statystyki z wyścigów F1 na bazie danych pobranych z <span><b>Ergast API</b></span>. Na podstawie przetworzonych danych generowane są wykresy lub tabele ze statystykami dotyczącymi najbardziej prestiżowego sportu motorowego na świecie!</p>
                 {formAndBtn}
             </div>;
 
@@ -165,7 +165,7 @@ class Home extends Component {
                             <div className='chartSize'>
                             <Chart
                                 key="ColumnChart"
-                                height='80vh'
+                                height='79.5vh'
                                 chartType="ColumnChart"
                                 data={
                                     [...this.state.data[0]]
@@ -208,7 +208,7 @@ class Home extends Component {
                             <div className='chartSize'>
                             <Chart
                                 key="LineChart"
-                                height='80vh'
+                                height='79.5vh'
                                 chartType="LineChart"
                                 data={
                                     [...this.state.data[0]]

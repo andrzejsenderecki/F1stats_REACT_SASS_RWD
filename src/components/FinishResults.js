@@ -131,7 +131,7 @@ class FinishResults extends Component {
     };
 
     render() {
-
+        
         let loading =
             <div className='col-10 loadingPosition'>
                 <div className='loading' />
