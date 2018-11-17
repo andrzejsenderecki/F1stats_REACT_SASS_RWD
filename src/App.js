@@ -6,7 +6,7 @@ import CurrentSeason from './components/CurrentSeason';
 import FinishResults from './components/FinishResults';
 import RaceResults from './components/RaceResults';
 import Drivers from './components/Drivers';
-import ReasonsForEndingRaces from "./components/ReasonsForEndingRaces";
+import Status from "./components/Status";
 import Home from './components/Home';
 import Footer from './components/Footer';
 import './App.scss';
@@ -24,7 +24,7 @@ class App extends Component {
                     <Route path='/race' component={RaceResults} />
                     <Route path='/drivers' component={Drivers} />
                     <Route path='/current' component={CurrentSeason} />
-                    <Route path='/reason' component={ReasonsForEndingRaces} />
+                    <Route path='/status' component={Status} />
                     <Route component={NotFound} exact />
                 </Switch>
               </div>

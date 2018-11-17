@@ -8,7 +8,7 @@ class Home extends Component {
         this.state = {
             season: '',
             sortBy: 'points',
-            chart: 'bar',
+            chart: 'ColumnChart',
             seasonNumber:'',
             err: '',
             data: '',
@@ -119,22 +119,22 @@ class Home extends Component {
                         <option value="wins">Wygrane wyścigi</option>
                     </select>
                     <select onChange={this.chartValue}>
-                        <option value="bar">Wykres blokowy</option>
-                        <option value="line">Wykres liniowy</option>
+                        <option value="ColumnChart">Wykres blokowy</option>
+                        <option value="LineChart">Wykres liniowy</option>
                     </select>
                 </form>
             </div>;
 
         let banner =
             <div className='col-4 banner'>
-            <h1>F1stats!</h1>
+            <h1><span>F1</span>stats!</h1>
             <h2>Statystyki wyścigów Formuły 1</h2>
             <p>Witaj na F1stats! Projekt przedstawia statystyki z wyścigów F1 na bazie danych pobranych z <span><b>Ergast API</b></span>. Na podstawie przetworzonych danych generowane są wykresy lub tabele ze statystykami dotyczącymi najbardziej prestiżowego sportu motorowego na świecie!</p>
             </div>;
 
         let bannerAndBtn =
             <div className='col-4 banner'>
-                <h1>F1stats!</h1>
+                <h1><span>F1</span>stats!</h1>
                 <h2>Statystyki wyścigów Formuły 1</h2>
                 <p>Witaj na F1stats! Projekt przedstawia statystyki z wyścigów F1 na bazie danych pobranych z <span><b>Ergast API</b></span>. Na podstawie przetworzonych danych generowane są wykresy lub tabele ze statystykami dotyczącymi najbardziej prestiżowego sportu motorowego na świecie!</p>
                 {formAndBtn}
@@ -157,16 +157,15 @@ class Home extends Component {
                 </div>
             );
         } else {
-            if(this.state.chart === 'bar') {
-                return (
-                    <div className='row'>
-                        {bannerAndBtn}
-                        <div className='col-8'>
-                            <div className='chartSize'>
+            return (
+                <div className='row'>
+                    {bannerAndBtn}
+                    <div className='col-8'>
+                        <div className='chartSize'>
                             <Chart
-                                key="ColumnChart"
+                                key={this.state.chart}
                                 height='79.5vh'
-                                chartType="ColumnChart"
+                                chartType={this.state.chart}
                                 data={
                                     [...this.state.data[0]]
                                 }
@@ -195,54 +194,10 @@ class Home extends Component {
                                     },
                                 }}
                             />
-                            </div>
                         </div>
                     </div>
-                )
-            } else if (this.state.chart === 'line') {
-                return (
-                    <div className='row'>
-                        {bannerAndBtn}
-                        <div className='col-8'>
-                            <div className='chartSize'>
-                            <Chart
-                                key="LineChart"
-                                height='79.5vh'
-                                chartType="LineChart"
-                                data={
-                                    [...this.state.data[0]]
-                                }
-                                options={{
-                                    chartArea: { left: 60, right: 60, top: 60, bottom: 130 },
-                                    legend: {position: 'none'},
-                                    fontSize: 16,
-                                    colors: ['darkorange'],
-                                    animation: {
-                                        duration: 500,
-                                        easing: 'out',
-                                        startup: true,
-                                    },
-                                    hAxis: {
-                                        showTextEvery: 1,
-                                        textStyle : {
-                                            fontSize: 12
-                                        },
-                                        slantedText: true,
-                                        slantedTextAngle: 60,
-                                        title: 'Ranking sezonu 2018'
-                                    },
-                                    vAxis: {
-                                        textStyle : {
-                                            fontSize: 12,
-                                        },
-                                    },
-                                }}
-                            />
-                            </div>
-                        </div>
-                    </div>
-                )
-            }
+                </div>
+            )
         }
     }
 }

@@ -1,0 +1,18 @@
+.footer {
+    height: 60px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background: $footerMainColor;
+    border-top: 20px solid $footerSecondColor;
+    border-bottom: 5px solid $footerSecondColor;
+}
+
+.logoFooter {
+    font-family: $mainFont;
+    font-weight: bold;
+    color: $logoColor;
+    font-style: italic;
+    padding: 15px 60px 15px 0;
+    font-size: 2rem;
+}

@@ -4,7 +4,7 @@ class NotFound extends Component {
     render() {
         return (
             <div className='content'>
-                <p className='paragraph'>Taka strona nie istnieje!</p>
+                <p className='info'>Taka strona nie istnieje.</p>
             </div>
         )
     }

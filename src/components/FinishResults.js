@@ -7,7 +7,7 @@ class FinishResults extends Component {
         this.state = {
             season: '2018',
             sortBy: 'points',
-            chart: 'bar',
+            chart: 'ColumnChart',
             seasonNumber:'',
             err: '',
             data: '',
@@ -164,8 +164,8 @@ class FinishResults extends Component {
                         <option value="wins">Wygrane wyścigi</option>
                     </select>
                     <select onChange={this.chartValue}>
-                        <option value="bar">Wykres blokowy</option>
-                        <option value="line">Wykres liniowy</option>
+                        <option value="ColumnChart">Wykres blokowy</option>
+                        <option value="LineChart">Wykres liniowy</option>
                     </select>
                 </form>
             </div>;
@@ -226,107 +226,57 @@ class FinishResults extends Component {
                 </div>
             );
         } else {
-            if(this.state.chart === 'bar') {
-                return (
-                    <div>
-                        <div className='row'>
-                            {title}
-                        </div>
-                        <div className='row'>
-                            {titleAndRaces}
-                        </div>
-                        <div className='row'>
-                            {formAndBtn}
-                            <div className='col-10'>
-                                <div className='chartContent'>
-                                    <Chart
-                                        key="ColumnChart"
-                                        height='100%'
-                                        chartType="ColumnChart"
-                                        data={
-                                            [...this.state.data[0]]
-                                        }
-                                        options={{
-                                            chartArea: { left: 80, right: 60, top: 20, bottom: 130 },
-                                            legend: {position: 'none'},
-                                            fontSize: 12,
-                                            colors: ['darkorange'],
-                                            animation: {
-                                                duration: 1000,
-                                                easing: 'out',
-                                                startup: true,
+            return (
+                <div>
+                    <div className='row'>
+                        {title}
+                    </div>
+                    <div className='row'>
+                        {titleAndRaces}
+                    </div>
+                    <div className='row'>
+                        {formAndBtn}
+                        <div className='col-10'>
+                            <div className='chartContent'>
+                                <Chart
+                                    key={this.state.chart}
+                                    height='100%'
+                                    chartType={this.state.chart}
+                                    data={
+                                        [...this.state.data[0]]
+                                    }
+                                    options={{
+                                        chartArea: { left: 80, right: 60, top: 20, bottom: 130 },
+                                        legend: {position: 'none'},
+                                        fontSize: 12,
+                                        colors: ['darkorange'],
+                                        animation: {
+                                            duration: 1000,
+                                            easing: 'out',
+                                            startup: true,
+                                        },
+                                        hAxis: {
+                                            showTextEvery: 1,
+                                            textStyle : {
+                                                fontName: 'Open Sans',
+                                                fontSize: 14
                                             },
-                                            hAxis: {
-                                                showTextEvery: 1,
-                                                textStyle : {
-                                                    fontSize: 14
-                                                },
-                                                slantedText: true,
-                                                slantedTextAngle: 60
+                                            slantedText: true,
+                                            slantedTextAngle: 60
+                                        },
+                                        vAxis: {
+                                            textStyle : {
+                                                fontName: 'Open Sans',
+                                                fontSize: 12,
                                             },
-                                            vAxis: {
-                                                textStyle : {
-                                                    fontSize: 12,
-                                                },
-                                            },
-                                        }}
-                                    />
-                                </div>
+                                        },
+                                    }}
+                                />
                             </div>
                         </div>
                     </div>
-                )
-            } else if (this.state.chart === 'line') {
-                return (
-                    <div>
-                        <div className='row'>
-                            {title}
-                        </div>
-                        <div className='row'>
-                            {titleAndRaces}
-                        </div>
-                        <div className='row'>
-                            {formAndBtn}
-                            <div className='col-10'>
-                                <div className='chartContent'>
-                                    <Chart
-                                        key="LineChart"
-                                        height='100%'
-                                        chartType="LineChart"
-                                        data={
-                                            [...this.state.data[0]]
-                                        }
-                                        options={{
-                                            chartArea: { left: 80, right: 60, top: 20, bottom: 130 },
-                                            legend: {position: 'none'},
-                                            fontSize: 12,
-                                            colors: ['darkorange'],
-                                            animation: {
-                                                duration: 1000,
-                                                easing: 'out',
-                                                startup: true,
-                                            },
-                                            hAxis: {
-                                                showTextEvery: 1,
-                                                textStyle : {
-                                                    fontSize: 14
-                                                },
-                                                slantedText: true,
-                                                slantedTextAngle: 60
-                                            },
-                                            vAxis: {
-                                                textStyle : {
-                                                    fontSize: 12,
-                                                },
-                                            },
-                                        }}
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                )
-            }
+                </div>
+            )
         }
     }
 }

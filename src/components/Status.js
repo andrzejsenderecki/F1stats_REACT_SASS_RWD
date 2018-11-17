@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Chart from 'react-google-charts';
 
-class ReasonsForEndingRaces extends Component {
+class Status extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -354,13 +354,15 @@ class ReasonsForEndingRaces extends Component {
                                             hAxis: {
                                                 showTextEvery: 1,
                                                 textStyle : {
-                                                    fontSize: 14
+                                                    fontName: 'Open Sans',
+                                                    fontSize: 12
                                                 },
                                                 slantedText: true,
                                                 slantedTextAngle: 60
                                             },
                                             vAxis: {
                                                 textStyle : {
+                                                    fontName: 'Open Sans',
                                                     fontSize: 12,
                                                 },
                                             },
@@ -420,13 +422,15 @@ class ReasonsForEndingRaces extends Component {
                                             hAxis: {
                                                 showTextEvery: 1,
                                                 textStyle : {
-                                                    fontSize: 14
+                                                    fontName: 'Open Sans',
+                                                    fontSize: 12
                                                 },
                                                 slantedText: true,
                                                 slantedTextAngle: 60
                                             },
                                             vAxis: {
                                                 textStyle : {
+                                                    fontName: 'Open Sans',
                                                     fontSize: 12,
                                                 },
                                             },
@@ -442,4 +446,4 @@ class ReasonsForEndingRaces extends Component {
     }
 }
 
-export default ReasonsForEndingRaces;
+export default Status;

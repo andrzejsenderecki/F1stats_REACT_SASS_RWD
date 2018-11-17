@@ -16,7 +16,7 @@ class CurrentSeason extends Component {
             raceName: '',
             circuitName: '',
             raceDate: '',
-            chart: 'bar',
+            chart: 'ColumnChart',
             err: ''
         }
     }
@@ -161,14 +161,13 @@ class CurrentSeason extends Component {
             </div>;
 
         let titleAndData =
-
-                <ul className='dataListCurrent'>
-                    <li>Sezon: <span>{this.state.seasonNumber}</span></li>
-                    <li>Runda numer: <span>{this.state.roundNumber}</span></li>
-                    <li>Wyścig: <span>{this.state.raceName}</span></li>
-                    <li>Tor: <span>{this.state.circuitName}</span></li>
-                    <li>Data: <span>{this.state.raceDate}</span></li>
-                </ul>;
+            <ul className='dataListCurrent'>
+                <li>Sezon: <span>{this.state.seasonNumber}</span></li>
+                <li>Runda numer: <span>{this.state.roundNumber}</span></li>
+                <li>Wyścig: <span>{this.state.raceName}</span></li>
+                <li>Tor: <span>{this.state.circuitName}</span></li>
+                <li>Data: <span>{this.state.raceDate}</span></li>
+            </ul>;
 
         let date = new Date();
         let currentDate;
@@ -208,7 +207,6 @@ class CurrentSeason extends Component {
                                 })}
                             </ul>
                         </div>
-
                         <div className='col-9'>
                             {titleAndData}
                             <div className='loadingPosition'>
@@ -246,147 +244,77 @@ class CurrentSeason extends Component {
                     </div>
                 )
             } else {
-                if (this.state.chart === 'bar') {
-                    return (
-                        <div>
-                            <div className='row'>
-                                {title}
-                            </div>
-                            <div className='row'>
-                                <div className='col-3'>
-                                    <ul className='dataRace'>
-                                        {this.state.data.RaceTable.Races.map((element, index) => {
-                                            if (element.date < currentDate) {
-                                                return <li key={index} className='pastRaces'
-                                                           onClick={() => this.displayRound(element.season, element.round)}>{element.round}. {element.raceName}</li>
-                                            } else {
-                                                return <li key={index} className='futureRaces'
-                                                           onClick={() => this.displayRound(element.season, element.round)}>{element.round}. {element.raceName}</li>
-                                            }
-                                        })}
-                                    </ul>
-                                </div>
-                                <div className='col-9'>
-                                    <div className='row'>
-                                        {titleAndData}
-                                        <form className='formCurrent'>
-                                            <select onChange={this.sortByValue}>
-                                                <option value="points">Zdobyte punkty</option>
-                                                <option value="laps">Ukończone okrążenia</option>
-                                            </select>
-                                            <select onChange={this.chartValue}>
-                                                <option value="bar">Wykres blokowy</option>
-                                                <option value="line">Wykres liniowy</option>
-                                            </select>
-                                        </form>
-                                    </div>
-                                    <Chart
-                                        key="ColumnChart"
-                                        height='70vh'
-                                        chartType="ColumnChart"
-                                        data={
-                                            [...this.state.dataChart[0]]
+                return (
+                    <div>
+                        <div className='row'>
+                            {title}
+                        </div>
+                        <div className='row'>
+                            <div className='col-3'>
+                                <ul className='dataRace'>
+                                    {this.state.data.RaceTable.Races.map((element, index) => {
+                                        if (element.date < currentDate) {
+                                            return <li key={index} className='pastRaces'
+                                                       onClick={() => this.displayRound(element.season, element.round)}>{element.round}. {element.raceName}</li>
+                                        } else {
+                                            return <li key={index} className='futureRaces'
+                                                       onClick={() => this.displayRound(element.season, element.round)}>{element.round}. {element.raceName}</li>
                                         }
-                                        options={{
-                                            chartArea: { left: 80, right: 60, top: 20, bottom: 130 },
-                                            legend: {position: 'none'},
-                                            fontSize: 12,
-                                            colors: ['darkorange'],
-                                            animation: {
-                                                duration: 1000,
-                                                easing: 'out',
-                                                startup: true,
-                                            },
-                                            hAxis: {
-                                                showTextEvery: 1,
-                                                textStyle : {
-                                                    fontSize: 14
-                                                },
-                                                slantedText: true,
-                                                slantedTextAngle: 60
-                                            },
-                                            vAxis: {
-                                                textStyle : {
-                                                    fontSize: 12,
-                                                },
-                                            },
-                                        }}
-                                    />
+                                    })}
+                                </ul>
+                            </div>
+                            <div className='col-9'>
+                                <div className='row'>
+                                    {titleAndData}
+                                    <form className='formCurrent'>
+                                        <select onChange={this.sortByValue}>
+                                            <option value="points">Zdobyte punkty</option>
+                                            <option value="laps">Ukończone okrążenia</option>
+                                        </select>
+                                        <select onChange={this.chartValue}>
+                                            <option value="ColumnChart">Wykres blokowy</option>
+                                            <option value="LineChart">Wykres liniowy</option>
+                                        </select>
+                                    </form>
                                 </div>
+                                <Chart
+                                    key={this.state.chart}
+                                    height='70vh'
+                                    chartType={this.state.chart}
+                                    data={
+                                        [...this.state.dataChart[0]]
+                                    }
+                                    options={{
+                                        chartArea: { left: 80, right: 60, top: 20, bottom: 130 },
+                                        legend: {position: 'none'},
+                                        fontSize: 12,
+                                        colors: ['darkorange'],
+                                        animation: {
+                                            duration: 1000,
+                                            easing: 'out',
+                                            startup: true,
+                                        },
+                                        hAxis: {
+                                            showTextEvery: 1,
+                                            textStyle : {
+                                                fontName: 'Open Sans',
+                                                fontSize: 14
+                                            },
+                                            slantedText: true,
+                                            slantedTextAngle: 60
+                                        },
+                                        vAxis: {
+                                            textStyle : {
+                                                fontName: 'Open Sans',
+                                                fontSize: 12,
+                                            },
+                                        },
+                                    }}
+                                />
                             </div>
                         </div>
-                    )
-                } else {
-                    return (
-                        <div>
-                            <div className='row'>
-                                {title}
-                            </div>
-                            <div className='row'>
-                                <div className='col-3'>
-                                    <ul className='dataRace'>
-                                        {this.state.data.RaceTable.Races.map((element, index) => {
-                                            if (element.date < currentDate) {
-                                                return <li key={index} className='pastRaces'
-                                                           onClick={() => this.displayRound(element.season, element.round)}>{element.round}. {element.raceName}</li>
-                                            } else {
-                                                return <li key={index} className='futureRaces'
-                                                           onClick={() => this.displayRound(element.season, element.round)}>{element.round}. {element.raceName}</li>
-                                            }
-                                        })}
-                                    </ul>
-                                </div>
-                                <div className='col-9'>
-                                    <div className='row'>
-                                        {titleAndData}
-                                        <form className='formCurrent'>
-                                            <select onChange={this.sortByValue}>
-                                                <option value="points">Zdobyte punkty</option>
-                                                <option value="laps">Ukończone okrążenia</option>
-                                            </select>
-                                            <select onChange={this.chartValue}>
-                                                <option value="bar">Wykres blokowy</option>
-                                                <option value="line">Wykres liniowy</option>
-                                            </select>
-                                        </form>
-                                    </div>
-                                    <Chart
-                                        key="LineChart"
-                                        height='70vh'
-                                        chartType="LineChart"
-                                        data={
-                                            [...this.state.dataChart[0]]
-                                        }
-                                        options={{
-                                            chartArea: { left: 80, right: 60, top: 20, bottom: 130 },
-                                            legend: {position: 'none'},
-                                            fontSize: 12,
-                                            colors: ['darkorange'],
-                                            animation: {
-                                                duration: 1000,
-                                                easing: 'out',
-                                                startup: true,
-                                            },
-                                            hAxis: {
-                                                showTextEvery: 1,
-                                                textStyle : {
-                                                    fontSize: 14
-                                                },
-                                                slantedText: true,
-                                                slantedTextAngle: 60
-                                            },
-                                            vAxis: {
-                                                textStyle : {
-                                                    fontSize: 12,
-                                                },
-                                            },
-                                        }}
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    )
-                }
+                    </div>
+                )
             }
         }
     }

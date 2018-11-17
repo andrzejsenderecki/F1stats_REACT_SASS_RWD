@@ -1,0 +1,111 @@
+.formCurrent  {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    select {
+        cursor: pointer;
+        margin: 5px;
+        width: 170px;
+        height: 40px;
+        border: 0;
+        padding-left: 20px;
+        border-radius: 2px;
+        background: $selectBgColor;
+        color:  $fontLightColor;
+        font-family: $mainFont;
+        font-weight: normal;
+        font-size: 15px;
+    }
+}
+
+.pastRaces {
+    color: $mainColor;
+}
+
+.futureRaces {
+    color: $secondColor;
+}
+
+.dataListCurrent {
+    text-align: left;
+    padding-left: 60px;
+    margin-bottom: 30px;
+
+    li {
+        font-family: $mainFont;
+        color: $fontMediumColor;
+        font-size: 2rem;
+        font-weight: normal;
+        text-decoration: none;
+        list-style: none;
+        display: inline-block;
+        padding: 14px 20px 0 0;
+    }
+
+    span {
+        color: $spanColor;
+    }
+}
+
+.loadingCurrentPosition {
+    display: flex;
+    justify-content: center;
+    padding: 30px 0 100px 0;
+}
+
+.dataRace {
+    font-family: $mainFont;
+    font-weight: normal;
+    font-size: 1.6rem;
+    margin-bottom: 40px;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    li {
+        padding: 10px 10px 0 10px;
+        text-decoration: none;
+        list-style: none;
+        transition: 0.3s;
+    }
+
+    @media (min-width: 900px) {
+        justify-content: flex-start;
+        li {
+            padding: 10px 0 0 34px;
+        }
+    }
+
+    @media (min-width: 1130px) {
+        li {
+            padding: 10px 0 0 63px;
+
+            &:hover {
+                cursor: pointer;
+                padding: 10px 40px 0 40px;
+            }
+        }
+    }
+
+    @media (min-width: 1200px) {
+        li {
+            padding: 10px 0 0 70px;
+            &:hover {
+                cursor: pointer;
+                padding: 10px 40px 0 50px;
+            }
+        }
+    }
+
+    @media (min-width: 1600px) {
+        li {
+            padding: 10px 0 0 100px;
+            &:hover {
+                cursor: pointer;
+                padding: 10px 40px 0 83px;
+            }
+        }
+    }
+}

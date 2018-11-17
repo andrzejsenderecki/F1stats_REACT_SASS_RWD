@@ -1,0 +1,35 @@
+.mainTable {
+  width: 90%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 40px;
+  background: #e8e8e8;
+}
+
+.tableHeader {
+    font-family: $mainFont;
+    font-size: 1.7rem;
+    font-weight: 400;
+    height: 1px;
+    color: #FFFFFF;
+    padding: 1em;
+}
+
+.tableBgFirst {
+    background: rgba(190, 0, 0, 1);
+}
+
+.tableBgSecond {
+    background: $thirdColor;
+}
+
+.tableCol {
+    font-family: $secondFont;
+    font-size: 1.7rem;
+    border: 1px solid white;
+    border-collapse: collapse;
+    padding: 20px 0 20px 0;
+    color: $fontDarkColor;
+}
