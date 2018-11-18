@@ -138,7 +138,7 @@ class CurrentSeason extends Component {
                 raceName: '',
                 circuitName: '',
                 raceDate: '',
-                seasonNumber: 'Jeszcze nie było tej rundy',
+                seasonNumber: '',
                 err: 'Jeszcze nie było tej rundy',
             })
         });
@@ -154,7 +154,7 @@ class CurrentSeason extends Component {
         let title =
             <div className='col-12'>
                 <div className='title'>
-                    <h1 className='title'>Aktualny sezon</h1>
+                    <h1>Aktualny sezon</h1>
                     <p>Klasyfikacja ze względu na ilość zdobytych punktów lub wygranych wyścigów w aktualnym
                         sezonie.</p>
                 </div>
@@ -210,7 +210,7 @@ class CurrentSeason extends Component {
                         <div className='col-9'>
                             {titleAndData}
                             <div className='loadingPosition'>
-                                <p className='info'>Jeszcze nie było tej rundy</p>
+                                <p className='info'>{this.state.err}</p>
                             </div>
                         </div>
                     </div>

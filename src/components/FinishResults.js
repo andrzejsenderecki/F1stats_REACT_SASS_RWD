@@ -6,9 +6,10 @@ class FinishResults extends Component {
         super(props);
         this.state = {
             season: '2018',
+            seasonNumber: '',
+            roundNumber: '',
             sortBy: 'points',
             chart: 'ColumnChart',
-            seasonNumber:'',
             err: '',
             data: '',
             loading: false
@@ -123,7 +124,9 @@ class FinishResults extends Component {
 
         }).catch(() => {
             this.setState({
-                seasonNumber: 'Nie znaleziono takiego sezonu',
+                seasonNumber: '',
+                roundNumber: '',
+                seasonNumber: '',
                 loading: false,
                 err: 'Nie znaleziono takiego sezonu',
             })
@@ -140,7 +143,7 @@ class FinishResults extends Component {
         let title =
             <div className='col-12'>
                 <div className='title'>
-                    <h1 className='title'>Ranking sezonu</h1>
+                    <h1>Ranking sezonu</h1>
                     <p>Klasyfikacja ze względu na ilość zdobytych punktów lub wygranych wyścigów w danym
                         sezonie.</p>
                 </div>
@@ -149,11 +152,11 @@ class FinishResults extends Component {
         let formAndBtn =
             <div className='col-2 formContent'>
                 <form className='formSeason'>
-                <div className='formStatusWrap'>
-                    <button className='buttonMini' onClick={this.prevSeason}>&lt;</button>
-                    <input type="text" placeholder='Podaj rok' value={this.state.season} onChange={this.seasonValue}/>
-                    <button className='buttonMini' onClick={this.nextSeason}>&gt;</button>
-                </div>
+                    <div className='formStatusWrap'>
+                        <button className='buttonMini' onClick={this.prevSeason}>&lt;</button>
+                        <input type="text" placeholder='Podaj rok' value={this.state.season} onChange={this.seasonValue}/>
+                        <button className='buttonMini' onClick={this.nextSeason}>&gt;</button>
+                    </div>
                 </form>
                 <div className='btnContent'>
                     <button className='button' onClick={this.searchSeason}>Szukaj Sezonu</button>
@@ -170,7 +173,7 @@ class FinishResults extends Component {
                 </form>
             </div>;
 
-        let titleAndRaces =
+        let seasonData =
             <div className='col-12'>
                 <ul className='dataList'>
                     <li>Sezon: <span>{this.state.seasonNumber}</span></li>
@@ -178,14 +181,14 @@ class FinishResults extends Component {
                 </ul>
             </div>;
 
-        if (this.state.seasonNumber === '') {
+        if (this.state.data === '') {
             return (
                 <div>
                     <div className='row'>
                         {title}
                     </div>
                     <div className='row'>
-                        {titleAndRaces}
+                        {seasonData}
                     </div>
                     <div className='row'>
                         {formAndBtn}
@@ -200,7 +203,7 @@ class FinishResults extends Component {
                         {title}
                     </div>
                     <div className='row'>
-                        {titleAndRaces}
+                        {seasonData}
                     </div>
                     <div className='row'>
                         {formAndBtn}
@@ -215,12 +218,12 @@ class FinishResults extends Component {
                         {title}
                     </div>
                     <div className='row'>
-                        {titleAndRaces}
+                        {seasonData}
                     </div>
                     <div className='row'>
                         {formAndBtn}
                         <div className='col-10 loadingPosition'>
-                            <p className='info'>Nie znaleziono takiego sezonu</p>
+                            <p className='info'>{this.state.err}</p>
                         </div>
                     </div>
                 </div>
@@ -232,7 +235,7 @@ class FinishResults extends Component {
                         {title}
                     </div>
                     <div className='row'>
-                        {titleAndRaces}
+                        {seasonData}
                     </div>
                     <div className='row'>
                         {formAndBtn}

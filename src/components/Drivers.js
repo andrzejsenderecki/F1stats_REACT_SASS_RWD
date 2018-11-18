@@ -19,18 +19,16 @@ class Drivers extends Component {
 
     driverValue = (event) => {
         this.setState({
-            driver: event.target.value,
+            driver: event.target.value
         });
     };
 
     searchDriver = () => {
 
         this.setState({
-            loading: true,
-
+            loading: true
         });
 
-        console.log(this.state.driver);
         let urlArr = () => {
             let arr = [];
             for(let i=1; i<=50; i++) {
@@ -97,7 +95,7 @@ class Drivers extends Component {
             this.setState({
                 driverData: [],
                 loading: false,
-                err: 'Brak danych',
+                err: 'Nie znaleziono takiego kierowcy',
             })
         });
     };
@@ -112,8 +110,8 @@ class Drivers extends Component {
         let title =
             <div className='col-12'>
                 <div className='title'>
-                    <h1 className='title'>Ranking kierowców</h1>
-                    <p>Statystyki wybranego kierowcy - klasyfikacja generalna.</p>
+                    <h1>Ranking kierowców</h1>
+                    <p>Statystyki wybranego kierowcy - zdobyte pozycje w klasyfikacjach generalnych.</p>
                 </div>
             </div>;
 
@@ -127,7 +125,7 @@ class Drivers extends Component {
                 </div>
             </div>;
 
-        let titleAndRaces =
+        let driverData =
             <div className='col-12'>
                 <ul className='dataList'>
                     <li>Kierowca: <span>{this.state.driverData[0]}</span></li>
@@ -143,7 +141,7 @@ class Drivers extends Component {
                         {title}
                     </div>
                     <div className='row'>
-                        {titleAndRaces}
+                        {driverData}
                     </div>
                     <div className='row'>
                         {formAndBtn}
@@ -157,7 +155,7 @@ class Drivers extends Component {
                         {title}
                     </div>
                     <div className='row'>
-                        {titleAndRaces}
+                        {driverData}
                     </div>
                     <div className='row'>
                         {formAndBtn}
@@ -172,12 +170,12 @@ class Drivers extends Component {
                         {title}
                     </div>
                     <div className='row'>
-                        {titleAndRaces}
+                        {driverData}
                     </div>
                     <div className='row'>
                         {formAndBtn}
                         <div className='col-10 loadingPosition'>
-                            <p className='info'>Nie znaleziono takiego sezonu</p>
+                            <p className='info'>{this.state.err}</p>
                         </div>
                     </div>
                 </div>
@@ -189,52 +187,52 @@ class Drivers extends Component {
                         {title}
                     </div>
                     <div className='row'>
-                        {titleAndRaces}
+                        {driverData}
                     </div>
                     <div className='row'>
                         {formAndBtn}
                         <div className='col-10'>
-                        <table className='mainTable'>
-                            <thead>
-                                <tr>
-                                    <th className='tableHeader tableBgFirst'>Pozycja</th>
-                                    <th className='tableHeader tableBgSecond'>Ile razy</th>
-                                    <th className='tableHeader tableBgFirst'>Sezony</th>
-                                    <th className='tableHeader tableBgSecond'>Ilość rund</th>
-                                    <th className='tableHeader tableBgFirst'>Wygrane rundy</th>
-                                    <th className='tableHeader tableBgSecond'>Zdobyte punkty</th>
-                                    <th className='tableHeader tableBgFirst'>Zespół</th>
-                                </tr>
-                            </thead>
-                            {this.state.data.map((element,index) => {
-                                let dataElement = element;
-                                return (
-                                    <tbody>
-                                        <tr>
-                                            <td rowspan={element[2].length} className='tableCol'>{element[0]}</td>
-                                            <td rowspan={element[2].length} className="tableCol">{element[1]}</td>
-                                                {element[2].map((element,index) => {
+                            <table className='mainTable'>
+                                <thead>
+                                    <tr>
+                                        <th className='tableHeader tableBgFirst'>Pozycja</th>
+                                        <th className='tableHeader tableBgSecond'>Ile razy</th>
+                                        <th className='tableHeader tableBgFirst'>Sezony</th>
+                                        <th className='tableHeader tableBgSecond'>Ilość rund</th>
+                                        <th className='tableHeader tableBgFirst'>Wygrane rundy</th>
+                                        <th className='tableHeader tableBgSecond'>Zdobyte punkty</th>
+                                        <th className='tableHeader tableBgFirst'>Zespół</th>
+                                    </tr>
+                                </thead>
+                                {this.state.data.map((element,index) => {
+                                    let dataElement = element;
+                                    return (
+                                        <tbody>
+                                            <tr>
+                                                <td rowspan={element[2].length} className='tableCol'>{element[0]}</td>
+                                                <td rowspan={element[2].length} className="tableCol">{element[1]}</td>
+                                                    {element[2].map((element,index) => {
+                                                        return (
+                                                            <td className="tableCol">{element}</td>
+                                                        )
+                                                    }
+                                                )}
+                                            </tr>
+                                            {element[2].map((element,index) => {
+                                                if(index>0) {
                                                     return (
-                                                        <td className="tableCol">{element}</td>
-                                                    )
-                                                }
-                                            )}
-                                        </tr>
-                                        {element[2].map((element,index) => {
-                                            if(index>0) {
-                                                return (
-                                                    <tr>
-                                                        {dataElement[index+2].map((element,index) => {
-                                                            return <td className="tableCol">{element}</td>;
-                                                        })}
-                                                    </tr>
-                                                    )
-                                                }
-                                            })}
-                                    </tbody>
-                                    )
-                                })}
-                        </table>
+                                                        <tr>
+                                                            {dataElement[index+2].map((element,index) => {
+                                                                return <td className="tableCol">{element}</td>;
+                                                            })}
+                                                        </tr>
+                                                        )
+                                                    }
+                                                })}
+                                        </tbody>
+                                        )
+                                    })}
+                            </table>
                         </div>
                     </div>
                 </div>

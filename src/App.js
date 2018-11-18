@@ -8,6 +8,8 @@ import RaceResults from './components/RaceResults';
 import Drivers from './components/Drivers';
 import Status from "./components/Status";
 import Home from './components/Home';
+import About from './components/About';
+import Contact from './components/Contact';
 import Footer from './components/Footer';
 import './App.scss';
 
@@ -25,6 +27,8 @@ class App extends Component {
                     <Route path='/drivers' component={Drivers} />
                     <Route path='/current' component={CurrentSeason} />
                     <Route path='/status' component={Status} />
+                    <Route path='/about' component={About} />
+                    <Route path='/contact' component={Contact} />
                     <Route component={NotFound} exact />
                 </Switch>
               </div>

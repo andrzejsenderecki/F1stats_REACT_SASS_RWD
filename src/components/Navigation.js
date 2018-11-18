@@ -39,8 +39,8 @@ class Navigation extends Component {
                                             </li>
                                         </ul>
                                     </li>
-                                    <li><NavLink to='/'>O projekcie</NavLink></li>
-                                    <li><NavLink to='/'>Kontakt</NavLink></li>
+                                    <li><NavLink to='/about'>O projekcie</NavLink></li>
+                                    <li><NavLink to='/contact'>Kontakt</NavLink></li>
                                 </ul>
                             </div>
                         </div>
@@ -69,8 +69,8 @@ class Navigation extends Component {
                                             </li>
                                         </ul>
                                     </li>
-                                    <li><NavLink to='/'>O projekcie</NavLink></li>
-                                    <li><NavLink to='/'>Kontakt</NavLink></li>
+                                    <li><NavLink to='/about'>O projekcie</NavLink></li>
+                                    <li><NavLink to='/contact'>Kontakt</NavLink></li>
                                 </ul>
                             </div>
                         </div>
@@ -103,8 +103,8 @@ class Navigation extends Component {
                                         </li>
                                     </ul>
                                 </li>
-                                <li><NavLink to='/'>O projekcie</NavLink></li>
-                                <li><NavLink to='/'>Kontakt</NavLink></li>
+                                <li><NavLink to='/about'>O projekcie</NavLink></li>
+                                <li><NavLink to='/contact'>Kontakt</NavLink></li>
                             </ul>
                         </div>
                     </div>

@@ -171,7 +171,12 @@ class RaceResults extends Component {
             });
         }).catch(() => {
             this.setState({
-                seasonNumber: 'Nie znaleziono takiego sezonu lub rundy',
+                seasonNumber:'',
+                roundNumber: '',
+                raceName: '',
+                circuitName: '',
+                raceDate: '',
+                seasonNumber: '',
                 err: 'Nie znaleziono takiego sezonu lub rundy',
                 loading: false
             })
@@ -188,7 +193,7 @@ class RaceResults extends Component {
         let title =
             <div className='col-12'>
                 <div className='title'>
-                    <h1 className='title'>Wyścigi</h1>
+                    <h1>Wyścigi</h1>
                     <p>Wyniki wybranego wyścigu w danym sezonie ze wzlgędu na ilosć zdobytych punktów lub ilość ukończonych okrążeń.</p>
                 </div>
             </div>;
@@ -222,6 +227,17 @@ class RaceResults extends Component {
                 </form>
             </div>;
 
+        let titleAndDataError =
+            <div className='col-12'>
+                <ul className='dataList'>
+                    <li>Sezon: </li>
+                    <li>Runda numer: </li>
+                    <li>Wyścig: </li>
+                    <li>Tor: </li>
+                    <li>Data: </li>
+                </ul>
+            </div>;
+
         let titleAndData =
             <div className='col-12'>
                 <ul className='dataList'>
@@ -233,7 +249,7 @@ class RaceResults extends Component {
                 </ul>
             </div>;
 
-        if(this.state.seasonNumber === '' && this.state.roundNumber === '') {
+        if(this.state.data === '') {
             return (
                 <div>
                     <div className='row'>
@@ -255,7 +271,7 @@ class RaceResults extends Component {
                         {title}
                     </div>
                     <div className='row'>
-                        {titleAndData}
+                        {titleAndDataError}
                     </div>
                     <div className='row'>
                         {formAndBtn}
@@ -263,14 +279,14 @@ class RaceResults extends Component {
                     </div>
                 </div>
             )
-        } else if(this.state.err !== '' || this.state.round <= 0) {
+        } else if(this.state.err !== '' || this.state.round === 0) {
             return (
                 <div>
                     <div className='row'>
                         {title}
                     </div>
                     <div className='row'>
-                        {titleAndData}
+                        {titleAndDataError}
                     </div>
                     <div className='row'>
                         {formAndBtn}
@@ -308,7 +324,7 @@ class RaceResults extends Component {
                                         animation: {
                                             duration: 1000,
                                             easing: 'out',
-                                            startup: true,
+                                            startup: true
                                         },
                                         hAxis: {
                                             showTextEvery: 1,

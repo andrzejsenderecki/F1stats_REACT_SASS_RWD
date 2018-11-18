@@ -7,14 +7,15 @@ class Status extends Component {
         this.state = {
             seasonFrom: '2010',
             seasonTo: '2018',
-            chart: 'bar',
+            chart: 'ColumnChart',
             countResults: '10',
-            seasonNumber:'',
+            seasonNumber: '',
             resultLine: 0,
             move: '1',
             err: '',
             data: '',
-            loading: false
+            loading: false,
+            dateYear: ''
         }
     }
 
@@ -105,6 +106,10 @@ class Status extends Component {
     };
 
     searchSeason = () => {
+
+        let dateYear = new Date();
+        console.log(dateYear.getFullYear());
+
         let urlArr = () => {
             let arr = [];
             for(let i=Number(this.state.seasonFrom); i<=Number(this.state.seasonTo); i++) {
@@ -196,7 +201,8 @@ class Status extends Component {
             this.setState({
                 err: '',
                 data: displayArr,
-                loading: false
+                loading: false,
+                dateYear: dateYear.getFullYear()
             })
         }).catch((err) => {
             this.setState({
@@ -218,8 +224,8 @@ class Status extends Component {
         let title =
             <div className='col-12'>
                 <div className='title'>
-                    <h1 className='title'>Statusy ukończenia wyścigów</h1>
-                    <p>Statystyka prezentuje przyczyny z jakich kierowcy kończyli wyścigi na przestrzeni podanych lat</p>
+                    <h1>Statusy ukończenia wyścigów</h1>
+                    <p>Statystyka prezentuje przyczyny z jakich kierowcy kończyli wyścigi na przestrzeni podanych lat.</p>
                 </div>
             </div>;
 
@@ -244,8 +250,8 @@ class Status extends Component {
                 </div>
                 <form className='formStatus'>
                     <select onChange={this.chartValue}>
-                        <option value="bar">Wykres blokowy</option>
-                        <option value="line">Wykres liniowy</option>
+                        <option value="ColumnChart">Wykres blokowy</option>
+                        <option value="LineChart">Wykres liniowy</option>
                     </select>
                 </form>
             </div>;
@@ -287,7 +293,28 @@ class Status extends Component {
                     </div>
                 </div>
             )
-        } else if(this.state.err !== '') {
+        } else if(Number(this.state.seasonFrom) < 1950 || Number(this.state.seasonTo) > this.state.dateYear) {
+            return (
+                <div>
+                    <div className='row'>
+                        {title}
+                    </div>
+                    <div className='row'>
+                        <div className='col-12'>
+                            <ul className='dataList'>
+                                <li>Sezony</li>
+                            </ul>
+                        </div>;
+                    </div>
+                    <div className='row'>
+                        {formAndBtn}
+                        <div className='col-10'>
+                            <p className='info'>Nie znaleziono takiego sezonu</p>
+                        </div>
+                    </div>
+                </div>
+            )
+        } else {
             return (
                 <div>
                     <div className='row'>
@@ -298,150 +325,63 @@ class Status extends Component {
                     </div>
                     <div className='row'>
                         {formAndBtn}
-                        <div className='col-10 loadingPosition'>
-                            <p className='info'>Nie znaleziono takiego sezonu lub rundy</p>
+                        <div className='col-10'>
+                            <div className='chartContent'>
+                                <form className='formStatusMove'>
+                                    <button type='button' className='buttonMove buttonMoveLeft' onClick={this.prevResults}>&lt;</button>
+                                    <button type='button' className='buttonMove buttonMoveRight' onClick={this.nextResults}>&gt;</button>
+                                    <select onChange={this.move}>
+                                        <option value='1'>Przewiń wyniki o 1</option>
+                                        <option value='3'>Przewiń wyniki o 3</option>
+                                        <option value='5'>Przewiń wyniki o 5</option>
+                                        <option value='10'>Przewiń wyniki o 10</option>
+                                    </select>
+                                    <select value={this.state.countResults} onChange={this.countResultsValue}>
+                                        <option value='all'>Pokaż wszystkie</option>
+                                        <option value='5'>Pokaż 5 wyników</option>
+                                        <option value='10'>Pokaż 10 wyników</option>
+                                        <option value='15'>Pokaż 15 wyników</option>
+                                    </select>
+                                </form>
+                                <Chart
+                                    key={this.state.chart}
+                                    height='96%'
+                                    chartType={this.state.chart}
+                                    data={
+                                        [...this.state.data]
+                                    }
+                                    options={{
+                                        chartArea: { left: 80, right: 40, top: 20, bottom: 130 },
+                                        legend: {position: 'none'},
+                                        fontSize: 12,
+                                        colors: ['darkorange'],
+                                        animation: {
+                                            duration: 1000,
+                                            easing: 'out',
+                                            startup: true,
+                                        },
+                                        hAxis: {
+                                            showTextEvery: 1,
+                                            textStyle : {
+                                                fontName: 'Open Sans',
+                                                fontSize: 12
+                                            },
+                                            slantedText: true,
+                                            slantedTextAngle: 60
+                                        },
+                                        vAxis: {
+                                            textStyle : {
+                                                fontName: 'Open Sans',
+                                                fontSize: 12,
+                                            },
+                                        },
+                                    }}
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
             )
-        } else {
-            if(this.state.chart === 'bar') {
-                return (
-                    <div>
-                        <div className='row'>
-                            {title}
-                        </div>
-                        <div className='row'>
-                            {titleAndRaces}
-                        </div>
-                        <div className='row'>
-                            {formAndBtn}
-                            <div className='col-10'>
-                                <div className='chartContent'>
-                                    <form className='formStatusMove'>
-                                        <button type='button' className='buttonMove buttonMoveLeft' onClick={this.prevResults}>&lt;</button>
-                                        <button type='button' className='buttonMove buttonMoveRight' onClick={this.nextResults}>&gt;</button>
-                                        <select onChange={this.move}>
-                                            <option value='1'>Przewiń wyniki o 1</option>
-                                            <option value='3'>Przewiń wyniki o 3</option>
-                                            <option value='5'>Przewiń wyniki o 5</option>
-                                            <option value='10'>Przewiń wyniki o 10</option>
-                                        </select>
-                                        <select value={this.state.countResults} onChange={this.countResultsValue}>
-                                            <option value='all'>Pokaż wszystkie</option>
-                                            <option value='5'>Pokaż 5 wyników</option>
-                                            <option value='10'>Pokaż 10 wyników</option>
-                                            <option value='15'>Pokaż 15 wyników</option>
-                                        </select>
-                                    </form>
-                                    <Chart
-                                        key="ColumnChart"
-                                        height='96%'
-                                        chartType="ColumnChart"
-                                        data={
-                                            [...this.state.data]
-                                        }
-                                        options={{
-                                            chartArea: { left: 80, right: 40, top: 20, bottom: 130 },
-                                            legend: {position: 'none'},
-                                            fontSize: 12,
-                                            colors: ['darkorange'],
-                                            animation: {
-                                                duration: 1000,
-                                                easing: 'out',
-                                                startup: true,
-                                            },
-                                            hAxis: {
-                                                showTextEvery: 1,
-                                                textStyle : {
-                                                    fontName: 'Open Sans',
-                                                    fontSize: 12
-                                                },
-                                                slantedText: true,
-                                                slantedTextAngle: 60
-                                            },
-                                            vAxis: {
-                                                textStyle : {
-                                                    fontName: 'Open Sans',
-                                                    fontSize: 12,
-                                                },
-                                            },
-                                        }}
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                )
-            } else if (this.state.chart === 'line') {
-                return (
-                    <div>
-                        <div className='row'>
-                            {title}
-                        </div>
-                        <div className='row'>
-                            {titleAndRaces}
-                        </div>
-                        <div className='row'>
-                            {formAndBtn}
-                            <div className='col-10'>
-                                <div className='chartContent'>
-                                    <form className='formStatusMove'>
-                                        <button type='button' className='buttonMove buttonMoveLeft' onClick={this.prevResults}>&lt;</button>
-                                        <button type='button' className='buttonMove buttonMoveRight' onClick={this.nextResults}>&gt;</button>
-                                        <select onChange={this.move}>
-                                            <option value='1'>Przewiń wyniki o 1</option>
-                                            <option value='3'>Przewiń wyniki o 3</option>
-                                            <option value='5'>Przewiń wyniki o 5</option>
-                                            <option value='10'>Przewiń wyniki o 10</option>
-                                        </select>
-                                        <select value={this.state.countResults} onChange={this.countResultsValue}>
-                                            <option value='all'>Pokaż wszystkie</option>
-                                            <option value='5'>Pokaż 5 wyników</option>
-                                            <option value='10'>Pokaż 10 wyników</option>
-                                            <option value='15'>Pokaż 15 wyników</option>
-                                        </select>
-                                    </form>
-                                    <Chart
-                                        key="LineChart"
-                                        height='96%'
-                                        chartType="LineChart"
-                                        data={
-                                            [...this.state.data]
-                                        }
-                                        options={{
-                                            chartArea: { left: 80, right: 40, top: 20, bottom: 130 },
-                                            legend: {position: 'none'},
-                                            fontSize: 12,
-                                            colors: ['darkorange'],
-                                            animation: {
-                                                duration: 1000,
-                                                easing: 'out',
-                                                startup: true,
-                                            },
-                                            hAxis: {
-                                                showTextEvery: 1,
-                                                textStyle : {
-                                                    fontName: 'Open Sans',
-                                                    fontSize: 12
-                                                },
-                                                slantedText: true,
-                                                slantedTextAngle: 60
-                                            },
-                                            vAxis: {
-                                                textStyle : {
-                                                    fontName: 'Open Sans',
-                                                    fontSize: 12,
-                                                },
-                                            },
-                                        }}
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                )
-            }
         }
     }
 }
