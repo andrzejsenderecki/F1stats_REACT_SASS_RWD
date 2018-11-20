@@ -11,15 +11,14 @@
 
     p {
         font-family: $secondFont;
-        font-size: 2rem;
+        font-size: 1.9rem;
         text-align: center;
-        font-weight: normal;
+        font-weight: 400;
         color: $fontMediumColor;
         padding: 10px 20px 20px 20px;
     }
 
     @media (min-width: 260px) {
-
         h1 {
             font-size: 4rem;
         }
@@ -33,10 +32,6 @@
                 margin-right: 10px;
                 background: $titleSecondColor;
             }
-        }
-
-        p {
-            font-size: 1.8rem;
         }
     }
 
@@ -55,7 +50,7 @@
 
         p {
             text-align: left;
-            padding: 0 0 30px 32px;
+            padding: 0 100px 30px 32px;
         }
     }
 
@@ -75,7 +70,7 @@
         }
 
         p {
-            padding: 0 0 30px 70px;
+            padding: 0 100px 30px 70px;
         }
     }
 
@@ -85,7 +80,7 @@
         }
 
         p {
-            padding: 0 0 30px 100px;
+            padding: 0 100px 30px 100px;
         }
     }
 }

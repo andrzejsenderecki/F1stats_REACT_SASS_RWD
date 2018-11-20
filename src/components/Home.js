@@ -112,7 +112,7 @@ class Home extends Component {
         }
 
         let formAndBtn =
-            <div>
+            <div className='formBannerContent'>
                 <form className='formBanner'>
                     <select onChange={this.sortByValue}>
                         <option value="points">Zdobyte punkty</option>
@@ -129,14 +129,13 @@ class Home extends Component {
             <div className='col-4 banner'>
                 <h1>F1<span>stats</span>!</h1>
                 <h2>Statystyki wyścigów Formuły 1</h2>
-                <p>Witaj na F1stats! Projekt przedstawia statystyki z wyścigów F1 na bazie danych pobranych z <span><b>Ergast API</b></span>. Na podstawie przetworzonych danych generowane są wykresy lub tabele ze statystykami dotyczącymi najbardziej prestiżowego sportu motorowego na świecie!</p>
+                <p>Projekt przedstawia statystyki z wyścigów F1 na bazie danych udostępnionych przez <span><b>Ergast API</b></span>. Na podstawie przetworzonych danych generowane są wykresy lub tabele ze statystykami dotyczącymi najszybszeg sportu motorowego na świecie!</p>
             </div>;
-
         let bannerAndBtn =
             <div className='col-4 banner'>
                 <h1>F1stats!</h1>
                 <h2>Statystyki wyścigów Formuły 1</h2>
-                <p>Witaj na F1stats! Projekt przedstawia statystyki z wyścigów F1 na bazie danych pobranych z <span><b>Ergast API</b></span>. Na podstawie przetworzonych danych generowane są wykresy lub tabele ze statystykami dotyczącymi najbardziej prestiżowego sportu motorowego na świecie!</p>
+                <p>Projekt przedstawia statystyki z wyścigów F1 na bazie danych udostępnionych przez <span><b>Ergast API</b></span>. Na podstawie przetworzonych danych generowane są wykresy lub tabele ze statystykami dotyczącymi najszybszego sportu motorowego na świecie!</p>
                 {formAndBtn}
             </div>;
 
@@ -170,10 +169,11 @@ class Home extends Component {
                                     [...this.state.data[0]]
                                 }
                                 options={{
-                                    chartArea: { left: 60, right: 60, top: 60, bottom: 130 },
+                                    chartArea: { left: 60, right: 70, top: 60, bottom: 130 },
                                     legend: {position: 'none'},
                                     fontSize: 16,
                                     colors: ['darkorange'],
+                                    backgroundColor: { fill:'transparent' },
                                     animation: {
                                         duration: 1000,
                                         easing: 'out',

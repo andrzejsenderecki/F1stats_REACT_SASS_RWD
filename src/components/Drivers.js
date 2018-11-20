@@ -103,7 +103,7 @@ class Drivers extends Component {
     render() {
 
         let loading =
-            <div className='col-10 tableContent loadingPosition'>
+            <div className='col-10 tableContent loadingDriversPosition'>
                 <div className='loading' />
             </div>;
 
@@ -192,47 +192,49 @@ class Drivers extends Component {
                     <div className='row'>
                         {formAndBtn}
                         <div className='col-10'>
-                            <table className='mainTable'>
-                                <thead>
-                                    <tr>
-                                        <th className='tableHeader tableBgFirst'>Pozycja</th>
-                                        <th className='tableHeader tableBgSecond'>Ile razy</th>
-                                        <th className='tableHeader tableBgFirst'>Sezony</th>
-                                        <th className='tableHeader tableBgSecond'>Ilość rund</th>
-                                        <th className='tableHeader tableBgFirst'>Wygrane rundy</th>
-                                        <th className='tableHeader tableBgSecond'>Zdobyte punkty</th>
-                                        <th className='tableHeader tableBgFirst'>Zespół</th>
-                                    </tr>
-                                </thead>
-                                {this.state.data.map((element,index) => {
-                                    let dataElement = element;
-                                    return (
-                                        <tbody>
-                                            <tr>
-                                                <td rowspan={element[2].length} className='tableCol'>{element[0]}</td>
-                                                <td rowspan={element[2].length} className="tableCol">{element[1]}</td>
-                                                    {element[2].map((element,index) => {
+                            <div className='scrollTable'>
+                                <table className='mainTable'>
+                                    <thead>
+                                        <tr>
+                                            <th className='tableHeader tableBgFirst'>Pozycja</th>
+                                            <th className='tableHeader tableBgSecond'>Ile razy</th>
+                                            <th className='tableHeader tableBgFirst'>Sezony</th>
+                                            <th className='tableHeader tableBgSecond'>Ilość rund</th>
+                                            <th className='tableHeader tableBgFirst'>Wygrane rundy</th>
+                                            <th className='tableHeader tableBgSecond'>Zdobyte punkty</th>
+                                            <th className='tableHeader tableBgFirst'>Zespół</th>
+                                        </tr>
+                                    </thead>
+                                    {this.state.data.map((element,index) => {
+                                        let dataElement = element;
+                                        return (
+                                            <tbody>
+                                                <tr>
+                                                    <td rowspan={element[2].length} className='tableCol'>{element[0]}</td>
+                                                    <td rowspan={element[2].length} className="tableCol">{element[1]}</td>
+                                                        {element[2].map((element,index) => {
+                                                            return (
+                                                                <td className="tableCol">{element}</td>
+                                                            )
+                                                        }
+                                                    )}
+                                                </tr>
+                                                {element[2].map((element,index) => {
+                                                    if(index>0) {
                                                         return (
-                                                            <td className="tableCol">{element}</td>
-                                                        )
-                                                    }
-                                                )}
-                                            </tr>
-                                            {element[2].map((element,index) => {
-                                                if(index>0) {
-                                                    return (
-                                                        <tr>
-                                                            {dataElement[index+2].map((element,index) => {
-                                                                return <td className="tableCol">{element}</td>;
-                                                            })}
-                                                        </tr>
-                                                        )
-                                                    }
-                                                })}
-                                        </tbody>
-                                        )
-                                    })}
-                            </table>
+                                                            <tr>
+                                                                {dataElement[index+2].map((element,index) => {
+                                                                    return <td className="tableCol">{element}</td>;
+                                                                })}
+                                                            </tr>
+                                                            )
+                                                        }
+                                                    })}
+                                            </tbody>
+                                            )
+                                        })}
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>

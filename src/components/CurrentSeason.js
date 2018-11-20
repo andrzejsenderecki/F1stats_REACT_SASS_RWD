@@ -289,6 +289,7 @@ class CurrentSeason extends Component {
                                         legend: {position: 'none'},
                                         fontSize: 12,
                                         colors: ['darkorange'],
+                                        backgroundColor: { fill:'transparent' },
                                         animation: {
                                             duration: 1000,
                                             easing: 'out',

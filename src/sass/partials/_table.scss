@@ -1,11 +1,12 @@
 .mainTable {
-  width: 90%;
-  margin: 0 auto;
-  border-collapse: collapse;
-  text-align: center;
-  margin-top: 15px;
-  margin-bottom: 40px;
-  background: #e8e8e8;
+      width: 90%;
+      margin: 0 auto;
+      border-collapse: collapse;
+      text-align: center;
+      margin-top: 15px;
+      margin-bottom: 40px;
+      background: #e8e8e8;
+
 }
 
 .tableHeader {
@@ -32,4 +33,10 @@
     border-collapse: collapse;
     padding: 20px 0 20px 0;
     color: $fontDarkColor;
+}
+
+.scrollTable {
+    @media (max-width: 600px) {
+        overflow-x: scroll;
+    }
 }

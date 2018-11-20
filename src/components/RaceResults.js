@@ -186,7 +186,7 @@ class RaceResults extends Component {
     render() {
 
         let loading =
-            <div className='col-10 chartContent loadingPosition'>
+            <div className='col-10 loadingContent loadingPosition'>
                 <div className='loading' />
             </div>;
 
@@ -194,9 +194,14 @@ class RaceResults extends Component {
             <div className='col-12'>
                 <div className='title'>
                     <h1>Wyścigi</h1>
-                    <p>Wyniki wybranego wyścigu w danym sezonie ze wzlgędu na ilosć zdobytych punktów lub ilość ukończonych okrążeń.</p>
+                    <p>Wyniki wybranego wyścigu w danym sezonie ze względu na ilość zdobytych punktów lub ilość ukończonych okrążeń.</p>
                 </div>
             </div>;
+
+        let error =
+            <div className='col-10 loadingPosition chartContent'>
+                <p className='info'>Nie znaleziono takiego sezonu lub rundy</p>
+            </div>
 
         let formAndBtn =
             <div className='col-2 formContent'>
@@ -290,9 +295,7 @@ class RaceResults extends Component {
                     </div>
                     <div className='row'>
                         {formAndBtn}
-                        <div className='col-10 loadingPosition'>
-                            <p className='info'>Nie znaleziono takiego sezonu lub rundy</p>
-                        </div>
+                        {error}
                     </div>
                 </div>
             )
@@ -321,6 +324,7 @@ class RaceResults extends Component {
                                         legend: {position: 'none'},
                                         fontSize: 12,
                                         colors: ['darkorange'],
+                                        backgroundColor: { fill:'transparent' },
                                         animation: {
                                             duration: 1000,
                                             easing: 'out',

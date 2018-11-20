@@ -136,7 +136,7 @@ class FinishResults extends Component {
     render() {
 
         let loading =
-            <div className='col-10 chartContent loadingPosition'>
+            <div className='col-10 loadingContent loadingPosition'>
                 <div className='loading' />
             </div>;
 
@@ -147,6 +147,11 @@ class FinishResults extends Component {
                     <p>Klasyfikacja ze względu na ilość zdobytych punktów lub wygranych wyścigów w danym
                         sezonie.</p>
                 </div>
+            </div>;
+
+        let error =
+            <div className='col-10 loadingPosition chartContent'>
+                <p className='info'>{this.state.err}</p>
             </div>;
 
         let formAndBtn =
@@ -222,9 +227,7 @@ class FinishResults extends Component {
                     </div>
                     <div className='row'>
                         {formAndBtn}
-                        <div className='col-10 loadingPosition'>
-                            <p className='info'>{this.state.err}</p>
-                        </div>
+                        {error}
                     </div>
                 </div>
             );
@@ -253,6 +256,7 @@ class FinishResults extends Component {
                                         legend: {position: 'none'},
                                         fontSize: 12,
                                         colors: ['darkorange'],
+                                        backgroundColor: { fill:'transparent' },
                                         animation: {
                                             duration: 1000,
                                             easing: 'out',

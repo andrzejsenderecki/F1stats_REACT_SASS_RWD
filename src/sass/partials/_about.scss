@@ -1,51 +1,56 @@
-.list {
+.aboutList {
 
     font-family: $secondFont;
-    font-weight: normal;
+    font-weight: 400;
     text-align: center;
     font-size: 2rem;
-    margin-bottom: 40px;
-    padding: 10px 0 20px 0;
 
     li {
-        padding: 10px 20px 0 22px;
         text-decoration: none;
         list-style: none;
-
     }
 
-    @media (min-width: 900px) {
-        font-family: $secondFont;
-        font-weight: normal;
-        text-align: left;
-        font-size: 2rem;
-        margin-bottom: 40px;
-        padding: 10px 10px 20px 80px;
-
-        li {
-            padding: 10px 20px 0 22px;
-            text-decoration: none;
-            list-style: none;
-
-        }
-    }
-}
-
-.decoration {
-
-    font-size: 3rem;
-    font-weight: 600;
-    color: $mainColor;
     ul {
         li {
             font-size: 2rem;
-            font-weight: 300;
             color: $thirdColor;
+
+            padding-top: 10px;
+            font-weight: 400;
+
+            @media (min-width: 900px) {
+                font-size: 2rem;
+                padding-left: 25px;
+            }
         }
     }
 
-    @media (min-width: 1200px) {
+    @media (min-width: 900px) {
+        font-size: 2rem;
+        text-align: left;
+        margin-bottom: 40px;
+        padding: 10px 40px 10px 35px;
+    }
 
+    @media (min-width: 1130px) {
+        padding: 10px 40px 10px 60px;
+    }
+
+    @media (min-width: 1200px) {
+        padding: 10px 40px 10px 75px;
+    }
+
+    @media (min-width: 1490px) {
+        padding: 10px 40px 10px 100px;
+    }
+}
+
+.aboutDecoration {
+    font-size: 3rem;
+    font-weight: 600;
+    color: $mainColor;
+    padding-bottom: 40px;
+    @media (min-width: 900px) {
         &:before {
             content: '';
             margin-right: 10px;
@@ -53,17 +58,29 @@
             background: $mainColor;
         }
     }
-
-    margin-bottom: 20px;
 }
 
-.link {
-    a {
-        text-decoration: none;
-        color: $mainColor;
+.aboutListTitle {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: $thirdColor;
+    margin-bottom: 50px;
+}
+
+.aboutLink {
+    font-family: $secondFont;
+    font-weight: 400;
+    text-align: center;
+    font-size: 2rem;
+    text-decoration: none;
+    color: $thirdColor;
+
+    @media (min-width: 900px) {
+        font-family: $secondFont;
+        text-align: left;
+        font-size: 2rem;
         &:hover {
             color: $secondColor;
         }
     }
-    margin-bottom: 40px;
 }

@@ -217,7 +217,7 @@ class Status extends Component {
     render() {
 
         let loading =
-            <div className='col-10 chartContent loadingPosition'>
+            <div className='col-10 loadingContent loadingPosition'>
                 <div className='loading' />
             </div>;
 
@@ -228,6 +228,11 @@ class Status extends Component {
                     <p>Statystyka prezentuje przyczyny z jakich kierowcy kończyli wyścigi na przestrzeni podanych lat.</p>
                 </div>
             </div>;
+
+        let error =
+            <div className='col-10 loadingPosition'>
+                <p className='info'>Nie znaleziono takiego sezonu</p>
+            </div>
 
         let formAndBtn =
             <div className='col-2 formContent'>
@@ -255,6 +260,24 @@ class Status extends Component {
                     </select>
                 </form>
             </div>;
+
+        let formMove =
+            <form className='formStatusMove'>
+                <button type='button' className='buttonMove buttonMoveLeft' onClick={this.prevResults}>&lt;</button>
+                <button type='button' className='buttonMove buttonMoveRight' onClick={this.nextResults}>&gt;</button>
+                <select onChange={this.move}>
+                    <option value='1'>Przewiń wyniki o 1</option>
+                    <option value='3'>Przewiń wyniki o 3</option>
+                    <option value='5'>Przewiń wyniki o 5</option>
+                    <option value='10'>Przewiń wyniki o 10</option>
+                </select>
+                <select value={this.state.countResults} onChange={this.countResultsValue}>
+                    <option value='all'>Pokaż wszystkie</option>
+                    <option value='5'>Pokaż 5 wyników</option>
+                    <option value='10'>Pokaż 10 wyników</option>
+                    <option value='15'>Pokaż 15 wyników</option>
+                </select>
+            </form>;
 
         let titleAndRaces =
             <div className='col-12'>
@@ -308,9 +331,7 @@ class Status extends Component {
                     </div>
                     <div className='row'>
                         {formAndBtn}
-                        <div className='col-10'>
-                            <p className='info'>Nie znaleziono takiego sezonu</p>
-                        </div>
+                        {error}
                     </div>
                 </div>
             )
@@ -327,22 +348,7 @@ class Status extends Component {
                         {formAndBtn}
                         <div className='col-10'>
                             <div className='chartContent'>
-                                <form className='formStatusMove'>
-                                    <button type='button' className='buttonMove buttonMoveLeft' onClick={this.prevResults}>&lt;</button>
-                                    <button type='button' className='buttonMove buttonMoveRight' onClick={this.nextResults}>&gt;</button>
-                                    <select onChange={this.move}>
-                                        <option value='1'>Przewiń wyniki o 1</option>
-                                        <option value='3'>Przewiń wyniki o 3</option>
-                                        <option value='5'>Przewiń wyniki o 5</option>
-                                        <option value='10'>Przewiń wyniki o 10</option>
-                                    </select>
-                                    <select value={this.state.countResults} onChange={this.countResultsValue}>
-                                        <option value='all'>Pokaż wszystkie</option>
-                                        <option value='5'>Pokaż 5 wyników</option>
-                                        <option value='10'>Pokaż 10 wyników</option>
-                                        <option value='15'>Pokaż 15 wyników</option>
-                                    </select>
-                                </form>
+                                {formMove}
                                 <Chart
                                     key={this.state.chart}
                                     height='96%'
@@ -355,6 +361,7 @@ class Status extends Component {
                                         legend: {position: 'none'},
                                         fontSize: 12,
                                         colors: ['darkorange'],
+                                        backgroundColor: { fill:'transparent' },
                                         animation: {
                                             duration: 1000,
                                             easing: 'out',
