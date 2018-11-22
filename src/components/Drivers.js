@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Chart from 'react-google-charts';
 
 class Drivers extends Component {
     constructor(props) {

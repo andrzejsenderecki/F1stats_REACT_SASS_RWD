@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Chart from 'react-google-charts';
 
 class About extends Component {
 
@@ -18,7 +17,7 @@ class About extends Component {
                     <ul className='aboutList'>
                         <li className='aboutDecoration'>Link do repozytorium:
                             <ul>
-                                <li><a className='aboutLink' href='https://github.com/andrzejsenderecki/f1stats_react' target='_blank'>Repozytorium F1stats!</a></li>
+                                <li><a className='aboutLink' href='https://github.com/andrzejsenderecki/f1stats_react' target='_blank' rel='noopener noreferrer'>Repozytorium F1stats!</a></li>
                             </ul>
                         </li>
                         <li className='aboutListTitle'>Technologie wykorzystane w projekcie:</li>

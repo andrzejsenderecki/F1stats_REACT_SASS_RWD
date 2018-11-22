@@ -5,13 +5,14 @@ class Status extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            seasonFrom: '2010',
+            seasonFrom: '2015',
             seasonTo: '2018',
             chart: 'ColumnChart',
             countResults: '10',
             seasonNumber: '',
             resultLine: 0,
             move: '1',
+            blockNext: false,
             err: '',
             data: '',
             loading: false,
@@ -43,7 +44,9 @@ class Status extends Component {
 
     countResultsValue = (event) => {
         this.setState({
-            countResults: event.target.value
+            countResults: event.target.value,
+            resultLine: 0,
+            blockNext: false,
         }, this.searchSeason);
     };
 
@@ -88,15 +91,20 @@ class Status extends Component {
     };
 
     nextResults = () => {
-        this.setState({
-            resultLine: this.state.resultLine+Number(this.state.move),
-        }, this.searchSeason);
+        if(this.state.blockNext === false) {
+            this.setState({
+                resultLine: this.state.resultLine+Number(this.state.move),
+            }, this.searchSeason);
+        }
     };
 
     prevResults = () => {
-        this.setState({
-            resultLine: this.state.resultLine-Number(this.state.move),
-        }, this.searchSeason);
+        if(this.state.resultLine>0) {
+            this.setState({
+                resultLine: this.state.resultLine-Number(this.state.move),
+                blockNext: false
+            }, this.searchSeason);
+        }
     };
 
     move = (event) => {
@@ -108,7 +116,6 @@ class Status extends Component {
     searchSeason = () => {
 
         let dateYear = new Date();
-        console.log(dateYear.getFullYear());
 
         let urlArr = () => {
             let arr = [];
@@ -180,19 +187,60 @@ class Status extends Component {
             if (this.state.countResults === 'all') {
                 for (let i = 0; i < countArr.length; i++) {
                     displayArr.push([countArr[i].status, countArr[i].count]);
-
                 }
             } else if (this.state.countResults === '15') {
-                for(let i=this.state.resultLine; i<this.state.resultLine+15; i++) {
+                let count = 15;
+                if(this.state.resultLine+15 >= countArr.length) {
+                    count = countArr.length % this.state.resultLine;
+                    this.setState({
+                        blockNext: true
+                    })
+                } else {
+                    count = 15;
+                }
+                for (let i = this.state.resultLine; i<this.state.resultLine+count; i++) {
                     displayArr.push([countArr[i].status, countArr[i].count]);
+                    if(count<15) {
+                        this.setState({
+                            blockNext: true
+                        })
+                    }
                 }
             } else if (this.state.countResults === '10') {
-                for (let i = this.state.resultLine; i<this.state.resultLine+10; i++) {
+                let count = 10;
+                if(this.state.resultLine+10 >= countArr.length) {
+                    count = countArr.length % this.state.resultLine;
+                    this.setState({
+                        blockNext: true
+                    })
+                } else {
+                    count = 10;
+                }
+                for (let i = this.state.resultLine; i<this.state.resultLine+count; i++) {
                     displayArr.push([countArr[i].status, countArr[i].count]);
+                    if(count<10) {
+                        this.setState({
+                            blockNext: true
+                        })
+                    }
                 }
             } else if (this.state.countResults === '5') {
-                for (let i = this.state.resultLine; i<this.state.resultLine+5; i++) {
+                let count = 5;
+                if(this.state.resultLine+5 >= countArr.length) {
+                    count = countArr.length % this.state.resultLine;
+                    this.setState({
+                        blockNext: true
+                    })
+                } else {
+                    count = 5;
+                }
+                for (let i = this.state.resultLine; i<this.state.resultLine+count; i++) {
                     displayArr.push([countArr[i].status, countArr[i].count]);
+                    if(count<5) {
+                        this.setState({
+                            blockNext: true
+                        })
+                    }
                 }
             }
 
@@ -267,9 +315,7 @@ class Status extends Component {
                 <button type='button' className='buttonMove buttonMoveRight' onClick={this.nextResults}>&gt;</button>
                 <select onChange={this.move}>
                     <option value='1'>Przewiń wyniki o 1</option>
-                    <option value='3'>Przewiń wyniki o 3</option>
-                    <option value='5'>Przewiń wyniki o 5</option>
-                    <option value='10'>Przewiń wyniki o 10</option>
+                    <option value={this.state.countResults}>Przewiń wyniki o {this.state.countResults}</option>
                 </select>
                 <select value={this.state.countResults} onChange={this.countResultsValue}>
                     <option value='all'>Pokaż wszystkie</option>

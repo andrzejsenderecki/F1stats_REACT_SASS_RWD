@@ -62,9 +62,9 @@ class Navigation extends Component {
                                                 <ul className='navigationSubList'>
                                                     <li><NavLink to='/season'>Sezony</NavLink></li>
                                                     <li><NavLink to='/race'>Wyścigi</NavLink></li>
+                                                    <li><NavLink to='/status'>Statusy</NavLink></li>
                                                     <li><NavLink to='/drivers'>Kierowcy</NavLink></li>
                                                     <li><NavLink to='/current'>Aktualny sezon</NavLink></li>
-                                                    <li><NavLink to='/status'>Statusy ukończenia</NavLink></li>
                                                 </ul>
                                             </li>
                                         </ul>
@@ -96,9 +96,9 @@ class Navigation extends Component {
                                             <ul className='navigationSubList'>
                                                 <li><NavLink to='/season'>Sezony</NavLink></li>
                                                 <li><NavLink to='/race'>Wyścigi</NavLink></li>
+                                                <li><NavLink to='/status'>Statusy</NavLink></li>
                                                 <li><NavLink to='/drivers'>Kierowcy</NavLink></li>
                                                 <li><NavLink to='/current'>Aktualny sezon</NavLink></li>
-                                                <li><NavLink to='/status'>Statusy ukończenia wyścigu</NavLink></li>
                                             </ul>
                                         </li>
                                     </ul>

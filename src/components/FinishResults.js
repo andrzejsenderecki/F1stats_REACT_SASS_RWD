@@ -126,7 +126,6 @@ class FinishResults extends Component {
             this.setState({
                 seasonNumber: '',
                 roundNumber: '',
-                seasonNumber: '',
                 loading: false,
                 err: 'Nie znaleziono takiego sezonu',
             })

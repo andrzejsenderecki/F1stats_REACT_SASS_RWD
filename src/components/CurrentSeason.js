@@ -187,7 +187,7 @@ class CurrentSeason extends Component {
                     </div>
                 </div>
             )
-        } else if (this.state.err != '') {
+        } else if (this.state.err !== '') {
             return (
                 <div>
                     <div className='row'>

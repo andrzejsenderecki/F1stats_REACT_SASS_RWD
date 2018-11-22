@@ -131,6 +131,7 @@ class Home extends Component {
                 <h2>Statystyki wyścigów Formuły 1</h2>
                 <p>Projekt przedstawia statystyki z wyścigów F1 na bazie danych udostępnionych przez <span><b>Ergast API</b></span>. Na podstawie przetworzonych danych generowane są wykresy lub tabele ze statystykami dotyczącymi najszybszeg sportu motorowego na świecie!</p>
             </div>;
+
         let bannerAndBtn =
             <div className='col-4 banner'>
                 <h1>F1stats!</h1>
