@@ -23,7 +23,7 @@ class CurrentSeason extends Component {
 
     componentDidMount() {
         let dateYear = new Date();
-        let url = `http://ergast.com/api/f1/${dateYear.getFullYear()}.json`;
+        let url = `https://ergast.com/api/f1/${dateYear.getFullYear()}.json`;
         fetch(url).then(resp => {
             return resp.json();
         }).then(json => {

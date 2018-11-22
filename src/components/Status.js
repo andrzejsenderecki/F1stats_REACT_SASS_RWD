@@ -120,7 +120,7 @@ class Status extends Component {
         let urlArr = () => {
             let arr = [];
             for(let i=Number(this.state.seasonFrom); i<=Number(this.state.seasonTo); i++) {
-                arr.push(`http://ergast.com/api/f1/${i}/status.json`);
+                arr.push(`https://ergast.com/api/f1/${i}/status.json`);
             }
             return arr;
         };

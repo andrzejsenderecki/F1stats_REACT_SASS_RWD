@@ -59,7 +59,7 @@ class FinishResults extends Component {
     };
 
     searchSeason = () => {
-        let url = `http://ergast.com/api/f1/${this.state.season}/driverStandings.json`;
+        let url = `https://ergast.com/api/f1/${this.state.season}/driverStandings.json`;
         fetch(url).then(resp => {
             return resp.json();
         }).then(json => {

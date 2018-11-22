@@ -31,7 +31,7 @@ class Drivers extends Component {
         let urlArr = () => {
             let arr = [];
             for(let i=1; i<=50; i++) {
-                arr.push(`http://ergast.com/api/f1/drivers/${this.state.driver}/driverStandings/${i}.json`);
+                arr.push(`https://ergast.com/api/f1/drivers/${this.state.driver}/driverStandings/${i}.json`);
             }
             return arr;
         };
