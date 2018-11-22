@@ -29,7 +29,7 @@ class Home extends Component {
     };
 
     searchSeason = () => {
-        let url = `http://ergast.com/api/f1/2018/driverStandings.json`;
+        let url = `https://ergast.com/api/f1/2018/driverStandings.json`;
         fetch(url).then(resp => {
             return resp.json();
         }).then(json => {
