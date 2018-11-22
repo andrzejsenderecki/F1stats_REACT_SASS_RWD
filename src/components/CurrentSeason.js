@@ -53,7 +53,7 @@ class CurrentSeason extends Component {
     };
 
     searchRound = () => {
-        let url = `http://ergast.com/api/f1/${this.state.season}/${this.state.round}/results.json`;
+        let url = `https://ergast.com/api/f1/${this.state.season}/${this.state.round}/results.json`;
         fetch(url).then(resp => {
             return resp.json();
         }).then(json => {
