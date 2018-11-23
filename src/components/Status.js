@@ -265,7 +265,7 @@ class Status extends Component {
     render() {
 
         let loading =
-            <div className='col-10 loadingContent loadingPosition'>
+            <div className='col-10 chartStatusContent loadingPosition'>
                 <div className='loading' />
             </div>;
 
@@ -305,6 +305,7 @@ class Status extends Component {
                     <select onChange={this.chartValue}>
                         <option value="ColumnChart">Wykres blokowy</option>
                         <option value="LineChart">Wykres liniowy</option>
+                        <option value="ScatterChart">Wykres punktowy</option>
                     </select>
                 </form>
             </div>;
@@ -393,7 +394,7 @@ class Status extends Component {
                     <div className='row'>
                         {formAndBtn}
                         <div className='col-10'>
-                            <div className='chartContent'>
+                            <div className='chartStatusContent'>
                                 {formMove}
                                 <Chart
                                     key={this.state.chart}

@@ -22,73 +22,95 @@ class Drivers extends Component {
         });
     };
 
+    searchBtn = (event) => {
+        this.setState({
+            data: [],
+            driverData: '',
+            err: ''
+        }, this.searchDriver);
+    }
+
     searchDriver = () => {
 
         this.setState({
             loading: true
         });
 
-        let urlArr = () => {
-            let arr = [];
-            for(let i=1; i<=50; i++) {
-                arr.push(`https://ergast.com/api/f1/drivers/${this.state.driver}/driverStandings/${i}.json`);
-            }
-            return arr;
-        };
-
-        let urlAddress = urlArr();
-
-        let myPromise = urlAddress.map(element => {
-            return fetch(element).then(response =>{
-                return response.json();
-            });
-        });
-
-        Promise.all(
-            [...myPromise]
-        ).then(response => {
-            let responseArr = response.map(el => {
-                return el.MRData.StandingsTable.StandingsLists;
-            });
-
-            let dataArr = [];
-
-            for(let i=0; i<responseArr.length; i++) {
-                dataArr.push([[],[],[],[],[],[],[]]);
-            }
-
+        let driver = `https://ergast.com/api/f1/drivers/${this.state.driver}.json`;
+        fetch(driver).then(resp => {
+            return resp.json();
+        }).then(json => {
             let driverData = [];
-
-            driverData.push(responseArr[0][0].DriverStandings[0].Driver.givenName + ' ' + responseArr[0][0].DriverStandings[0].Driver.familyName);
-            driverData.push(responseArr[0][0].DriverStandings[0].Driver.dateOfBirth);
-            driverData.push(responseArr[0][0].DriverStandings[0].Driver.nationality);
-
-            for(let i=0; i<responseArr.length; i++) {
-                dataArr[i][0].push(i+1);
-                dataArr[i][1].push(responseArr[i].length);
-                for(let j=0; j<responseArr[i].length; j++) {
-                    dataArr[i][j+2].push(responseArr[i][j].season);
-                    dataArr[i][j+2].push(responseArr[i][j].round);
-                    dataArr[i][j+2].push(responseArr[i][j].DriverStandings[0].wins);
-                    dataArr[i][j+2].push(responseArr[i][j].DriverStandings[0].points);
-                    dataArr[i][j+2].push(responseArr[i][j].DriverStandings[0].Constructors[0].name);
-                }
-            }
-
-            let dataArrResults = [];
-
-            for(let i=0; i<dataArr.length; i++) {
-                if(dataArr[i][1][0] > 0) {
-                    dataArrResults.push(dataArr[i]);
-                }
-            }
+            driverData.push(json.MRData.DriverTable.Drivers[0].givenName + ' ' + json.MRData.DriverTable.Drivers[0].familyName);
+            driverData.push(json.MRData.DriverTable.Drivers[0].dateOfBirth);
+            driverData.push(json.MRData.DriverTable.Drivers[0].nationality);
 
             this.setState({
-                data: dataArrResults,
                 driverData: driverData,
-                loading: false,
-                err: ''
             })
+
+            let urlArr = () => {
+                let arr = [];
+                for(let i=1; i<=5; i++) {
+                    arr.push(`https://ergast.com/api/f1/drivers/${this.state.driver}/driverStandings/${i}.json`);
+                }
+                return arr;
+            };
+
+            let urlAddress = urlArr();
+
+            let myPromise = urlAddress.map(element => {
+                return fetch(element).then(response => {
+                    return response.json();
+                });
+            });
+
+            Promise.all(
+                [...myPromise]
+            ).then(response => {
+                let responseArr = response.map(el => {
+                    return el.MRData.StandingsTable.StandingsLists;
+                });
+
+                let dataArr = [];
+
+                for(let i=0; i<responseArr.length; i++) {
+                    dataArr.push([[],[],[],[],[],[],[]]);
+                }
+
+                for(let i=0; i<responseArr.length; i++) {
+                    dataArr[i][0].push(i+1);
+                    dataArr[i][1].push(responseArr[i].length);
+                    for(let j=0; j<responseArr[i].length; j++) {
+                        dataArr[i][j+2].push(responseArr[i][j].season);
+                        dataArr[i][j+2].push(responseArr[i][j].round);
+                        dataArr[i][j+2].push(responseArr[i][j].DriverStandings[0].wins);
+                        dataArr[i][j+2].push(responseArr[i][j].DriverStandings[0].points);
+                        dataArr[i][j+2].push(responseArr[i][j].DriverStandings[0].Constructors[0].name);
+                    }
+                }
+
+                let dataArrResults = [];
+
+                for(let i=0; i<dataArr.length; i++) {
+                    if(dataArr[i][1][0] > 0) {
+                        dataArrResults.push(dataArr[i]);
+                    }
+                }
+
+                this.setState({
+                    data: dataArrResults,
+                    loading: false,
+                    err: ''
+                })
+
+            }).catch(() => {
+                this.setState({
+                    driverData: [],
+                    loading: false,
+                    err: 'Coś poszło nie tak.',
+                })
+            });
 
         }).catch(() => {
             this.setState({
@@ -102,7 +124,7 @@ class Drivers extends Component {
     render() {
 
         let loading =
-            <div className='col-10 tableContent loadingDriversPosition'>
+            <div className='col-10 loadingDriverContent loadingDriversPosition'>
                 <div className='loading' />
             </div>;
 
@@ -120,7 +142,7 @@ class Drivers extends Component {
                     <input type="text" placeholder='Nazwisko' value={this.state.driver} onChange={this.driverValue} />
                 </form>
                 <div className='btnContent'>
-                    <button className='button' onClick={this.searchDriver}>Szukaj kierowcy</button>
+                    <button className='button' onClick={this.searchBtn}>Szukaj kierowcy</button>
                 </div>
             </div>;
 

@@ -186,7 +186,7 @@ class RaceResults extends Component {
     render() {
 
         let loading =
-            <div className='col-10 loadingContent loadingPosition'>
+            <div className='col-10 chartContent loadingPosition'>
                 <div className='loading' />
             </div>;
 
@@ -228,6 +228,7 @@ class RaceResults extends Component {
                     <select onChange={this.chartValue}>
                         <option value="ColumnChart">Wykres blokowy</option>
                         <option value="LineChart">Wykres liniowy</option>
+                        <option value="ScatterChart">Wykres punktowy</option>
                     </select>
                 </form>
             </div>;
@@ -247,9 +248,8 @@ class RaceResults extends Component {
             <div className='col-12'>
                 <ul className='dataList'>
                     <li>Sezon: <span>{this.state.seasonNumber}</span></li>
-                    <li>Runda numer: <span>{this.state.roundNumber}</span></li>
+                    <li>Runda: <span>{this.state.roundNumber}</span></li>
                     <li>Wyścig: <span>{this.state.raceName}</span></li>
-                    <li>Tor: <span>{this.state.circuitName}</span></li>
                     <li>Data: <span>{this.state.raceDate}</span></li>
                 </ul>
             </div>;

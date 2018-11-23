@@ -121,6 +121,7 @@ class Home extends Component {
                     <select onChange={this.chartValue}>
                         <option value="ColumnChart">Wykres blokowy</option>
                         <option value="LineChart">Wykres liniowy</option>
+                        <option value="ScatterChart">Wykres punktowy</option>
                     </select>
                 </form>
             </div>;
@@ -129,7 +130,8 @@ class Home extends Component {
             <div className='col-4 banner'>
                 <h1>F1<span>stats</span>!</h1>
                 <h2>Statystyki wyścigów Formuły 1</h2>
-                <p>Projekt przedstawia statystyki z wyścigów F1 na bazie danych udostępnionych przez <span><b>Ergast API</b></span>. Na podstawie przetworzonych danych generowane są wykresy lub tabele ze statystykami dotyczącymi najszybszeg sportu motorowego na świecie!</p>
+                <p>Projekt przedstawia statystyki z wyścigów F1 na bazie danych udostępnionych przez <span><b>Ergast API</b></span>. Na podstawie przetworzonych danych generowane są wykresy lub tabele ze statystykami dotyczącymi najszybszego sportu motorowego na świecie!</p>
+
             </div>;
 
         let bannerAndBtn =
@@ -161,7 +163,7 @@ class Home extends Component {
                 <div className='row'>
                     {bannerAndBtn}
                     <div className='col-8'>
-                        <div className='chartSize'>
+                        <div className='chartContent'>
                             <Chart
                                 key={this.state.chart}
                                 height='79.5vh'

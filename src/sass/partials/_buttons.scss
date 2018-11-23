@@ -52,6 +52,12 @@
             padding-right: 40px;
         }
     }
+
+    @media (min-width: 1400px) {
+        &:hover {
+            padding-right: 60px;
+        }
+    }
 }
 
 .buttonMini {

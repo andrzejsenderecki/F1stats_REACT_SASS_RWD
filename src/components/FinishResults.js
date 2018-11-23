@@ -135,7 +135,7 @@ class FinishResults extends Component {
     render() {
 
         let loading =
-            <div className='col-10 loadingContent loadingPosition'>
+            <div className='col-10 chartContent loadingPosition'>
                 <div className='loading' />
             </div>;
 
@@ -173,6 +173,7 @@ class FinishResults extends Component {
                     <select onChange={this.chartValue}>
                         <option value="ColumnChart">Wykres blokowy</option>
                         <option value="LineChart">Wykres liniowy</option>
+                        <option value="ScatterChart">Wykres punktowy</option>
                     </select>
                 </form>
             </div>;

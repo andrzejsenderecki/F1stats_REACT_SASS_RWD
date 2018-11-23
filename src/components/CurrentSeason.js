@@ -165,7 +165,6 @@ class CurrentSeason extends Component {
                 <li>Sezon: <span>{this.state.seasonNumber}</span></li>
                 <li>Runda numer: <span>{this.state.roundNumber}</span></li>
                 <li>Wyścig: <span>{this.state.raceName}</span></li>
-                <li>Tor: <span>{this.state.circuitName}</span></li>
                 <li>Data: <span>{this.state.raceDate}</span></li>
             </ul>;
 
@@ -274,6 +273,7 @@ class CurrentSeason extends Component {
                                         <select onChange={this.chartValue}>
                                             <option value="ColumnChart">Wykres blokowy</option>
                                             <option value="LineChart">Wykres liniowy</option>
+                                            <option value="ScatterChart">Wykres punktowy</option>
                                         </select>
                                     </form>
                                 </div>

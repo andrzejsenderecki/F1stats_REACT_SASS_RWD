@@ -11,7 +11,7 @@
         font-size: 6rem;
         padding-top: 20px;
         font-family: $mainFont;
-        
+
         color: $thirdColor;
         font-weight: 800;
         text-align: center;
@@ -213,6 +213,7 @@
 
 .loadingHomePosition {
     display: flex;
+    height: 71vh;
     justify-content: center;
     padding: 100px 0 0 0;
 }
