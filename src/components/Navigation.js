@@ -31,7 +31,7 @@ class Navigation extends Component {
                             </div>
                             <div className='col-9 navigation'>
                                 <ul className='navigationList'>
-                                    <li><NavLink to='/'>Home</NavLink></li>
+                                    <li><NavLink to='/home'>Home</NavLink></li>
                                     <li>
                                         <ul>
                                             <li>
@@ -54,7 +54,7 @@ class Navigation extends Component {
                             </div>
                             <div className='col-9 navigation'>
                                 <ul className='navigationList'>
-                                    <li><NavLink to='/'>Home</NavLink></li>
+                                    <li><NavLink to='/home'>Home</NavLink></li>
                                     <li>
                                         <ul>
                                             <li>
@@ -88,7 +88,7 @@ class Navigation extends Component {
                         </div>
                         <div className='col-9 navigation'>
                             <ul className='navigationList'>
-                                <li><NavLink to='/'>Home</NavLink></li>
+                                <li><NavLink to='/home'>Home</NavLink></li>
                                 <li>
                                     <ul>
                                         <li>

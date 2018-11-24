@@ -48,8 +48,8 @@ class CurrentSeason extends Component {
 
     chartValue = (event) => {
         this.setState({
-            chart: event.target.value,
-        }, this.searchRound);
+            chart: event.target.value
+        });
     };
 
     searchRound = () => {
@@ -138,7 +138,6 @@ class CurrentSeason extends Component {
                 raceName: '',
                 circuitName: '',
                 raceDate: '',
-                seasonNumber: '',
                 err: 'Jeszcze nie było tej rundy',
             })
         });
@@ -147,7 +146,7 @@ class CurrentSeason extends Component {
     render() {
 
         let loading =
-            <div className='col-12 loadingCurrentPosition'>
+            <div className='col-12 loadingCurrentPosition chartCurrentContent'>
                 <div className='loading' />
             </div>;
 
@@ -167,6 +166,19 @@ class CurrentSeason extends Component {
                 <li>Wyścig: <span>{this.state.raceName}</span></li>
                 <li>Data: <span>{this.state.raceDate}</span></li>
             </ul>;
+
+        let form =
+            <form className='formCurrent'>
+                <select onChange={this.sortByValue}>
+                    <option value="points">Zdobyte punkty</option>
+                    <option value="laps">Ukończone okrążenia</option>
+                </select>
+                <select onChange={this.chartValue}>
+                    <option value="ColumnChart">Wykres blokowy</option>
+                    <option value="LineChart">Wykres liniowy</option>
+                    <option value="ScatterChart">Wykres punktowy</option>
+                </select>
+            </form>
 
         let date = new Date();
         let currentDate;
@@ -208,7 +220,7 @@ class CurrentSeason extends Component {
                         </div>
                         <div className='col-9'>
                             {titleAndData}
-                            <div className='loadingPosition'>
+                            <div className='chartCurrentContent'>
                                 <p className='info'>{this.state.err}</p>
                             </div>
                         </div>
@@ -236,7 +248,7 @@ class CurrentSeason extends Component {
                                     })}
                                 </ul>
                             </div>
-                            <div className='col-9'>
+                            <div className='col-9 chartCurrentContent'>
                                 <p className='info'>Kliknij wybraną rundę, aby wyświetlić statystyki.</p>
                             </div>
                         </div>
@@ -263,20 +275,10 @@ class CurrentSeason extends Component {
                                 </ul>
                             </div>
                             <div className='col-9'>
-                                <div className='row'>
-                                    {titleAndData}
-                                    <form className='formCurrent'>
-                                        <select onChange={this.sortByValue}>
-                                            <option value="points">Zdobyte punkty</option>
-                                            <option value="laps">Ukończone okrążenia</option>
-                                        </select>
-                                        <select onChange={this.chartValue}>
-                                            <option value="ColumnChart">Wykres blokowy</option>
-                                            <option value="LineChart">Wykres liniowy</option>
-                                            <option value="ScatterChart">Wykres punktowy</option>
-                                        </select>
-                                    </form>
-                                </div>
+                            <div className='chartCurrentContent'>
+                                {titleAndData}
+                                {form}
+
                                 <Chart
                                     key={this.state.chart}
                                     height='70vh'
@@ -312,6 +314,7 @@ class CurrentSeason extends Component {
                                         },
                                     }}
                                 />
+                                </div>
                             </div>
                         </div>
                     </div>
