@@ -3,6 +3,10 @@ https://andrzejsenderecki.github.io/F1stats_REACT_SASS_RWD/
 Projekt F1stats! przedstawia statystyki z wyścigów Formuły 1 na bazie danych udostępnionych przez Ergast API. Użytkownik ma możliwość wpisywania lub modyfikowania pól w formularzach za pomocą przycisków i na podstawie podanych danych generowane są wykresy lub tabele ze statystykami dotyczącymi najszybszego sportu motorowego na świecie!
 
 
+
+
+
+
 <<<<<<< HEAD
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
