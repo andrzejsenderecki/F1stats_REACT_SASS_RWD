@@ -21,7 +21,7 @@ class App extends Component {
               <div>
                 <Navigation />
                 <Switch>
-                    <Route path='/home' component={Home} exact />
+                    <Route path='/' component={Home} exact />
                     <Route path='/season' component={FinishResults} />
                     <Route path='/race' component={RaceResults} />
                     <Route path='/drivers' component={Drivers} />
