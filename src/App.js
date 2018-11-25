@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import NotFound from './components/NotFound';
 import CurrentSeason from './components/CurrentSeason';
@@ -17,7 +17,7 @@ class App extends Component {
   render() {
     return (
         <div>
-          <BrowserRouter>
+          <HashRouter>
               <div>
                 <Navigation />
                 <Switch>
@@ -32,7 +32,7 @@ class App extends Component {
                     <Route component={NotFound} exact />
                 </Switch>
               </div>
-          </BrowserRouter>
+          </HashRouter>
           <Footer />
         </div>
     );
