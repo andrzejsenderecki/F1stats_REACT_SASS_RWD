@@ -24,7 +24,9 @@ Komponent wyświetla wykresy ze statystykami kierowców w wybranym sezonie.
 
 <h2>2. Komponent "Wyścigi"</h2>
 
-Komponent wyświetla wykresy ze statystykami kierowców w wybranym wyścigu w danym sezonie i zawiera:
+Komponent wyświetla wykresy ze statystykami kierowców w wybranym wyścigu w danym sezonie.
+
+<h4>Funkcjonalności:</h4>
 
 - komponent posiada input tekstowy pozwalający na wpisanie sezonu np. 2018 oraz input tekstowy pozwalający na wpisanie numeru wyścigu np. 3,
 
@@ -40,7 +42,11 @@ Komponent wyświetla wykresy ze statystykami kierowców w wybranym wyścigu w da
 
 - komponent wyświetla także numer sezonu oraz numer, nazwę i datę wyścigu.
 
-3. Komponent “Statusy” wyświetla wykresy pokazujące przyczyny z jakich kierowcy kończyli wyścigi na przestrzeni podanych lat, a także ile razy dana przyczyna wystąpiła. Przykładowe przyczyny to: ukończono wyścig, awaria silnika, awaria hydrauliki itp. Komponent zawiera:
+<h2>Komponent “Statusy”</h2>
+
+Komponent wyświetla wykresy pokazujące przyczyny z jakich kierowcy kończyli wyścigi na przestrzeni podanych lat, a także ile razy dana przyczyna wystąpiła. Przykładowe przyczyny to: ukończono wyścig, awaria silnika, awaria hydrauliki itp.
+
+<h4>Funkcjonalności:</h4>
 
 - input tekstowy pozwalający na wpisanie daty od której chcemy rozpocząć wyszukiwanie,
 
@@ -60,7 +66,12 @@ Komponent wyświetla wykresy ze statystykami kierowców w wybranym wyścigu w da
 - przyciski do przewijania wykresu w lewą lub prawą stronę
 Funkcjonalność przewijania i zawężania ilości wyświetlonych wyników została wprowadzona dlatego, że ilość wyników do wyświetlenia jest na tyle duża, że wykres przy wyświetleniu wszystkich jest nieczytelny. Zawężenie wyników pozwala na czytelne wyświetlenie wyników i wygodne przewijanie po wykresie w prawą lub lewą stronę.
 
-4. Komponent “Kierowcy” wyświetla tabelę ze statystykami wybranego kierowcy. Komponent zawiera:
+<h2>Komponent “Kierowcy”</h2>
+
+Komponent wyświetla tabelę ze statystykami wybranego kierowcy.
+
+<h4>Funkcjonalności:</h4>
+
 - input tekstowy do wpisania nazwiska kierowcy,
 - przycisk "Szukaj”,
 
@@ -80,7 +91,11 @@ Tabela pokazuje dane:
 
 - w jakim zespole jeździł
 
-5. Komponent "Aktualny sezon" wyświetla wyścigi z aktualnego sezonu. Komponent:
+<h2>Komponent "Aktualny sezon"</h2>
+
+Komponent wyświetla wyścigi z aktualnego sezonu.
+
+<h4>Funkcjonalności:</h4>
 
 - wyświetla listę z nazwami i numerami wyścigów. Jeżeli jakiś wyścig już się odbył to wówczas font jest w kolorze czerwonym, jeżeli wyścig dopiero nastąpi to wówczas font jest w kolorze z pomarańczowym,
 
@@ -91,30 +106,33 @@ Tabela pokazuje dane:
 
 - komponent wyświetla także numer sezonu oraz numer, nazwę oraz datę wybranego wyścigu
 
+<h2>Komponent "Home"</h2>
 
-6. Komponent "Home" wyświetla baner powitalny z krótką informacją o projekcie oraz wykres z rankingiem kierowców w aktualnym sezonie. Komponent zawiera:
+Komponent wyświetla baner powitalny z krótką informacją o projekcie oraz wykres z rankingiem kierowców w aktualnym sezonie. 
+
+<h4>Funkcjonalności:</h4>
+
 - pole select pozwalające na wybór statystyk ze względu na: ilość zdobytych punktów w sezonie lub ilość wygranych wyścigów,
 
 - pole select pozwalające na wybór wykresu jaki powstanie na bazie danych z API - wykres blokowy, liniowy lub punktowy.
 
+<h2>Komponent “O projekcie”</h2>
 
-7. Komponent “O projekcie” wyświetla link do repozytorium oraz listę technologii wykorzystanych do budowy projektu.
+Komponent wyświetla link do repozytorium oraz listę technologii wykorzystanych do budowy projektu.
 
+<h2>Komponent “Kontakt”</h2>
 
-8. Komponent “Kontakt” zawiera linki do moich kont na portalach społecznościowych.
+Komponent zawiera linki do moich kont na portalach społecznościowych.
 
+<h2>Komponent "Navigation"</h2>
 
-9. Komponent "Navigation" wyświetla menu główne, w tym menu rozwijane dla działu “Statystyki”.
-10. Komponent "NotFound" obsługuje błąd 404.
+Komponent wyświetla menu główne, w tym menu rozwijane dla działu “Statystyki”.
+<h2>Komponent "NotFound"</h2>
 
+Komponent obsługuje błąd 404.
 
+<h2>Funkcjonalnosci wspólne dla wszystkich komponentów</h2>
 
+- Wszystkie komponenty w aplikacji posiadają również obsługę błędów. Jeżeli wpiszemy do inputa np. sezon którego jeszcze nie było to wówczas otrzymamy stosowny komunikat. Podobnie we wszystkich innych przypadkach tam, gdzie decydujemy co powinien wyświetlać dany komponent.
 
-
-Wszystkie komponenty w aplikacji posiadają również obsługę błędów. Jeżeli wpiszemy do inputa np. sezon którego jeszcze nie było to wówczas otrzymamy stosowny komunikat. Podobnie we wszystkich innych przypadkach tam, gdzie decydujemy co powinien wyświetlać dany komponent.
-
-
-
-Wszystkie komponenty które wykorzystują dane z Ergast API posiadają animację “loadingu” danych podczas ładowania i przetwarzania zewnętrznych zasobów.
-
-
+- Wszystkie komponenty które wykorzystują dane z Ergast API posiadają animację “loadingu” danych podczas ładowania i przetwarzania zewnętrznych zasobów.
