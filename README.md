@@ -4,7 +4,9 @@ Projekt F1stats! przedstawia statystyki z wyścigów Formuły 1 na bazie danych 
 
 <h2>1. Komponent "Sezony”</h1>
 
-Komponent wyświetla wykresy ze statystykami kierowców w wybranym sezonie i zawiera:
+Komponent wyświetla wykresy ze statystykami kierowców w wybranym sezonie.
+
+<h4>Funkcjonalności:</h4>
 
 - input tekstowy pozwalający na wpisanie sezonu np. 2018,
 
@@ -20,11 +22,9 @@ Komponent wyświetla wykresy ze statystykami kierowców w wybranym sezonie i zaw
 
 - komponent wyświetla także numer sezonu oraz ilość wyścigów jaka odbyła się w wybranem sezonie.
 
+<h2>2. Komponent "Wyścigi"</h2>
 
-
-
-
-2. Komponent "Wyścigi" wyświetla wykresy ze statystykami kierowców w wybranym wyścigu w danym sezonie. Komponent zawiera:
+Komponent wyświetla wykresy ze statystykami kierowców w wybranym wyścigu w danym sezonie i zawiera:
 
 - komponent posiada input tekstowy pozwalający na wpisanie sezonu np. 2018 oraz input tekstowy pozwalający na wpisanie numeru wyścigu np. 3,
 
