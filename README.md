@@ -75,7 +75,7 @@ Komponent wyświetla tabelę ze statystykami wybranego kierowcy.
 - input tekstowy do wpisania nazwiska kierowcy,
 - przycisk "Szukaj”,
 
-Tabela pokazuje dane:
+<h4>Tabela pokazuje dane:</h4>
 
 - Imię, nazwisko, rok urodzenia oraz kraj pochodzenia kierowcy
 
