@@ -4,8 +4,6 @@ Projekt F1stats! przedstawia statystyki z wyścigów Formuły 1 na bazie danych 
 
 1. Komponent "Sezony” wyświetla wykresy ze statystykami kierowców w wybranym sezonie. Komponent zawiera:
 
-
-
 - input tekstowy pozwalający na wpisanie sezonu np. 2018,
 
 - pole select pozwalające na wybór statystyk ze względu na: ilość zdobytych punktów w sezonie lub ilość wygranych wyścigów,
@@ -26,8 +24,6 @@ Projekt F1stats! przedstawia statystyki z wyścigów Formuły 1 na bazie danych 
 
 2. Komponent "Wyścigi" wyświetla wykresy ze statystykami kierowców w wybranym wyścigu w danym sezonie. Komponent zawiera:
 
-
-
 - komponent posiada input tekstowy pozwalający na wpisanie sezonu np. 2018 oraz input tekstowy pozwalający na wpisanie numeru wyścigu np. 3,
 
 - pole select pozwalające na wybór statystyk ze względu na: ilość zdobytych punktów w sezonie lub ilość ukończonych okrążeń,
@@ -43,8 +39,6 @@ Projekt F1stats! przedstawia statystyki z wyścigów Formuły 1 na bazie danych 
 - komponent wyświetla także numer sezonu oraz numer, nazwę i datę wyścigu.
 
 3. Komponent “Statusy” wyświetla wykresy pokazujące przyczyny z jakich kierowcy kończyli wyścigi na przestrzeni podanych lat, a także ile razy dana przyczyna wystąpiła. Przykładowe przyczyny to: ukończono wyścig, awaria silnika, awaria hydrauliki itp. Komponent zawiera:
-
-
 
 - input tekstowy pozwalający na wpisanie daty od której chcemy rozpocząć wyszukiwanie,
 
@@ -67,7 +61,6 @@ Funkcjonalność przewijania i zawężania ilości wyświetlonych wyników zosta
 4. Komponent “Kierowcy” wyświetla tabelę ze statystykami wybranego kierowcy. Komponent zawiera:
 - input tekstowy do wpisania nazwiska kierowcy,
 - przycisk "Szukaj”,
-
 
 Tabela pokazuje dane:
 
@@ -97,36 +90,19 @@ Tabela pokazuje dane:
 - komponent wyświetla także numer sezonu oraz numer, nazwę oraz datę wybranego wyścigu
 
 
-
-
-
 6. Komponent "Home" wyświetla baner powitalny z krótką informacją o projekcie oraz wykres z rankingiem kierowców w aktualnym sezonie. Komponent zawiera:
 - pole select pozwalające na wybór statystyk ze względu na: ilość zdobytych punktów w sezonie lub ilość wygranych wyścigów,
 
 - pole select pozwalające na wybór wykresu jaki powstanie na bazie danych z API - wykres blokowy, liniowy lub punktowy.
 
 
-
-
-
 7. Komponent “O projekcie” wyświetla link do repozytorium oraz listę technologii wykorzystanych do budowy projektu.
-
-
-
 
 
 8. Komponent “Kontakt” zawiera linki do moich kont na portalach społecznościowych.
 
 
-
-
-
 9. Komponent "Navigation" wyświetla menu główne, w tym menu rozwijane dla działu “Statystyki”.
-
-
-
-
-
 10. Komponent "NotFound" obsługuje błąd 404.
 
 
