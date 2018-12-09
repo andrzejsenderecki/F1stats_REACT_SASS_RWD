@@ -23,19 +23,19 @@ Komponent wyświetla wykresy ze statystykami kierowców w wybranym sezonie.
 
 <h4>Funkcjonalności:</h4>
 
-- input tekstowy pozwalający na wpisanie sezonu np. 2018,
+- input tekstowy pozwalający na wpisanie sezonu np. 2018
 
-- pole select pozwalające na wybór statystyk ze względu na: ilość zdobytych punktów w sezonie lub ilość wygranych wyścigów,
+- pole select pozwalające na wybór statystyk ze względu na ilość zdobytych punktów w sezonie lub ilość wygranych wyścigów
 
-- pole select pozwalające na wybór wykresu jaki powstanie na bazie danych z API - wykres blokowy, liniowy lub punktowy,
+- pole select pozwalające na wybór wykresu jaki powstanie na bazie danych z API - wykres blokowy, liniowy lub punktowy
 
-- przycisk “Szukaj",
+- przycisk “Szukaj"
 
-- przycisk “Kolejny Sezon",
+- przycisk “Kolejny Sezon"
 
-- przycisk "Poprzedni Sezon",
+- przycisk "Poprzedni Sezon"
 
-- komponent wyświetla także numer sezonu oraz ilość wyścigów jaka odbyła się w wybranem sezonie.
+- komponent wyświetla także numer sezonu oraz ilość wyścigów jaka odbyła się w wybranym sezonie
 
 <h2>2. Komponent "Wyścigi"</h2>
 
@@ -43,19 +43,19 @@ Komponent wyświetla wykresy ze statystykami kierowców w wybranym wyścigu w da
 
 <h4>Funkcjonalności:</h4>
 
-- komponent posiada input tekstowy pozwalający na wpisanie sezonu np. 2018 oraz input tekstowy pozwalający na wpisanie numeru wyścigu np. 3,
+- komponent posiada input tekstowy pozwalający na wpisanie sezonu np. 2018 oraz input tekstowy pozwalający na wpisanie numeru wyścigu np. 3
 
-- pole select pozwalające na wybór statystyk ze względu na: ilość zdobytych punktów w sezonie lub ilość ukończonych okrążeń,
+- pole select pozwalające na wybór statystyk ze względu na ilość zdobytych punktów w sezonie lub ilość ukończonych okrążeń
 
-- pole select pozwalające na wybór wykresu jaki powstanie na bazie danych z API - wykres blokowy, liniowy lub punktowy,
+- pole select pozwalające na wybór wykresu jaki powstanie na bazie danych z API - wykres blokowy, liniowy lub punktowy
 
-- przycisk "Szukaj",
+- przycisk "Szukaj"
 
-- przyciski "Kolejny Wyścig" i “Poprzedni wyścig”,
+- przyciski "Kolejny wyścig" i “Poprzedni wyścig”
 
-- przyciski “Kolejny Sezon” i “Poprzedni Sezon",
+- przyciski “Kolejny sezon” i “Poprzedni sezon"
 
-- komponent wyświetla także numer sezonu oraz numer, nazwę i datę wyścigu.
+- komponent wyświetla także numer sezonu oraz numer, nazwę i datę wyścigu
 
 <h2>Komponent “Statusy”</h2>
 
@@ -63,23 +63,25 @@ Komponent wyświetla wykresy pokazujące przyczyny z jakich kierowcy kończyli w
 
 <h4>Funkcjonalności:</h4>
 
-- input tekstowy pozwalający na wpisanie daty od której chcemy rozpocząć wyszukiwanie,
+- input tekstowy pozwalający na wpisanie daty od której chcemy rozpocząć wyszukiwanie
 
-- input tekstowy pozwalający na wpisanie daty do której chcemy rozpocząć wyszukiwanie,
-- przyciski pozwalające na przewijanie powyższych dat,
+- input tekstowy pozwalający na wpisanie daty do której chcemy rozpocząć wyszukiwanie
 
-- przycisk "Szukaj”,
+- przyciski pozwalające na przewijanie powyższych dat
 
-- wyświetlanie wybranego zakresów sezonów,
+- przycisk "Szukaj”
 
-- pole select pozwalające na wybór wykresu jaki powstanie na bazie danych z API - wykres blokowy, liniowy lub punktowy,
+- wyświetlanie wybranego zakresu sezonów
 
-- pole select do wyboru ilości wyników do wyświetlenia. Można wyświetlić wszystkie wyniki, 5 wyników, 10 wyników lub 15 wyników w jednym czasie,
+- pole select pozwalające na wybór wykresu jaki powstanie na bazie danych z API - wykres blokowy, liniowy lub punktowy
 
-- pole select do wyboru ilości wyników które komponent będzie przewijał. Można przewijać wyniki o 1 lub o ilość jaka w danym momencie jest wyświetlata, a więc 5, 10 lub 15,
+- pole select do wyboru ilości wyników do wyświetlenia. Można wyświetlić wszystkie wyniki, 5 wyników, 10 wyników lub 15 wyników
+
+- pole select do wyboru ilości wyników które komponent będzie przewijał. Można przewijać wyniki o 1 lub o ilość jaka w danym czasie jest wyświetlana, a więc 5, 10 lub 15
 
 - przyciski do przewijania wykresu w lewą lub prawą stronę
-Funkcjonalność przewijania i zawężania ilości wyświetlonych wyników została wprowadzona dlatego, że ilość wyników do wyświetlenia jest na tyle duża, że wykres przy wyświetleniu wszystkich jest nieczytelny. Zawężenie wyników pozwala na czytelne wyświetlenie wyników i wygodne przewijanie po wykresie w prawą lub lewą stronę.
+
+Funkcjonalność przewijania i zawężania ilości wyświetlonych wyników została wprowadzona dlatego, że ilość wyników do wyświetlenia jest na tyle duża, że wykres przy wyświetleniu wszystkich wyników jest nieczytelny. Zawężenie wyników pozwala na czytelne wyświetlenie wyników i wygodne przewijanie po wykresie w prawą lub lewą stronę
 
 <h2>Komponent “Kierowcy”</h2>
 
@@ -87,37 +89,39 @@ Komponent wyświetla tabelę ze statystykami wybranego kierowcy.
 
 <h4>Funkcjonalności:</h4>
 
-- input tekstowy do wpisania nazwiska kierowcy,
-- przycisk "Szukaj”,
+- input tekstowy do wpisania nazwiska kierowcy
 
-<h4>Tabela pokazuje dane:</h4>
+- przycisk "Szukaj”
+
+<h4>Tabela wyświetla następujące dane:</h4>
 
 - Imię, nazwisko, rok urodzenia oraz kraj pochodzenia kierowcy
 
-- wszystkie pozycje jakie wybrany kierowca zajmował w klasyfikacjach generalnych we wszystkich sezonach w których brał udział,
+- wszystkie pozycje jakie wybrany kierowca zajmował w klasyfikacjach generalnych we wszystkich sezonach w których brał udział
 
-- w których sezonach zajmował dane pozycje,
+- informacje w których sezonach zajmował dane pozycje
 
-- ile wyścigów miał dany sezon,
+- ile wyścigów miał dany sezon
 
-- ile wyścigów wygrał w danym sezonie,
+- ile wyścigów wybrany kierowca wygrał w danym sezonie
 
-- ilość punktów zdobył w danym sezonie,
+- ile punktów zdobył w danym sezonie
 
 - w jakim zespole jeździł
 
-<h2>Komponent "Aktualny sezon"</h2>
+<h2>Komponent "Aktualny Sezon"</h2>
 
 Komponent wyświetla wyścigi z aktualnego sezonu.
 
 <h4>Funkcjonalności:</h4>
 
-- wyświetla listę z nazwami i numerami wyścigów. Jeżeli jakiś wyścig już się odbył to wówczas font jest w kolorze czerwonym, jeżeli wyścig dopiero nastąpi to wówczas font jest w kolorze z pomarańczowym,
+- komponent wyświetla listę z nazwami i numerami wyścigów. Jeżeli jakiś wyścig już się odbył to wówczas font jest w kolorze czerwonym, jeżeli wyścig dopiero nastąpi to wówczas font jest w kolorze pomarańczowym
 
-- każdy z elementów listy po kliknięciu wyświetla wykres z rezultatem danego wyścigu lub z informacją, że dany wyścig jeszcze się nie odbył,
-- pole select pozwalające na wybór statystyk ze względu na: ilość zdobytych punktów w sezonie lub ilość ukończonych okrążeń,
+- każdy z elementów listy po kliknięciu wyświetla wykres z rezultatem danego wyścigu lub z informacją, że dany wyścig jeszcze się nie odbył
 
-- pole select pozwalające na wybór wykresu jaki powstanie na bazie danych z API - wykres blokowy, liniowy lub punktowy,
+- pole select pozwalające na wybór statystyk ze względu na ilość zdobytych punktów w sezonie lub ilość ukończonych okrążeń
+
+- pole select pozwalające na wybór wykresu jaki powstanie na bazie danych z API - wykres blokowy, liniowy lub punktowy
 
 - komponent wyświetla także numer sezonu oraz numer, nazwę oraz datę wybranego wyścigu
 
@@ -127,9 +131,9 @@ Komponent wyświetla baner powitalny z krótką informacją o projekcie oraz wyk
 
 <h4>Funkcjonalności:</h4>
 
-- pole select pozwalające na wybór statystyk ze względu na: ilość zdobytych punktów w sezonie lub ilość wygranych wyścigów,
+- pole select pozwalające na wybór statystyk ze względu na ilość zdobytych punktów w sezonie lub ilość wygranych wyścigów
 
-- pole select pozwalające na wybór wykresu jaki powstanie na bazie danych z API - wykres blokowy, liniowy lub punktowy.
+- pole select pozwalające na wybór wykresu jaki powstanie na bazie danych z API - wykres blokowy, liniowy lub punktowy
 
 <h2>Komponent “O projekcie”</h2>
 
@@ -141,13 +145,14 @@ Komponent zawiera linki do moich kont na portalach społecznościowych.
 
 <h2>Komponent "Navigation"</h2>
 
-Komponent wyświetla menu główne, w tym menu rozwijane dla działu “Statystyki”.
+Komponent wyświetla menu główne.
+
 <h2>Komponent "NotFound"</h2>
 
 Komponent obsługuje błąd 404.
 
-<h2>Funkcjonalnosci wspólne dla wszystkich komponentów</h2>
+<h2>Funkcjonalności wspólne dla wszystkich komponentów</h2>
 
-- Wszystkie komponenty w aplikacji posiadają również obsługę błędów. Jeżeli wpiszemy do inputa np. sezon którego jeszcze nie było to wówczas otrzymamy stosowny komunikat. Podobnie we wszystkich innych przypadkach tam, gdzie decydujemy co powinien wyświetlać dany komponent.
+- Wszystkie komponenty w aplikacji posiadają obsługę błędów. Jeżeli do inputa zostanie wpisany np. sezon którego jeszcze nie było to wówczas otrzymamy stosowny komunikat zależny od danego komponentu. Podobnie we wszystkich innych przypadkach tam, gdzie decydujemy co powinien wyświetlać dany komponent
 
 - Wszystkie komponenty które wykorzystują dane z Ergast API posiadają animację “loadingu” danych podczas ładowania i przetwarzania zewnętrznych zasobów.
