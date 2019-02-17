@@ -5,10 +5,12 @@
     padding: 40px 0 0 40px;
 
     h1 {
-        font-size: 7vw;
+        font-size: 8rem;
         font-family: $mainFont;
         color: $thirdColor;
         font-weight: 800;
+        text-align: center;
+        padding: 20px 0 0 10px;
     }
 
     h2 {
@@ -16,6 +18,8 @@
         font-family: $mainFont;
         color: $titleSecondColor;
         font-weight: bold;
+        padding-bottom: 20px;
+        text-align: center;
     }
 
     p {
@@ -24,6 +28,8 @@
         font-weight: 400;
         color: $fontMediumColor;
         line-height: 2.5rem;
+        text-align: center;
+        padding: 0 0 20px 10px;
 
         span {
             font-size: 3rem;
@@ -32,23 +38,22 @@
     }
 }
 
-.formBanner  {
-    display: flex;
-    select {
-        cursor: pointer;
-        
-        height: 40px;
-        border-radius: 2px;
-        background: $selectBgColor;
-        color: $fontLightColor;
-        font-family: $mainFont;
-        font-size: 1.5rem;
-        width: 100%;
-    }
-}
-
 @media (min-width: 900px) {
     .banner {
-        align-items: flex-start;
+        align-items: flex-end;
+
+        h1 {
+            font-size: 7vw;
+            text-align: right;
+            padding: 0 0 0 40px;
+        }
+
+        h2 {
+            text-align: right;
+        }
+
+        p {
+            text-align: right;
+        }
     }
 }

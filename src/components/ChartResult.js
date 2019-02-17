@@ -12,7 +12,7 @@ const ChartResult = (props) => {
                 [...props.chartData[0]]
             }
             options={{
-                chartArea: { left: 60, right: 70, top: 60, bottom: 130 },
+                chartArea: { left: 60, right: 60, top: 60, bottom: 130 },
                 legend: {position: 'none'},
                 fontSize: 16,
                 colors: ['darkorange'],

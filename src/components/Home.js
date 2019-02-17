@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import '../App.scss';
 import Loading from './Loading';
-import ChartResult from './ChartResult';  
+import ChartResult from './ChartResult';
+import ChartOptions from './ChartOptions';
+import Title from './Title'; 
+
+const title = 'F1stats!';
+const subtitle = 'Statystyki wyścigów Formuły 1';
+const description = 'Projekt przedstawia statystyki z wyścigów F1 na bazie danych udostępnionych przez ERGAST API. Na podstawie przetworzonych danych generowane są wykresy lub tabele ze statystykami dotyczącymi najszybszego sportu motorowego na świecie!';
 
 class Home extends Component {
     constructor(props) {
@@ -105,14 +111,12 @@ class Home extends Component {
             
         if (this.state.seasonNumber === '') {
             return (
-                <div className='app-container'>
-                    <Loading />
-                </div>
+                <Loading />
             );
         } else if(this.state.err !== '') {
             return (
-                <div className='app-container'>
-                    <ul className=''>
+                <div className='row'>
+                    <ul>
                         <li>Nie znaleziono takiego sezonu</li>
                     </ul>
                 </div>
@@ -121,20 +125,19 @@ class Home extends Component {
             return (
                 <div className='row'>
                     <div className='col-4 banner'>
-                        <h1>F1stats!</h1>
-                        <h2>Statystyki wyścigów Formuły 1</h2>
-                        <p>Projekt przedstawia statystyki z wyścigów F1 na bazie danych udostępnionych przez <span><b>Ergast API</b></span>. Na podstawie przetworzonych danych generowane są wykresy lub tabele ze statystykami dotyczącymi najszybszego sportu motorowego na świecie!</p>
-                        <form className='formBanner'>
-                            <select onChange={this.sortByValue}>
-                                <option value="points">Zdobyte punkty</option>
-                                <option value="wins">Wygrane wyścigi</option>
-                            </select>
-                            <select onChange={this.chartValue}>
-                                <option value="ColumnChart">Wykres blokowy</option>
-                                <option value="LineChart">Wykres liniowy</option>
-                                <option value="ScatterChart">Wykres punktowy</option>
-                            </select>
-                        </form>
+                        <Title 
+                            title={title}
+                            subtitle={subtitle}
+                            description={description}
+                        />
+                        <ChartOptions
+                            optionA='points'
+                            optionB='wins'
+                            optionAText='Zdobyte punkty'
+                            optionBText='Wygrane wyścigi'
+                            sortBy={this.sortByValue}
+                            chartType={this.chartValue}
+                        />
                     </div>
                     <div className='col-8'>
                         <ChartResult
