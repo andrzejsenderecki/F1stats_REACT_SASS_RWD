@@ -1,18 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../App.scss';
 
-class Footer extends Component {
-    render() {
-        return (
-            <div className="row">
-                <div className='col-12 footer'>
-                    <div className='logoFooter'>
-                        <p>F1stats!</p>
-                    </div>
-                </div>
+const Footer = () => {
+    return (
+        <div className='row'>
+            <div className='col-12 footer'>
+                <p>F1stats!</p>
             </div>
-        )
-    }
+        </div>
+    )
 }
 
 export default Footer;

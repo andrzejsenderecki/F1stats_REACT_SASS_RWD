@@ -1,25 +1,14 @@
 @import './sass/modules/variables';
 @import './sass/partials/navigation';
 @import './sass/partials/home';
-@import './sass/partials/finishResults';
-@import './sass/partials/raceResults';
-@import './sass/partials/drivers';
-@import './sass/partials/currentSeason';
-@import './sass/partials/status';
-@import './sass/partials/about';
-@import './sass/partials/contact';
-@import './sass/partials/footer';
-@import './sass/partials/title';
-@import './sass/partials/elementsContent';
-@import './sass/partials/table';
-@import './sass/partials/buttons';
-@import './sass/partials/dataList';
-@import './sass/partials/loading';
 @import './sass/partials/grid';
+@import './sass/partials/loading';
+@import './sass/partials/footer';
 
 *{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 html {

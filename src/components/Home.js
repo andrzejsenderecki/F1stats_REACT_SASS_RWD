@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../App.scss';
-import Chart from 'react-google-charts';
+import Loading from './Loading';
+import ChartResult from './ChartResult';  
 
 class Home extends Component {
     constructor(props) {
@@ -53,9 +54,7 @@ class Home extends Component {
             if(this.state.sortBy === 'wins') {
                 for(let i=0; i<resultArray[0].length; i++) {
                     let driver = resultArray[0][i][0];
-
                     let count = resultArray[0][i][1];
-
                     sortWinsArray.push({count: count, driver: driver})
                 }
                 sortWinsArray.sort((a,b) => {
@@ -91,7 +90,6 @@ class Home extends Component {
                 loading: false,
                 err: '',
             })
-
         }).catch(() => {
             this.setState({
                 seasonNumber: 'Error',
@@ -101,59 +99,20 @@ class Home extends Component {
     };
 
     render() {
-
-        let loading =
-            <div className='col-8 loadingHomePosition'>
-                <div className='loading'/>
-            </div>;
-
         if (this.state.data === '') {
             this.searchSeason();
         }
-
-        let formAndBtn =
-            <div className='formBannerContent'>
-                <form className='formBanner'>
-                    <select onChange={this.sortByValue}>
-                        <option value="points">Zdobyte punkty</option>
-                        <option value="wins">Wygrane wyścigi</option>
-                    </select>
-                    <select onChange={this.chartValue}>
-                        <option value="ColumnChart">Wykres blokowy</option>
-                        <option value="LineChart">Wykres liniowy</option>
-                        <option value="ScatterChart">Wykres punktowy</option>
-                    </select>
-                </form>
-            </div>;
-
-        let banner =
-            <div className='col-4 banner'>
-                <h1>F1<span>stats</span>!</h1>
-                <h2>Statystyki wyścigów Formuły 1</h2>
-                <p>Projekt przedstawia statystyki z wyścigów F1 na bazie danych udostępnionych przez <span><b>Ergast API</b></span>. Na podstawie przetworzonych danych generowane są wykresy lub tabele ze statystykami dotyczącymi najszybszego sportu motorowego na świecie!</p>
-
-            </div>;
-
-        let bannerAndBtn =
-            <div className='col-4 banner'>
-                <h1>F1stats!</h1>
-                <h2>Statystyki wyścigów Formuły 1</h2>
-                <p>Projekt przedstawia statystyki z wyścigów F1 na bazie danych udostępnionych przez <span><b>Ergast API</b></span>. Na podstawie przetworzonych danych generowane są wykresy lub tabele ze statystykami dotyczącymi najszybszego sportu motorowego na świecie!</p>
-                {formAndBtn}
-            </div>;
-
+            
         if (this.state.seasonNumber === '') {
             return (
-                <div className='row'>
-                    {banner}
-                    {loading}
+                <div className='app-container'>
+                    <Loading />
                 </div>
             );
         } else if(this.state.err !== '') {
             return (
-                <div className='row'>
-                    {banner}
-                    <ul className='dataList'>
+                <div className='app-container'>
+                    <ul className=''>
                         <li>Nie znaleziono takiego sezonu</li>
                     </ul>
                 </div>
@@ -161,43 +120,28 @@ class Home extends Component {
         } else {
             return (
                 <div className='row'>
-                    {bannerAndBtn}
+                    <div className='col-4 banner'>
+                        <h1>F1stats!</h1>
+                        <h2>Statystyki wyścigów Formuły 1</h2>
+                        <p>Projekt przedstawia statystyki z wyścigów F1 na bazie danych udostępnionych przez <span><b>Ergast API</b></span>. Na podstawie przetworzonych danych generowane są wykresy lub tabele ze statystykami dotyczącymi najszybszego sportu motorowego na świecie!</p>
+                        <form className='formBanner'>
+                            <select onChange={this.sortByValue}>
+                                <option value="points">Zdobyte punkty</option>
+                                <option value="wins">Wygrane wyścigi</option>
+                            </select>
+                            <select onChange={this.chartValue}>
+                                <option value="ColumnChart">Wykres blokowy</option>
+                                <option value="LineChart">Wykres liniowy</option>
+                                <option value="ScatterChart">Wykres punktowy</option>
+                            </select>
+                        </form>
+                    </div>
                     <div className='col-8'>
-                        <div className='chartContent'>
-                            <Chart
-                                key={this.state.chart}
-                                height='79.5vh'
-                                chartType={this.state.chart}
-                                data={
-                                    [...this.state.data[0]]
-                                }
-                                options={{
-                                    chartArea: { left: 60, right: 70, top: 60, bottom: 130 },
-                                    legend: {position: 'none'},
-                                    fontSize: 16,
-                                    colors: ['darkorange'],
-                                    backgroundColor: { fill:'transparent' },
-                                    animation: {
-                                        duration: 1000,
-                                        easing: 'out',
-                                        startup: true,
-                                    },
-                                    hAxis: {
-                                        showTextEvery: 1,
-                                        textStyle : {
-                                            fontSize: 14
-                                        },
-                                        slantedText: true,
-                                        slantedTextAngle: 60
-                                    },
-                                    vAxis: {
-                                        textStyle : {
-                                            fontSize: 12,
-                                        },
-                                    },
-                                }}
-                            />
-                        </div>
+                        <ChartResult
+                            chartKey={this.state.chart}
+                            chartType={this.state.chart}
+                            chartData={this.state.data}
+                        />
                     </div>
                 </div>
             )

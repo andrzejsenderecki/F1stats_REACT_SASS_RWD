@@ -1,35 +1,29 @@
 .header {
-    height: 100%;
-    width: 100%;
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    height: auto;
     background: $headerMainColor;
     border-top: 30px solid $headerSecondColor;
     border-bottom: 5px solid $headerSecondColor;
+}
 
-    @media (min-width: 900px) {
-        height: 100px;
-        justify-content: flex-end;
-    }
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: $mainFont;
+    font-weight: bold;
+    color: $logoColor;
+    font-style: italic;
+    font-size: 4rem;
+    padding: 10px 0 10px;
 }
 
 .navigation {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-
-    @media (min-width: 900px) {
-        justify-content: flex-end;
-    }
-}
-
-.navigationList {
-
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
     font-family: $mainFont;
 
     li {
@@ -48,21 +42,40 @@
         text-transform: uppercase;
         padding: 45px 30px 40px 30px;
         text-decoration: none;
-        transition: 0.2s;
     }
 
-    @media (min-width: 900px) {
+    ul > li > ul {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        text-align: center;
+    }
+}
+
+@media(min-width: 900px) {
+
+    .header {
+        flex-direction: row;
+        height: 135px;
+    }
+
+    .logo {
+        padding: 0 0 0 40px;
+    }    
+
+    .navigation {
         position: relative;
         padding-right: 50px;
 
         a {
             font-size: 1.3rem;
             justify-content: flex-start;
+            transition: 0.2s;
             &:hover {
                 background: $headerSecondColor;
                 font-size: 2rem;
-                padding: 45px 30px 36px 30px;
-                &:after {
+                padding: 45px 30px 30px 30px;
+                &::after {
                     content: '';
                     width: 100%;
                     height: 5px;
@@ -72,15 +85,11 @@
             }
         }
 
-        span {
-            font-size: 1.7rem;
-        }
-
         ul > li:hover > a {
             background: $headerSecondColor;
             font-size: 2rem;
-            padding: 45px 30px 36px 30px;
-            &:after {
+            padding: 45px 30px 30px 30px;
+            &::after {
                 content: '';
                 width: 100%;
                 height: 5px;
@@ -89,19 +98,32 @@
             }
         }
 
-        ul > li > ul {
-            display:none;
-        }
-
         ul > li:hover > ul {
             display:block;
+        }
+
+        ul > li > ul {
+            display:none;
+            z-index: 1;
+            position: absolute;
+            top: 100px;
+            left: 15.1%;
+            background: $headerSecondColor;
+            transition: 0.2s opacity;
+            width: 232px;
+
             a {
+                font-size: 1.5rem;
+                color: $fontLightColor;
+                padding: 15px 0 20px 20px;
+
                 &:hover {
                     background: $headerSecondColor;
                     font-size: 1.5rem;
                     padding: 15px 0 20px 20px;
                     color: $secondColor;
-                    &:after {
+
+                    &::after {
                         content: '';
                         width: 0;
                         height: 0;
@@ -109,59 +131,6 @@
                     }
                 }
             }
-        }
-    }
-}
-
-.navigationSubList {
-
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    text-align: center;
-
-    a {
-        color: $headerSecondColor;
-        padding: 45px 10px 36px 10px;
-    }
-
-    @media (min-width: 900px) {
-        z-index: 1;
-        position: absolute;
-        top: 100px;
-        left: 15.1%;
-        background: $headerSecondColor;
-        transition: 0.2s opacity;
-        width: 232px;
-        text-align: left;
-
-        a {
-            font-size: 1.5rem;
-            color: $fontLightColor;
-            padding: 15px 0 20px 20px;
-        }
-    }
-}
-
-.logo {
-
-    display: flex;
-    justify-content: center;
-    width: 100%;
-
-    p {
-        font-family: $mainFont;
-        font-weight: bold;
-        color: $logoColor;
-        font-style: italic;
-        font-size: 4rem;
-        padding: 15px 0 0 0;
-    }
-
-    @media (min-width: 900px) {
-        justify-content: flex-start;
-        p {
-            padding: 0 0 0 100px;
         }
     }
 }
