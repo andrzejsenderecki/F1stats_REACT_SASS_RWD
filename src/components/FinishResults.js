@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import Chart from 'react-google-charts';
+import ChartResult from './ChartResult';
+import Loading from './Loading';
+import Title from './Title';
+import ChartOptions from './ChartOptions';
+
+const title = 'Ranking sezonu';
+const description = 'Klasyfikacja ze względu na ilość zdobytych punktów lub wygranych wyścigów w danym sezonie.';
 
 class FinishResults extends Component {
     constructor(props) {
@@ -134,20 +140,6 @@ class FinishResults extends Component {
 
     render() {
 
-        let loading =
-            <div className='col-10 chartContent loadingPosition'>
-                <div className='loading' />
-            </div>;
-
-        let title =
-            <div className='col-12'>
-                <div className='title'>
-                    <h1>Ranking sezonu</h1>
-                    <p>Klasyfikacja ze względu na ilość zdobytych punktów lub wygranych wyścigów w danym
-                        sezonie.</p>
-                </div>
-            </div>;
-
         let error =
             <div className='col-10 loadingPosition chartContent'>
                 <p className='info'>{this.state.err}</p>
@@ -165,17 +157,14 @@ class FinishResults extends Component {
                 <div className='btnContent'>
                     <button className='button' onClick={this.searchSeason}>Szukaj Sezonu</button>
                 </div>
-                <form className='formSeason'>
-                    <select onChange={this.sortByValue}>
-                        <option value="points">Zdobyte punkty</option>
-                        <option value="wins">Wygrane wyścigi</option>
-                    </select>
-                    <select onChange={this.chartValue}>
-                        <option value="ColumnChart">Wykres blokowy</option>
-                        <option value="LineChart">Wykres liniowy</option>
-                        <option value="ScatterChart">Wykres punktowy</option>
-                    </select>
-                </form>
+                <ChartOptions
+                    optionA='points'
+                    optionB='wins'
+                    optionAText='Zdobyte punkty'
+                    optionBText='Wygrane wyścigi'
+                    sortBy={this.sortByValue}
+                    chartType={this.chartValue}
+                />
             </div>;
 
         let seasonData =
@@ -190,14 +179,13 @@ class FinishResults extends Component {
             return (
                 <div>
                     <div className='row'>
-                        {title}
+                        <Title 
+                            title={title}
+                            description={description}
+                        />
                     </div>
                     <div className='row'>
-                        {seasonData}
-                    </div>
-                    <div className='row'>
-                        {formAndBtn}
-                        {loading}
+                        <Loading />
                     </div>
                 </div>
             );
@@ -205,14 +193,13 @@ class FinishResults extends Component {
             return (
                 <div>
                     <div className='row'>
-                        {title}
+                        <Title 
+                            title={title}
+                            description={description}
+                        />
                     </div>
                     <div className='row'>
-                        {seasonData}
-                    </div>
-                    <div className='row'>
-                        {formAndBtn}
-                        {loading}
+                        <Loading />
                     </div>
                 </div>
             )
@@ -220,7 +207,10 @@ class FinishResults extends Component {
             return (
                 <div>
                     <div className='row'>
-                        {title}
+                        <Title 
+                            title={title}
+                            description={description}
+                        />
                     </div>
                     <div className='row'>
                         {seasonData}
@@ -235,7 +225,12 @@ class FinishResults extends Component {
             return (
                 <div>
                     <div className='row'>
-                        {title}
+                        <div className='col-12 title'>
+                            <Title 
+                                title={title}
+                                description={description}
+                            />
+                        </div>
                     </div>
                     <div className='row'>
                         {seasonData}
@@ -243,44 +238,12 @@ class FinishResults extends Component {
                     <div className='row'>
                         {formAndBtn}
                         <div className='col-10'>
-                            <div className='chartContent'>
-                                <Chart
-                                    key={this.state.chart}
-                                    height='100%'
+                                <ChartResult
+                                    chartKey={this.state.chart}
                                     chartType={this.state.chart}
-                                    data={
-                                        [...this.state.data[0]]
-                                    }
-                                    options={{
-                                        chartArea: { left: 80, right: 60, top: 20, bottom: 130 },
-                                        legend: {position: 'none'},
-                                        fontSize: 12,
-                                        colors: ['darkorange'],
-                                        backgroundColor: { fill:'transparent' },
-                                        animation: {
-                                            duration: 1000,
-                                            easing: 'out',
-                                            startup: true,
-                                        },
-                                        hAxis: {
-                                            showTextEvery: 1,
-                                            textStyle : {
-                                                fontName: 'Open Sans',
-                                                fontSize: 14
-                                            },
-                                            slantedText: true,
-                                            slantedTextAngle: 60
-                                        },
-                                        vAxis: {
-                                            textStyle : {
-                                                fontName: 'Open Sans',
-                                                fontSize: 12,
-                                            },
-                                        },
-                                    }}
+                                    chartData={this.state.data}
                                 />
                             </div>
-                        </div>
                     </div>
                 </div>
             )

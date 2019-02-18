@@ -1,0 +1,35 @@
+.title {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    h1 {
+        font-family: $mainFont;
+        font-size:2.5rem;
+        text-align: center;
+        color: $titleMainColor;
+        font-weight: bold;
+        padding: 20px 0 0 0;
+    }
+
+    p {
+        font-family: $secondFont;
+        font-size: 1.9rem;
+        text-align: center;
+        font-weight: 400;
+        color: $fontMediumColor;
+        padding: 10px 20px 20px 20px;
+    }
+
+    
+}
+
+@media (min-width: 900px) {
+    .title {
+        align-items: flex-start;
+    }
+
+    h1 {
+        padding: 20px 0 0 20px;
+    }
+}
