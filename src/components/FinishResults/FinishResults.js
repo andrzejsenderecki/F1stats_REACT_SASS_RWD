@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import ChartResult from './ChartResult';
-import Loading from './Loading';
-import Title from './Title';
-import ChartOptions from './ChartOptions';
-import FormBtn from './FormBtn';
+import ChartResult from '../Chart/ChartResult';
+import Loading from '../Loading/Loading';
+import Title from '../Title/Title';
+import ChartOptions from '../Form/FormOptions/FormOptions';
+import FormBtn from '../Form/FormBtn/FormBtn';
 
 const title = 'Ranking sezonu';
 const description = 'Klasyfikacja ze względu na ilość zdobytych punktów lub wygranych wyścigów w danym sezonie.';
@@ -149,6 +149,16 @@ class FinishResults extends Component {
         let formAndBtn =
             <div className='col-2 formContent'>
                 <form className='formSeason'>
+                    <div className='formStatusWrap'>
+                        <button className='buttonMini' onClick={this.prevSeason}>&lt;</button>
+                        <input type="text" placeholder='Podaj rok' value={this.state.season} onChange={this.seasonValue}/>
+                        <button className='buttonMini' onClick={this.nextSeason}>&gt;</button>
+                    </div>
+                    <div className='formStatusWrap'>
+                        <button className='buttonMini' onClick={this.prevSeason}>&lt;</button>
+                        <input type="text" placeholder='Podaj rok' value={this.state.season} onChange={this.seasonValue}/>
+                        <button className='buttonMini' onClick={this.nextSeason}>&gt;</button>
+                    </div>
                     <div className='formStatusWrap'>
                         <button className='buttonMini' onClick={this.prevSeason}>&lt;</button>
                         <input type="text" placeholder='Podaj rok' value={this.state.season} onChange={this.seasonValue}/>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import MediaQuery from 'react-responsive';
-import '../App.scss';
+import '../../App.scss';
 
 class Navigation extends Component {
     constructor(props) {

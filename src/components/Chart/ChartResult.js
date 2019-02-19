@@ -1,6 +1,6 @@
 import React from 'react';
 import Chart from 'react-google-charts';
-import '../App.scss';
+import '../../App.scss';
 
 const ChartResult = (props) => {
     return (

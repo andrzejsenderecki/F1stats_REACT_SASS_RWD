@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
-import Navigation from './components/Navigation';
+import Navigation from './components/Navigation/Navigation';
 // import NotFound from './components/NotFound';
 // import CurrentSeason from './components/CurrentSeason';
-import FinishResults from './components/FinishResults';
+import FinishResults from './components/FinishResults/FinishResults';
 // import RaceResults from './components/RaceResults';
 // import Drivers from './components/Drivers';
 // import Status from "./components/Status";
-import Home from './components/Home';
+import Home from './components/Home/Home';
 // import About from './components/About';
 // import Contact from './components/Contact';
-import Footer from './components/Footer';
+import Footer from './components/Footer/Footer';
 import './App.scss';
 
 class App extends Component {

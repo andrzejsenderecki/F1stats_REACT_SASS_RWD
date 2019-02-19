@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import '../App.scss';
-import Loading from './Loading';
-import ChartResult from './ChartResult';
-import ChartOptions from './ChartOptions';
-import Title from './Title'; 
+import '../../App.scss';
+import Loading from '../Loading/Loading';
+import ChartResult from '../Chart/ChartResult';
+import ChartOptions from '../Form/FormOptions/FormOptions';
+import Title from '../Title/Title'; 
 
 const title = 'F1stats!';
 const subtitle = 'Statystyki wyścigów Formuły 1';
