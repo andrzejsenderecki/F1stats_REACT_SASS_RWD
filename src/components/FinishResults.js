@@ -3,6 +3,7 @@ import ChartResult from './ChartResult';
 import Loading from './Loading';
 import Title from './Title';
 import ChartOptions from './ChartOptions';
+import FormBtn from './FormBtn';
 
 const title = 'Ranking sezonu';
 const description = 'Klasyfikacja ze względu na ilość zdobytych punktów lub wygranych wyścigów w danym sezonie.';
@@ -154,9 +155,7 @@ class FinishResults extends Component {
                         <button className='buttonMini' onClick={this.nextSeason}>&gt;</button>
                     </div>
                 </form>
-                <div className='btnContent'>
-                    <button className='button' onClick={this.searchSeason}>Szukaj Sezonu</button>
-                </div>
+                <FormBtn text='Szukaj sezonu' action={this.searchSeason} />
                 <ChartOptions
                     optionA='points'
                     optionB='wins'
