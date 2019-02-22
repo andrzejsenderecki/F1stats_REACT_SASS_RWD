@@ -22,12 +22,13 @@ $loadingSecondColor: #dedede;
 $mainFont: 'Roboto', sans-serif;
 $secondFont: 'Open Sans', sans-serif;
 
-@import './components/Title/title';
-@import './components/Navigation/navigation';
-@import './components/Home/home';
-@import './components/Loading/loading';
-@import './components/Form/FormOptions/formOptions.scss';
-@import './components/Footer/footer';
+@import './scss/partials/navigation';
+@import './scss/partials/home';
+@import './scss/partials/finishResults';
+@import './scss/partials/footer';
+@import './scss/partials/title';
+@import './scss/partials/loading';
+@import './scss/partials/form';
 
 *{
     margin: 0;

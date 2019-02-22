@@ -1,19 +1,18 @@
 import React from 'react';
-import '../../App.scss';
 
 const Title = (props) => {
     return (
         props.subtitle ? (
-            <React.Fragment>
+            <div className='title'>
                 <h1>{props.title}</h1>
                 <h2>{props.subtitle}</h2>
                 <p>{props.description}</p>
-            </React.Fragment>
+            </div>
         ) : (
-            <React.Fragment>
+            <div className='title'>
                 <h1>{props.title}</h1>
                 <p>{props.description}</p>
-            </React.Fragment>
+            </div>
         )
     )
 }

@@ -4,6 +4,7 @@ import Loading from '../Loading/Loading';
 import Title from '../Title/Title';
 import ChartOptions from '../Form/FormOptions/FormOptions';
 import FormBtn from '../Form/FormBtn/FormBtn';
+import FormInput from '../Form/FormInput/FormInput';
 
 const title = 'Ranking sezonu';
 const description = 'Klasyfikacja ze względu na ilość zdobytych punktów lub wygranych wyścigów w danym sezonie.';
@@ -149,31 +150,23 @@ class FinishResults extends Component {
         let formAndBtn =
             <div className='col-2 formContent'>
                 <form className='formSeason'>
-                    <div className='formStatusWrap'>
-                        <button className='buttonMini' onClick={this.prevSeason}>&lt;</button>
-                        <input type="text" placeholder='Podaj rok' value={this.state.season} onChange={this.seasonValue}/>
-                        <button className='buttonMini' onClick={this.nextSeason}>&gt;</button>
-                    </div>
-                    <div className='formStatusWrap'>
-                        <button className='buttonMini' onClick={this.prevSeason}>&lt;</button>
-                        <input type="text" placeholder='Podaj rok' value={this.state.season} onChange={this.seasonValue}/>
-                        <button className='buttonMini' onClick={this.nextSeason}>&gt;</button>
-                    </div>
-                    <div className='formStatusWrap'>
-                        <button className='buttonMini' onClick={this.prevSeason}>&lt;</button>
-                        <input type="text" placeholder='Podaj rok' value={this.state.season} onChange={this.seasonValue}/>
-                        <button className='buttonMini' onClick={this.nextSeason}>&gt;</button>
-                    </div>
+                    <FormInput
+                        initialValue='Podaj rok'
+                        leftBtnAction={this.prevSeason}
+                        rightBtnAction={this.nextSeason}
+                        inputValue={this.state.season}
+                        inputAction={this.inputAction}
+                    /> 
+                    <FormBtn text='Szukaj sezonu' action={this.searchSeason} />
+                    <ChartOptions
+                        optionA='points'
+                        optionB='wins'
+                        optionAText='Zdobyte punkty'
+                        optionBText='Wygrane wyścigi'
+                        sortBy={this.sortByValue}
+                        chartType={this.chartValue}
+                    />
                 </form>
-                <FormBtn text='Szukaj sezonu' action={this.searchSeason} />
-                <ChartOptions
-                    optionA='points'
-                    optionB='wins'
-                    optionAText='Zdobyte punkty'
-                    optionBText='Wygrane wyścigi'
-                    sortBy={this.sortByValue}
-                    chartType={this.chartValue}
-                />
             </div>;
 
         let seasonData =
@@ -202,13 +195,21 @@ class FinishResults extends Component {
             return (
                 <div>
                     <div className='row'>
-                        <Title 
-                            title={title}
-                            description={description}
-                        />
+                        <div className='col-12 title'>
+                            <Title 
+                                title={title}
+                                description={description}
+                            />
+                        </div>
                     </div>
                     <div className='row'>
-                        <Loading />
+                        {seasonData}
+                    </div>
+                    <div className='row'>
+                        {formAndBtn}
+                        <div className='col-10'>
+                                <Loading />
+                            </div>
                     </div>
                 </div>
             )
@@ -216,17 +217,21 @@ class FinishResults extends Component {
             return (
                 <div>
                     <div className='row'>
-                        <Title 
-                            title={title}
-                            description={description}
-                        />
+                        <div className='col-12 title'>
+                            <Title 
+                                title={title}
+                                description={description}
+                            />
+                        </div>
                     </div>
                     <div className='row'>
                         {seasonData}
                     </div>
                     <div className='row'>
                         {formAndBtn}
-                        {error}
+                        <div className='col-10'>
+                                <Loading />
+                            </div>
                     </div>
                 </div>
             );

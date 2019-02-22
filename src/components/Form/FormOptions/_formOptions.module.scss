@@ -1,0 +1,16 @@
+.chartOptions  {
+    display: flex;
+    width: 100%;
+
+    select {
+        cursor: pointer;
+        height: 40px;
+        border-radius: 2px;
+        background: $selectBgColor;
+        color: $fontLightColor;
+        font-family: $mainFont;
+        font-size: 1.5rem;
+        width: 100%;
+        margin: 5px;
+    }
+}
