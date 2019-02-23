@@ -22,12 +22,28 @@
     }
 }
 
+@media (min-width: 412px) {
+    h1 {
+        &:before {
+            content: '';
+            padding-right: 10px;
+            margin-right: 10px;
+            background: $titleSecondColor;
+        }
+    }
+}
+
 @media (min-width: 900px) {
     .title {
         align-items: flex-start;
-    }
 
-    h1 {
-        padding: 20px 0 0 20px;
-    }
+        h1 {
+            font-size: 4.5rem;
+            padding: 20px 0 0 45px;
+        }
+
+        p {
+            padding: 10px 20px 20px 45px;
+        }
+    }  
 }

@@ -1,9 +1,9 @@
 import React from 'react';
 import '../../../App.scss';
 
-const ChartOptions = (props) => {
+const FormOptions = (props) => {
     return(
-        <form className='chartOptions'>
+        <React.Fragment>
             <select onChange={props.sortBy}>
                 <option value={props.optionA}>{props.optionAText}</option>
                 <option value={props.optionB}>{props.optionBText}</option>
@@ -13,8 +13,8 @@ const ChartOptions = (props) => {
                 <option value="LineChart">Wykres liniowy</option>
                 <option value="ScatterChart">Wykres punktowy</option>
             </select>
-        </form>
+        </React.Fragment>
     )
 }
 
-export default ChartOptions;
+export default FormOptions;

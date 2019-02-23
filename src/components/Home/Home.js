@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import '../../App.scss';
 import Loading from '../Loading/Loading';
 import ChartResult from '../Chart/ChartResult';
-import ChartOptions from '../Form/FormOptions/FormOptions';
+import FormOptions from '../Form/FormOptions/FormOptions';
+import Form from '../Form/Form';
 import Title from '../Title/Title'; 
 
 const title = 'F1stats!';
@@ -130,14 +131,16 @@ class Home extends Component {
                             subtitle={subtitle}
                             description={description}
                         />
-                        <ChartOptions
-                            optionA='points'
-                            optionB='wins'
-                            optionAText='Zdobyte punkty'
-                            optionBText='Wygrane wyścigi'
-                            sortBy={this.sortByValue}
-                            chartType={this.chartValue}
-                        />
+                        <Form>
+                            <FormOptions
+                                optionA='points'
+                                optionB='wins'
+                                optionAText='Zdobyte punkty'
+                                optionBText='Wygrane wyścigi'
+                                sortBy={this.sortByValue}
+                                chartType={this.chartValue}
+                            />  
+                        </Form>
                     </div>
                     <div className='col-8'>
                         <ChartResult

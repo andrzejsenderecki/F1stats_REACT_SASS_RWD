@@ -1,0 +1,29 @@
+.dataList {
+    display: flex;
+    justify-content: center;
+    
+    li {
+        font-family: $secondFont;
+        color: $fontMediumColor;
+        font-size: 1.9rem;
+        font-weight: normal;
+        text-decoration: none;
+        list-style: none;
+        padding: 0 10px 0 10px;
+    }
+    
+    span {
+        color: $spanColor;
+    } 
+}
+
+@media (min-width: 900px) {
+    .dataList {
+        justify-content: flex-start;
+
+        li {
+            padding-left: 50px;
+            padding-right: 0;
+        }
+    }
+}

@@ -2,24 +2,25 @@ import React, { Component } from 'react';
 import ChartResult from '../Chart/ChartResult';
 import Loading from '../Loading/Loading';
 import Title from '../Title/Title';
-import ChartOptions from '../Form/FormOptions/FormOptions';
+import FormOptions from '../Form/FormOptions/FormOptions';
 import FormBtn from '../Form/FormBtn/FormBtn';
 import FormInput from '../Form/FormInput/FormInput';
-
-const title = 'Ranking sezonu';
-const description = 'Klasyfikacja ze względu na ilość zdobytych punktów lub wygranych wyścigów w danym sezonie.';
+import Form from '../Form/Form';
+import DataList from '../DataList/DataList';
+import DataListElement from '../DataList/DataListElement/DataListElement';
+import Error from '../Error/Error';
 
 class FinishResults extends Component {
     constructor(props) {
         super(props);
         this.state = {
             season: '2018',
-            seasonNumber: '',
-            roundNumber: '',
+            seasonNumber: null,
+            roundNumber: null,
             sortBy: 'points',
             chart: 'ColumnChart',
-            err: '',
-            data: '',
+            err: null,
+            data: null,
             loading: false
         }
     }
@@ -31,7 +32,7 @@ class FinishResults extends Component {
     seasonValue = (event) => {
         this.setState({
             season: event.target.value
-        });
+        }, this.searchSeason);
     };
 
     sortByValue = (event) => {
@@ -46,35 +47,16 @@ class FinishResults extends Component {
         });
     };
 
-    nextSeason = (event) => {
-        event.preventDefault();
-        let season = Number(this.state.season);
-        season = season + 1;
-        this.setState({
-            season: Number(season),
-            loading: true
-        }, this.searchSeason);
-    };
-
-    prevSeason = (event) => {
-        event.preventDefault();
-        let season = Number(this.state.season);
-        season = season - 1;
-        this.setState({
-            season: Number(season),
-            loading: true
-        }, this.searchSeason);
-    };
-
     searchSeason = () => {
-        let url = `https://ergast.com/api/f1/${this.state.season}/driverStandings.json`;
+        const url = `https://ergast.com/api/f1/${this.state.season}/driverStandings.json`;
+        
         fetch(url).then(resp => {
             return resp.json();
         }).then(json => {
 
-            let resultArray = json.MRData.StandingsTable.StandingsLists.map((element) => {
-                let result = element.DriverStandings.map((element) => {
-                    let data = [];
+            const resultArray = json.MRData.StandingsTable.StandingsLists.map((element) => {
+                const result = element.DriverStandings.map((element) => {
+                    const data = [];
                     data.push(element.Driver.familyName);
                     if(this.state.sortBy === 'points') {
                         data.push(Number(element.points));
@@ -86,13 +68,13 @@ class FinishResults extends Component {
                 return result;
             });
 
-            let sortWinsArray = [];
-            let winsArray = [[]];
+            const sortWinsArray = [];
+            const winsArray = [[]];
             if(this.state.sortBy === 'wins') {
                 for(let i=0; i<resultArray[0].length; i++) {
-                    let driver = resultArray[0][i][0];
+                    const driver = resultArray[0][i][0];
 
-                    let count = resultArray[0][i][1];
+                    const count = resultArray[0][i][1];
 
                     sortWinsArray.push({count: count, driver: driver})
                 }
@@ -117,9 +99,9 @@ class FinishResults extends Component {
                 });
             }
 
-            let seasonNumber = json.MRData.StandingsTable.season;
+            const seasonNumber = json.MRData.StandingsTable.season;
 
-            let roundNumber = json.MRData.StandingsTable.StandingsLists.map((element) => {
+            const roundNumber = json.MRData.StandingsTable.StandingsLists.map((element) => {
                 return element.round;
             });
 
@@ -127,13 +109,12 @@ class FinishResults extends Component {
                 seasonNumber: seasonNumber,
                 roundNumber: roundNumber,
                 loading: false,
-                err: '',
-            })
-
+                err: null,
+            });
         }).catch(() => {
             this.setState({
-                seasonNumber: '',
-                roundNumber: '',
+                seasonNumber: null,
+                roundNumber: null,
                 loading: false,
                 err: 'Nie znaleziono takiego sezonu',
             })
@@ -141,127 +122,75 @@ class FinishResults extends Component {
     };
 
     render() {
-
-        let error =
-            <div className='col-10 loadingPosition chartContent'>
-                <p className='info'>{this.state.err}</p>
-            </div>;
-
-        let formAndBtn =
-            <div className='col-2 formContent'>
-                <form className='formSeason'>
+        const formAndBtn =
+            <div className='col-2'>
+                <Form>
                     <FormInput
                         initialValue='Podaj rok'
-                        leftBtnAction={this.prevSeason}
-                        rightBtnAction={this.nextSeason}
                         inputValue={this.state.season}
-                        inputAction={this.inputAction}
-                    /> 
+                        inputAction={this.seasonValue}
+                    />
                     <FormBtn text='Szukaj sezonu' action={this.searchSeason} />
-                    <ChartOptions
+                    <FormOptions
                         optionA='points'
                         optionB='wins'
                         optionAText='Zdobyte punkty'
                         optionBText='Wygrane wyścigi'
                         sortBy={this.sortByValue}
                         chartType={this.chartValue}
-                    />
-                </form>
+                    />  
+                </Form>
             </div>;
 
-        let seasonData =
-            <div className='col-12'>
-                <ul className='dataList'>
-                    <li>Sezon: <span>{this.state.seasonNumber}</span></li>
-                    <li>Ilość rund: <span>{this.state.roundNumber}</span></li>
-                </ul>
-            </div>;
-
-        if (this.state.data === '') {
-            return (
-                <div>
-                    <div className='row'>
+        return (
+            <div>
+                <div className='row'>
+                    <div className='col-12 title'>
                         <Title 
-                            title={title}
-                            description={description}
+                            title='Ranking sezonu'
+                            description='Klasyfikacja ze względu na ilość zdobytych punktów lub wygranych wyścigów w danym sezonie.'
                         />
                     </div>
-                    <div className='row'>
-                        <Loading />
+                </div>
+                <div className='row'>
+                    <div className='col-12'>
+                        <DataList >
+                            <DataListElement
+                                text='Sezon:'
+                                value={this.state.seasonNumber}
+                            />
+                            <DataListElement
+                                text='Ilość rund:'
+                                value={this.state.roundNumber}
+                            />
+                        </DataList>
                     </div>
                 </div>
-            );
-        } else if(this.state.loading === true) {
-            return (
-                <div>
-                    <div className='row'>
-                        <div className='col-12 title'>
-                            <Title 
-                                title={title}
-                                description={description}
-                            />
-                        </div>
-                    </div>
-                    <div className='row'>
-                        {seasonData}
-                    </div>
+                { this.state.data ? (
                     <div className='row'>
                         {formAndBtn}
                         <div className='col-10'>
-                                <Loading />
-                            </div>
-                    </div>
-                </div>
-            )
-        } else if(this.state.err !== '') {
-            return (
-                <div>
-                    <div className='row'>
-                        <div className='col-12 title'>
-                            <Title 
-                                title={title}
-                                description={description}
-                            />
-                        </div>
-                    </div>
-                    <div className='row'>
-                        {seasonData}
-                    </div>
-                    <div className='row'>
-                        {formAndBtn}
-                        <div className='col-10'>
-                                <Loading />
-                            </div>
-                    </div>
-                </div>
-            );
-        } else {
-            return (
-                <div>
-                    <div className='row'>
-                        <div className='col-12 title'>
-                            <Title 
-                                title={title}
-                                description={description}
-                            />
-                        </div>
-                    </div>
-                    <div className='row'>
-                        {seasonData}
-                    </div>
-                    <div className='row'>
-                        {formAndBtn}
-                        <div className='col-10'>
+                            { this.state.err ? (
+                                <Error error={this.state.err} />
+                            ) : (
                                 <ChartResult
                                     chartKey={this.state.chart}
                                     chartType={this.state.chart}
                                     chartData={this.state.data}
                                 />
-                            </div>
+                            )}
+                        </div>
                     </div>
-                </div>
-            )
-        }
+                ) : (
+                    <div className='row'>
+                        {formAndBtn}
+                    <div className='col-10'>
+                        <Loading />
+                    </div>
+                    </div>
+                )}
+            </div>
+        );
     }
 }
 
