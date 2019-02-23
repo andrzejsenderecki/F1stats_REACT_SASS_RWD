@@ -37,31 +37,8 @@
     }
 }
 
-.formBtn {
-    cursor: pointer;
-    margin: 5px 0 5px 0;
-    width: 80%;
-    height: 40px;
-    border: 0;
-    border-radius: 2px;
-    background: $buttonBgColor;
-    color: $fontLightColor;
-    font-family: $mainFont;
-    font-weight: normal;
-    font-size: 1.5rem;
-    transition: 0.4s;
-}
-
-
 @media (min-width: 900px) {
     .form {
         justify-content: flex-end;
-    }
-
-    .formBtn {
-        &:hover {
-            color: $buttonTextHoverColor;
-            padding-right: 20px;
-        }
     }
 }

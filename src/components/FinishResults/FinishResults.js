@@ -3,7 +3,6 @@ import ChartResult from '../Chart/ChartResult';
 import Loading from '../Loading/Loading';
 import Title from '../Title/Title';
 import FormOptions from '../Form/FormOptions/FormOptions';
-import FormBtn from '../Form/FormBtn/FormBtn';
 import FormInput from '../Form/FormInput/FormInput';
 import Form from '../Form/Form';
 import DataList from '../DataList/DataList';
@@ -49,7 +48,7 @@ class FinishResults extends Component {
 
     searchSeason = () => {
         const url = `https://ergast.com/api/f1/${this.state.season}/driverStandings.json`;
-        
+
         fetch(url).then(resp => {
             return resp.json();
         }).then(json => {
@@ -130,7 +129,6 @@ class FinishResults extends Component {
                         inputValue={this.state.season}
                         inputAction={this.seasonValue}
                     />
-                    <FormBtn text='Szukaj sezonu' action={this.searchSeason} />
                     <FormOptions
                         optionA='points'
                         optionB='wins'

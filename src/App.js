@@ -4,7 +4,7 @@ import Navigation from './components/Navigation/Navigation';
 // import NotFound from './components/NotFound';
 // import CurrentSeason from './components/CurrentSeason';
 import FinishResults from './components/FinishResults/FinishResults';
-// import RaceResults from './components/RaceResults';
+import RaceResults from './components/RaceResults/RaceResults';
 // import Drivers from './components/Drivers';
 // import Status from "./components/Status";
 import Home from './components/Home/Home';
@@ -23,8 +23,8 @@ class App extends Component {
                 <Switch>
                     <Route path='/' component={Home} exact />
                     <Route path='/season' component={FinishResults} />
-                    {/* <Route path='/race' component={RaceResults} />
-                    <Route path='/drivers' component={Drivers} />
+                    <Route path='/race' component={RaceResults} />
+                    {/* <Route path='/drivers' component={Drivers} />
                     <Route path='/current' component={CurrentSeason} />
                     <Route path='/status' component={Status} />
                     <Route path='/about' component={About} />
