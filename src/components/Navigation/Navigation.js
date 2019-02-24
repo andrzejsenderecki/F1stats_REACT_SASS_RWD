@@ -21,7 +21,7 @@ class Navigation extends Component {
     render() {
         if (this.state.show === false) {
             return (
-                <div>
+                <React.Fragment>
                     <MediaQuery maxDeviceWidth={899}>
                         <div className='row'>
                             <div className='col-12 header'>
@@ -64,7 +64,6 @@ class Navigation extends Component {
                                                     <li><NavLink to='/race'>Wyścigi</NavLink></li>
                                                     <li><NavLink to='/status'>Statusy</NavLink></li>
                                                     <li><NavLink to='/drivers'>Kierowcy</NavLink></li>
-                                                    <li><NavLink to='/current'>Aktualny sezon</NavLink></li>
                                                 </ul>
                                             </li>
                                         </ul>
@@ -75,7 +74,7 @@ class Navigation extends Component {
                             </div>
                         </div>
                     </MediaQuery>
-                </div>
+                </React.Fragment>
             )
         } else {
             return(
@@ -97,7 +96,6 @@ class Navigation extends Component {
                                                     <li><NavLink to='/race'>Wyścigi</NavLink></li>
                                                     <li><NavLink to='/status'>Statusy</NavLink></li>
                                                     <li><NavLink to='/drivers'>Kierowcy</NavLink></li>
-                                                    <li><NavLink to='/current'>Aktualny sezon</NavLink></li>
                                                 </ul>
                                             </li>
                                         </ul>
@@ -107,8 +105,7 @@ class Navigation extends Component {
                                 </ul>
                             </div>
                         </div>
-                    </div>
-                        
+                    </div>  
                 </MediaQuery>
             )
         }

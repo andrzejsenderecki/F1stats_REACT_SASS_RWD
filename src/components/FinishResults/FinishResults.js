@@ -125,6 +125,7 @@ class FinishResults extends Component {
             <div className='col-2'>
                 <Form>
                     <FormInput
+                        type='number'
                         initialValue='Podaj rok'
                         inputValue={this.state.season}
                         inputAction={this.seasonValue}
@@ -141,10 +142,11 @@ class FinishResults extends Component {
             </div>;
 
         return (
-            <div>
+            <React.Fragment>
                 <div className='row'>
                     <div className='col-12'>
-                        <Title 
+                        <Title
+                            styles='title' 
                             title='Ranking sezonu'
                             description='Klasyfikacja ze względu na ilość zdobytych punktów lub wygranych wyścigów w danym sezonie.'
                         />
@@ -187,7 +189,7 @@ class FinishResults extends Component {
                     </div>
                     </div>
                 )}
-            </div>
+            </React.Fragment>
         );
     }
 }

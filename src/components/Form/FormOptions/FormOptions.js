@@ -6,7 +6,7 @@ const FormOptions = (props) => {
         <React.Fragment>
             {
                 props.sortBy ? (
-                    <React.Fragment>
+                    <div>
                         <select onChange={props.sortBy}>
                             <option value={props.optionA}>{props.optionAText}</option>
                             <option value={props.optionB}>{props.optionBText}</option>
@@ -16,15 +16,15 @@ const FormOptions = (props) => {
                             <option value="LineChart">Wykres liniowy</option>
                             <option value="ScatterChart">Wykres punktowy</option>
                         </select>
-                    </React.Fragment>
+                    </div>
                 ) : (
-                    <React.Fragment>
+                    <div>
                         <select onChange={props.chartType}>
                             <option value="ColumnChart">Wykres blokowy</option>
                             <option value="LineChart">Wykres liniowy</option>
                             <option value="ScatterChart">Wykres punktowy</option>
                         </select>
-                    </React.Fragment>
+                    </div>
                 )
             }
         </React.Fragment>
@@ -32,4 +32,3 @@ const FormOptions = (props) => {
 }
 
 export default FormOptions;
-

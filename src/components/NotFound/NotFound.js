@@ -1,13 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
+import '../../App.scss';
 
-class NotFound extends Component {
-    render() {
-        return (
-            <div className='content'>
-                <p className='info'>Taka strona nie istnieje.</p>
-            </div>
-        )
-    }
+const NotFound = () => {
+    return (
+        <React.Fragment>
+            <p>Taka strona nie istnieje.</p>
+        </React.Fragment>
+    )
 }
 
 export default NotFound;

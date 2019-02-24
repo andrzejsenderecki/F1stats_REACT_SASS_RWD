@@ -1,19 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
+import Title from '../Title/Title';
 
-class About extends Component {
-
-    render() {
-        return (
-            <div className='col-12'>
-                <div className='title'>
-                    <h1>O projekcie</h1>
-                    <p>
-                        Projekt przedstawia statystyki z wyścigów F1 na bazie danych pobranych z Ergast API.
+const About = () => {
+    return (
+        <div>
+            <div className='row'>
+                <div className='col-12'>
+                    <Title 
+                        styles='title'
+                        title='O projekcie'
+                        description='Projekt przedstawia statystyki z wyścigów F1 na bazie danych pobranych z Ergast API.
                         Na podstawie przetworzonych danych generowane są wykresy lub tabele ze statystykami dotyczącymi najbardziej
-                        prestiżowego sportu motorowego na świecie!
-                    </p>
+                        prestiżowego sportu motorowego na świecie!'
+                    />
                 </div>
-                <div>
+            </div>
+            <div className='row'>
+                <div className='col-12 aboutListContainer'>
                     <ul className='aboutList'>
                         <li className='aboutDecoration'>Link do repozytorium:
                             <ul>
@@ -53,8 +56,8 @@ class About extends Component {
                     </ul>
                 </div>
             </div>
-        )
-    }
+        </div>
+    )
 }
 
 export default About;

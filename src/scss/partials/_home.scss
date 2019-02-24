@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding: 40px 0 0 40px;
+    padding: 20px 0 0 0;
 
     h1 {
         font-size: 8rem;
@@ -10,7 +10,7 @@
         color: $thirdColor;
         font-weight: 800;
         text-align: center;
-        padding: 20px 0 0 10px;
+        padding: 20px 0 0 0;
     }
 
     h2 {
@@ -29,14 +29,36 @@
         color: $fontMediumColor;
         line-height: 2.5rem;
         text-align: center;
-        padding: 0 0 20px 10px;
+        padding: 0 10px 0 10px;
 
         span {
             font-size: 3rem;
             color: $spanColor;
         }
     }
+
+    div {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    select {
+        cursor: pointer;
+        margin: 10px 0 5px 5px;
+        width: 40%;
+        height: 40px;
+        border: 0;
+        border-radius: 2px;
+        background: $selectBgColor;
+        color: $fontLightColor;
+        font-family: $mainFont;
+        font-weight: normal;
+        font-size: 1.5rem;
+    }
 }
+
+
 
 @media (min-width: 900px) {
     .banner {
@@ -45,7 +67,7 @@
         h1 {
             font-size: 7vw;
             text-align: right;
-            padding: 0 0 0 40px;
+            padding: 20px 0 0 10px;
         }
 
         h2 {
@@ -54,6 +76,11 @@
 
         p {
             text-align: right;
+            padding: 0 0 0 40px;
+        }
+
+        div {
+            justify-content: flex-end;
         }
     }
 }

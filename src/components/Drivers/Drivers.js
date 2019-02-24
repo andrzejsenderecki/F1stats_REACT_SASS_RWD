@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
+import Loading from '../Loading/Loading';
+import Title from '../Title/Title';
+import FormBtn from '../Form/FormBtn/FormBtn';
+import FormInput from '../Form/FormInput/FormInput';
+import Form from '../Form/Form';
+import DataList from '../DataList/DataList';
+import DataListElement from '../DataList/DataListElement/DataListElement';
+import Error from '../Error/Error';
 
 class Drivers extends Component {
     constructor(props) {
         super(props);
         this.state = {
             driver: 'Lauda',
-            data: [],
+            data: null,
             driverData: '',
             loading: true,
             err: '',
@@ -22,7 +30,7 @@ class Drivers extends Component {
         });
     };
 
-    searchBtn = (event) => {
+    searchBtn = () => {
         this.setState({
             data: [],
             driverData: '',
@@ -111,7 +119,6 @@ class Drivers extends Component {
                     err: 'Coś poszło nie tak.',
                 })
             });
-
         }).catch(() => {
             this.setState({
                 driverData: [],
@@ -122,145 +129,114 @@ class Drivers extends Component {
     };
 
     render() {
-
-        let loading =
-            <div className='col-10 loadingDriverContent loadingDriversPosition'>
-                <div className='loading' />
-            </div>;
-
-        let title =
-            <div className='col-12'>
-                <div className='title'>
-                    <h1>Ranking kierowców</h1>
-                    <p>Statystyki wybranego kierowcy - zdobyte pozycje w klasyfikacjach generalnych.</p>
-                </div>
-            </div>;
-
         let formAndBtn =
-            <div className='col-2 formContent'>
-                <form className='formDriver'>
-                    <input type="text" placeholder='Nazwisko' value={this.state.driver} onChange={this.driverValue} />
-                </form>
-                <div className='btnContent'>
-                    <button className='button' onClick={this.searchBtn}>Szukaj kierowcy</button>
-                </div>
+            <div className='col-2'>
+                <Form>
+                    <FormInput
+                        type='text'
+                        initialValue='Nazwisko kierowcy'
+                        inputValue={this.state.driver}
+                        inputAction={this.driverValue}
+                    />
+                    <FormBtn
+                        text='Szukaj kierowcy'
+                        action={this.searchBtn}
+                    />  
+                </Form>
             </div>;
 
-        let driverData =
-            <div className='col-12'>
-                <ul className='dataList'>
-                    <li>Kierowca: <span>{this.state.driverData[0]}</span></li>
-                    <li>Data urodzin: <span>{this.state.driverData[1]}</span></li>
-                    <li>Kraj pochodzenia: <span>{this.state.driverData[2]}</span></li>
-                </ul>
-            </div>;
-
-        if (this.state.driver === '') {
-            return (
-                <div>
-                    <div className='row'>
-                        {title}
-                    </div>
-                    <div className='row'>
-                        {driverData}
-                    </div>
-                    <div className='row'>
-                        {formAndBtn}
+        return (
+            <React.Fragment>
+                <div className='row'>
+                    <div className='col-12'>
+                        <Title
+                            styles='title' 
+                            title='Ranking kierowców'
+                            description='Statystyki wybranego kierowcy - zdobyte pozycje w klasyfikacjach generalnych.'
+                        />
                     </div>
                 </div>
-            );
-        } else if(this.state.loading === true) {
-            return (
-                <div>
-                    <div className='row'>
-                        {title}
-                    </div>
-                    <div className='row'>
-                        {driverData}
-                    </div>
-                    <div className='row'>
-                        {formAndBtn}
-                        {loading}
-                    </div>
-                </div>
-            )
-        } else if(this.state.err !== '') {
-            return (
-                <div>
-                    <div className='row'>
-                        {title}
-                    </div>
-                    <div className='row'>
-                        {driverData}
-                    </div>
-                    <div className='row'>
-                        {formAndBtn}
-                        <div className='col-10 loadingPosition'>
-                            <p className='info'>{this.state.err}</p>
-                        </div>
+                <div className='row'>
+                    <div className='col-12'>
+                        <DataList >
+                            <DataListElement
+                                text='Kierowca:'
+                                value={this.state.driverData[0]}
+                            />
+                            <DataListElement
+                                text='Data urodzin:'
+                                value={this.state.driverData[1]}
+                            />
+                            <DataListElement
+                                text='Kraj pochodzenia:'
+                                value={this.state.driverData[2]}
+                            />
+                        </DataList>
                     </div>
                 </div>
-            );
-        } else {
-            return (
-                <div>
-                    <div className='row'>
-                        {title}
-                    </div>
-                    <div className='row'>
-                        {driverData}
-                    </div>
+                { this.state.data ? (
                     <div className='row'>
                         {formAndBtn}
                         <div className='col-10'>
-                            <div className='scrollTable'>
-                                <table className='mainTable'>
-                                    <thead>
-                                        <tr>
-                                            <th className='tableHeader tableBgFirst'>Pozycja</th>
-                                            <th className='tableHeader tableBgSecond'>Ile razy</th>
-                                            <th className='tableHeader tableBgFirst'>Sezony</th>
-                                            <th className='tableHeader tableBgSecond'>Ilość rund</th>
-                                            <th className='tableHeader tableBgFirst'>Wygrane rundy</th>
-                                            <th className='tableHeader tableBgSecond'>Zdobyte punkty</th>
-                                            <th className='tableHeader tableBgFirst'>Zespół</th>
-                                        </tr>
-                                    </thead>
-                                    {this.state.data.map((element,index) => {
-                                        let dataElement = element;
-                                        return (
-                                            <tbody>
-                                                <tr>
-                                                    <td rowspan={element[2].length} className='tableCol'>{element[0]}</td>
-                                                    <td rowspan={element[2].length} className="tableCol">{element[1]}</td>
-                                                        {element[2].map((element,index) => {
+                            { this.state.err ? (
+                                <Error error={this.state.err} />
+                            ) : (
+                                <div className='scrollTable'>
+                                    <table className='mainTable'>
+                                        <thead>
+                                            <tr>
+                                                <th className='tableHeader tableBgFirst'>Pozycja</th>
+                                                <th className='tableHeader tableBgSecond'>Ile razy</th>
+                                                <th className='tableHeader tableBgFirst'>Sezony</th>
+                                                <th className='tableHeader tableBgSecond'>Ilość rund</th>
+                                                <th className='tableHeader tableBgFirst'>Wygrane rundy</th>
+                                                <th className='tableHeader tableBgSecond'>Zdobyte punkty</th>
+                                                <th className='tableHeader tableBgFirst'>Zespół</th>
+                                            </tr>
+                                        </thead>
+                                        {this.state.data.map((element,index) => {
+                                            let dataElement = element;
+                                            return (
+                                                <tbody>
+                                                    <tr>
+                                                        <td rowspan={element[2].length} className='tableCol'>{element[0]}</td>
+                                                        <td rowspan={element[2].length} className="tableCol">{element[1]}</td>
+                                                            {element[2].map((element,index) => {
+                                                                return (
+                                                                    <td className="tableCol">{element}</td>
+                                                                )
+                                                            }
+                                                        )}
+                                                    </tr>
+                                                    {element[2].map((element,index) => {
+                                                        if(index>0) {
                                                             return (
-                                                                <td className="tableCol">{element}</td>
-                                                            )
-                                                        }
-                                                    )}
-                                                </tr>
-                                                {element[2].map((element,index) => {
-                                                    if(index>0) {
-                                                        return (
-                                                            <tr>
-                                                                {dataElement[index+2].map((element,index) => {
-                                                                    return <td className="tableCol">{element}</td>;
-                                                                })}
-                                                            </tr>
-                                                            )
-                                                        }
-                                                    })}
-                                            </tbody>
-                                            )
-                                        })}
-                                </table>
-                            </div>
+                                                                <tr>
+                                                                    {dataElement[index+2].map((element,index) => {
+                                                                        return <td className="tableCol">{element}</td>;
+                                                                    })}
+                                                                </tr>
+                                                                )
+                                                            }
+                                                        })}
+                                                </tbody>
+                                                )
+                                            })}
+                                    </table>
+                                </div>          
+                            )}
                         </div>
                     </div>
-                </div>
-            )
-        }
+                ) : (
+                    <div className='row'>
+                        {formAndBtn}
+                    <div className='col-10'>
+                        <Loading />
+                    </div>
+                    </div>
+                )}
+            </React.Fragment>
+        );
     }
 }
 

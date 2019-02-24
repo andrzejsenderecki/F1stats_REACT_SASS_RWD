@@ -45,15 +45,17 @@ class RaceResults extends Component {
     };
 
     sortByValue = (event) => {
+        event.preventDefault();
         this.setState({
             sortBy: event.target.value
         }, this.searchRound);
     };
 
     chartValue = (event) => {
+        event.preventDefault();
         this.setState({
-            chart: event.target.value,
-        }, this.searchRound);
+            chart: event.target.value
+        });
     };
 
     searchRound = () => {
@@ -144,7 +146,6 @@ class RaceResults extends Component {
                 raceName: null,
                 circuitName: null,
                 raceDate: null,
-                seasonNumber: null,
                 err: 'Nie znaleziono takiego sezonu lub rundy',
                 loading: false
             })
@@ -157,11 +158,13 @@ class RaceResults extends Component {
             <div className='col-2'>
                 <Form>
                     <FormInput
+                        type='number'
                         initialValue='Podaj rok'
                         inputValue={this.state.season}
                         inputAction={this.seasonValue}
                     />
                     <FormInput
+                        type='number'
                         initialValue='Podaj rundę'
                         inputValue={this.state.round}
                         inputAction={this.roundValue}
@@ -178,10 +181,11 @@ class RaceResults extends Component {
             </div>;
 
         return (
-            <div>
+            <React.Fragment>
                 <div className='row'>
                     <div className='col-12 title'>
-                        <Title 
+                        <Title
+                            styles='title' 
                             title='Wyścigi'
                             description='Wyniki wybranego wyścigu w danym sezonie ze względu na ilość zdobytych punktów lub ilość ukończonych okrążeń.'
                         />
@@ -227,12 +231,12 @@ class RaceResults extends Component {
                 ) : (
                     <div className='row'>
                         {formAndBtn}
-                    <div className='col-10'>
-                        <Loading />
-                    </div>
+                        <div className='col-10'>
+                            <Loading />
+                        </div>
                     </div>
                 )}
-            </div>
+            </React.Fragment>
         );    
     }
 }

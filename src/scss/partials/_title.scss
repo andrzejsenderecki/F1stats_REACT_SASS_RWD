@@ -23,12 +23,14 @@
 }
 
 @media (min-width: 412px) {
-    h1 {
-        &:before {
-            content: '';
-            padding-right: 10px;
-            margin-right: 10px;
-            background: $titleSecondColor;
+    .title {
+        h1 {
+            &:before {
+                content: '';
+                padding-right: 10px;
+                margin-right: 10px;
+                background: $titleSecondColor;
+            }
         }
     }
 }
@@ -43,7 +45,8 @@
         }
 
         p {
-            padding: 10px 20px 20px 45px;
+            text-align: left;
+            padding: 20px 20px 20px 65px;
         }
     }  
 }

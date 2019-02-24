@@ -1,0 +1,33 @@
+.contactList {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    li {
+        text-decoration: none;
+        list-style: none;
+        padding-bottom: 20px;
+        padding-top: 20px;
+    }
+}
+
+.contactLink {
+    font-family: $secondFont;
+    font-weight: 400;
+    font-size: 2rem;
+    text-decoration: none;
+    color: $thirdColor;
+}
+
+@media (min-width: 900px) {
+    .contactList {
+        align-items: flex-start;
+        padding: 20px 0 40px 65px;
+    }
+
+    .contactLink {
+        &:hover {
+            color: $secondColor;
+        }
+    }
+}

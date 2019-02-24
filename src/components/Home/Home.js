@@ -3,12 +3,8 @@ import '../../App.scss';
 import Loading from '../Loading/Loading';
 import ChartResult from '../Chart/ChartResult';
 import FormOptions from '../Form/FormOptions/FormOptions';
-import Form from '../Form/Form';
 import Title from '../Title/Title'; 
-
-const title = 'F1stats!';
-const subtitle = 'Statystyki wyścigów Formuły 1';
-const description = 'Projekt przedstawia statystyki z wyścigów F1 na bazie danych udostępnionych przez ERGAST API. Na podstawie przetworzonych danych generowane są wykresy lub tabele ze statystykami dotyczącymi najszybszego sportu motorowego na świecie!';
+import Error from '../Error/Error';
 
 class Home extends Component {
     constructor(props) {
@@ -22,6 +18,10 @@ class Home extends Component {
             data: '',
             loading: true
         }
+    }
+
+    componentDidMount() {
+        this.searchSeason();
     }
 
     sortByValue = (event) => {
@@ -106,52 +106,47 @@ class Home extends Component {
     };
 
     render() {
-        if (this.state.data === '') {
-            this.searchSeason();
-        }
-            
-        if (this.state.seasonNumber === '') {
-            return (
-                <Loading />
-            );
-        } else if(this.state.err !== '') {
-            return (
-                <div className='row'>
-                    <ul>
-                        <li>Nie znaleziono takiego sezonu</li>
-                    </ul>
-                </div>
-            );
-        } else {
-            return (
+        return (
+            <React.Fragment>
+                { this.state.data ? (
                 <div className='row'>
                     <div className='col-4 banner'>
                         <Title 
-                            title={title}
-                            subtitle={subtitle}
-                            description={description}
+                            styles='banner'
+                            title='F1stats!'
+                            subtitle='Statystyki wyścigów Formuły 1'
+                            description='Projekt przedstawia statystyki z wyścigów F1 na bazie danych udostępnionych przez ERGAST API. Na podstawie przetworzonych danych generowane są wykresy lub tabele ze statystykami dotyczącymi najszybszego sportu motorowego na świecie!'
                         />
-                        <Form>
-                            <FormOptions
-                                optionA='points'
-                                optionB='wins'
-                                optionAText='Zdobyte punkty'
-                                optionBText='Wygrane wyścigi'
-                                sortBy={this.sortByValue}
-                                chartType={this.chartValue}
-                            />  
-                        </Form>
+                        <FormOptions
+                            optionA='points'
+                            optionB='wins'
+                            optionAText='Zdobyte punkty'
+                            optionBText='Wygrane wyścigi'
+                            sortBy={this.sortByValue}
+                            chartType={this.chartValue}
+                        />
                     </div>
                     <div className='col-8'>
-                        <ChartResult
-                            chartKey={this.state.chart}
-                            chartType={this.state.chart}
-                            chartData={this.state.data[0]}
-                        />
+                        { this.state.err ? (
+                            <Error error={this.state.err} />
+                        ) : (
+                            <ChartResult
+                                chartKey={this.state.chart}
+                                chartType={this.state.chart}
+                                chartData={this.state.data[0]}
+                            />
+                        )}
                     </div>
                 </div>
-            )
-        }
+            ) : (
+                <div className='row'>
+                    <div className='col-10'>
+                        <Loading />
+                    </div>
+                </div>
+            )}
+            </React.Fragment>  
+        )
     }
 }
 

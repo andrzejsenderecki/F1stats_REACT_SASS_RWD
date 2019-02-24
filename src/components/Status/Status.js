@@ -237,11 +237,13 @@ class Status extends Component {
             <div className='col-2'>
                 <Form>
                     <FormInput
+                        type='number'
                         initialValue='Sezon od'
                         inputValue={this.state.seasonFrom}
                         inputAction={this.seasonFromValue}
                     />
                     <FormInput
+                        type='number'
                         initialValue='Sezon do'
                         inputValue={this.state.seasonTo}
                         inputAction={this.seasonToValue}
@@ -251,10 +253,11 @@ class Status extends Component {
             </div>;
 
         return (
-            <div>
+            <React.Fragment>
                 <div className='row'>
                     <div className='col-12'>
-                        <Title 
+                        <Title
+                            styles='title' 
                             title='Statusy ukończenia wyścigów'
                             description='Statystyka prezentuje przyczyny z jakich kierowcy kończyli wyścigi na przestrzeni podanych lat.'
                         />
@@ -306,7 +309,7 @@ class Status extends Component {
                     </div>
                     </div>
                 )}
-            </div>
+            </React.Fragment>
         );        
     }
 }
