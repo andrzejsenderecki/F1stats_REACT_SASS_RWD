@@ -9,7 +9,7 @@ const ChartResult = (props) => {
             height='79.5vh'
             chartType={props.chartType}
             data={
-                [...props.chartData[0]]
+                [...props.chartData]
             }
             options={{
                 chartArea: { left: 60, right: 60, top: 60, bottom: 130 },

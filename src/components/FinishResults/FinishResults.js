@@ -143,7 +143,7 @@ class FinishResults extends Component {
         return (
             <div>
                 <div className='row'>
-                    <div className='col-12 title'>
+                    <div className='col-12'>
                         <Title 
                             title='Ranking sezonu'
                             description='Klasyfikacja ze względu na ilość zdobytych punktów lub wygranych wyścigów w danym sezonie.'
@@ -174,7 +174,7 @@ class FinishResults extends Component {
                                 <ChartResult
                                     chartKey={this.state.chart}
                                     chartType={this.state.chart}
-                                    chartData={this.state.data}
+                                    chartData={this.state.data[0]}
                                 />
                             )}
                         </div>

@@ -6,7 +6,7 @@ import Navigation from './components/Navigation/Navigation';
 import FinishResults from './components/FinishResults/FinishResults';
 import RaceResults from './components/RaceResults/RaceResults';
 // import Drivers from './components/Drivers';
-// import Status from "./components/Status";
+import Status from "./components/Status/Status";
 import Home from './components/Home/Home';
 // import About from './components/About';
 // import Contact from './components/Contact';
@@ -24,12 +24,12 @@ class App extends Component {
                     <Route path='/' component={Home} exact />
                     <Route path='/season' component={FinishResults} />
                     <Route path='/race' component={RaceResults} />
-                    {/* <Route path='/drivers' component={Drivers} />
-                    <Route path='/current' component={CurrentSeason} />
+                    {/* <Route path='/drivers' component={Drivers} 
+                    <Route path='/current' component={CurrentSeason} />/>*/}
                     <Route path='/status' component={Status} />
-                    <Route path='/about' component={About} />
+                    {/*<Route path='/about' component={About} />
                     <Route path='/contact' component={Contact} />
-                    <Route component={NotFound} exact /> */} */}
+                    <Route component={NotFound} exact /> */} 
                 </Switch>
               </div>
           </HashRouter>

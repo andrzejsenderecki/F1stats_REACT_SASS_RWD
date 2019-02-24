@@ -219,7 +219,7 @@ class RaceResults extends Component {
                                 <ChartResult
                                     chartKey={this.state.chart}
                                     chartType={this.state.chart}
-                                    chartData={this.state.data}
+                                    chartData={this.state.data[0]}
                                 />
                             )}
                         </div>

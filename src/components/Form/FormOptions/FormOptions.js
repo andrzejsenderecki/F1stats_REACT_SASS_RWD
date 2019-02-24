@@ -4,17 +4,32 @@ import '../../../App.scss';
 const FormOptions = (props) => {
     return(
         <React.Fragment>
-            <select onChange={props.sortBy}>
-                <option value={props.optionA}>{props.optionAText}</option>
-                <option value={props.optionB}>{props.optionBText}</option>
-            </select>
-            <select onChange={props.chartType}>
-                <option value="ColumnChart">Wykres blokowy</option>
-                <option value="LineChart">Wykres liniowy</option>
-                <option value="ScatterChart">Wykres punktowy</option>
-            </select>
+            {
+                props.sortBy ? (
+                    <React.Fragment>
+                        <select onChange={props.sortBy}>
+                            <option value={props.optionA}>{props.optionAText}</option>
+                            <option value={props.optionB}>{props.optionBText}</option>
+                        </select>
+                        <select onChange={props.chartType}>
+                            <option value="ColumnChart">Wykres blokowy</option>
+                            <option value="LineChart">Wykres liniowy</option>
+                            <option value="ScatterChart">Wykres punktowy</option>
+                        </select>
+                    </React.Fragment>
+                ) : (
+                    <React.Fragment>
+                        <select onChange={props.chartType}>
+                            <option value="ColumnChart">Wykres blokowy</option>
+                            <option value="LineChart">Wykres liniowy</option>
+                            <option value="ScatterChart">Wykres punktowy</option>
+                        </select>
+                    </React.Fragment>
+                )
+            }
         </React.Fragment>
     )
 }
 
 export default FormOptions;
+

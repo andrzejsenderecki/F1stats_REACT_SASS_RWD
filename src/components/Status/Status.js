@@ -1,5 +1,14 @@
 import React, { Component } from 'react';
-import Chart from 'react-google-charts';
+import ChartResult from '../Chart/ChartResult';
+import Loading from '../Loading/Loading';
+import Title from '../Title/Title';
+import FormOptions from '../Form/FormOptions/FormOptions';
+import FormInput from '../Form/FormInput/FormInput';
+import Form from '../Form/Form';
+import FormMove from '../FormMove/FormMove';
+import DataList from '../DataList/DataList';
+import DataListElement from '../DataList/DataListElement/DataListElement';
+import Error from '../Error/Error';
 
 class Status extends Component {
     constructor(props) {
@@ -13,8 +22,8 @@ class Status extends Component {
             resultLine: 0,
             move: '1',
             blockNext: false,
-            err: '',
-            data: '',
+            err: null,
+            data: null,
             loading: false,
             dateYear: ''
         }
@@ -27,13 +36,13 @@ class Status extends Component {
     seasonFromValue = (event) => {
         this.setState({
             seasonFrom: event.target.value
-        });
+        }, this.searchSeason);
     };
 
     seasonToValue = (event) => {
         this.setState({
             seasonTo: event.target.value
-        });
+        }, this.searchSeason);
     };
 
     chartValue = (event) => {
@@ -47,46 +56,6 @@ class Status extends Component {
             countResults: event.target.value,
             resultLine: 0,
             blockNext: false,
-        }, this.searchSeason);
-    };
-
-    nextSeasonPrev = (event) => {
-        event.preventDefault();
-        let season = Number(this.state.seasonTo);
-        season = season - 1;
-        this.setState({
-            seasonTo: Number(season),
-            loading: true
-        }, this.searchSeason);
-    };
-
-    prevSeasonNext = (event) => {
-        event.preventDefault();
-        let season = Number(this.state.seasonFrom);
-        season = season + 1;
-        this.setState({
-            seasonFrom: Number(season),
-            loading: true
-        }, this.searchSeason);
-    };
-
-    prevSeasonPrev = (event) => {
-        event.preventDefault();
-        let season = Number(this.state.seasonFrom);
-        season = season - 1;
-        this.setState({
-            seasonFrom: Number(season),
-            loading: true
-        }, this.searchSeason);
-    };
-
-    nextSeasonNext = (event) => {
-        event.preventDefault();
-        let season = Number(this.state.seasonTo);
-        season = season + 1;
-        this.setState({
-            seasonTo: Number(season),
-            loading: true
         }, this.searchSeason);
     };
 
@@ -115,9 +84,9 @@ class Status extends Component {
 
     searchSeason = () => {
 
-        let dateYear = new Date();
+        const dateYear = new Date();
 
-        let urlArr = () => {
+        const urlArr = () => {
             let arr = [];
             for(let i=Number(this.state.seasonFrom); i<=Number(this.state.seasonTo); i++) {
                 arr.push(`https://ergast.com/api/f1/${i}/status.json`);
@@ -125,9 +94,9 @@ class Status extends Component {
             return arr;
         };
 
-        let urlAddress = urlArr();
+        const urlAddress = urlArr();
 
-        let myPromise = urlAddress.map(element => {
+        const myPromise = urlAddress.map(element => {
             return fetch(element).then(response =>{
                 return response.json();
             });
@@ -136,11 +105,11 @@ class Status extends Component {
         Promise.all(
             [...myPromise]
         ).then(response => {
-            let responseArr = response.map(el => {
+            const responseArr = response.map(el => {
                 return el.MRData.StatusTable.Status;
             });
 
-            let dataArr = [];
+            const dataArr = [];
 
             for(let i=0; i<responseArr.length; i++) {
                 dataArr.push([]);
@@ -161,7 +130,7 @@ class Status extends Component {
                 }
             }
 
-            let countArr = [];
+            const countArr = [];
 
             for(let i=0; i<135; i++) {
                 let status = [];
@@ -182,7 +151,7 @@ class Status extends Component {
             });
             countArr.reverse();
 
-            let displayArr = [];
+            const displayArr = [];
 
             if (this.state.countResults === 'all') {
                 for (let i = 0; i < countArr.length; i++) {
@@ -247,12 +216,12 @@ class Status extends Component {
             displayArr.unshift(['', 'Ile razy: ']);
 
             this.setState({
-                err: '',
+                err: null,
                 data: displayArr,
                 loading: false,
                 dateYear: dateYear.getFullYear()
             })
-        }).catch((err) => {
+        }).catch(() => {
             this.setState({
                 seasonFrom: 'Nie znaleziono takiego sezonu lub rundy',
                 seasonTo: 'Nie znaleziono takiego sezonu lub rundy',
@@ -264,179 +233,81 @@ class Status extends Component {
 
     render() {
 
-        let loading =
-            <div className='col-10 chartStatusContent loadingPosition'>
-                <div className='loading' />
+        const formAndBtn =
+            <div className='col-2'>
+                <Form>
+                    <FormInput
+                        initialValue='Sezon od'
+                        inputValue={this.state.seasonFrom}
+                        inputAction={this.seasonFromValue}
+                    />
+                    <FormInput
+                        initialValue='Sezon do'
+                        inputValue={this.state.seasonTo}
+                        inputAction={this.seasonToValue}
+                    />
+                    <FormOptions chartType={this.chartValue} />  
+                </Form>
             </div>;
 
-        let title =
-            <div className='col-12'>
-                <div className='title'>
-                    <h1>Statusy ukończenia wyścigów</h1>
-                    <p>Statystyka prezentuje przyczyny z jakich kierowcy kończyli wyścigi na przestrzeni podanych lat.</p>
-                </div>
-            </div>;
-
-        let error =
-            <div className='col-10 loadingPosition'>
-                <p className='info'>Nie znaleziono takiego sezonu</p>
-            </div>
-
-        let formAndBtn =
-            <div className='col-2 formContent'>
-                <form className='formStatus'>
-                    <div className='formStatusWrap'>
-                        <button className='buttonMini' onClick={this.prevSeasonPrev}>&lt;</button>
-                        <input type="text" placeholder='Od' value={this.state.seasonFrom}
-                               onChange={this.seasonFromValue}/>
-                        <button className='buttonMini' onClick={this.prevSeasonNext}>&gt;</button>
-                    </div>
-                    <div className='formStatusWrap'>
-                        <button className='buttonMini' onClick={this.nextSeasonPrev}>&lt;</button>
-                        <input type="text" placeholder='Do' value={this.state.seasonTo}
-                               onChange={this.seasonToValue}/>
-                        <button className='buttonMini' onClick={this.nextSeasonNext}>&gt;</button>
-                    </div>
-                </form>
-                <div className='btnContent '>
-                    <button type='button' className='button' onClick={this.searchSeason}>Szukaj Sezonu</button>
-                </div>
-                <form className='formStatus'>
-                    <select onChange={this.chartValue}>
-                        <option value="ColumnChart">Wykres blokowy</option>
-                        <option value="LineChart">Wykres liniowy</option>
-                        <option value="ScatterChart">Wykres punktowy</option>
-                    </select>
-                </form>
-            </div>;
-
-        let formMove =
-            <form className='formStatusMove'>
-                <button type='button' className='buttonMove buttonMoveLeft' onClick={this.prevResults}>&lt;</button>
-                <button type='button' className='buttonMove buttonMoveRight' onClick={this.nextResults}>&gt;</button>
-                <select onChange={this.move}>
-                    <option value='1'>Przewiń wyniki o 1</option>
-                    <option value={this.state.countResults}>Przewiń wyniki o {this.state.countResults}</option>
-                </select>
-                <select value={this.state.countResults} onChange={this.countResultsValue}>
-                    <option value='all'>Pokaż wszystkie</option>
-                    <option value='5'>Pokaż 5 wyników</option>
-                    <option value='10'>Pokaż 10 wyników</option>
-                    <option value='15'>Pokaż 15 wyników</option>
-                </select>
-            </form>;
-
-        let titleAndRaces =
-            <div className='col-12'>
-                <ul className='dataList'>
-                    <li>Sezony od <span>{this.state.seasonFrom}</span> do <span>{this.state.seasonTo}</span></li>
-                </ul>
-            </div>;
-
-        if (this.state.seasonFrom === '' || this.state.data === '') {
-            return (
-                <div>
-                    <div className='row'>
-                        {title}
-                    </div>
-                    <div className='row'>
-                        {titleAndRaces}
-                    </div>
-                    <div className='row'>
-                        {formAndBtn}
-                        {loading}
+        return (
+            <div>
+                <div className='row'>
+                    <div className='col-12'>
+                        <Title 
+                            title='Statusy ukończenia wyścigów'
+                            description='Statystyka prezentuje przyczyny z jakich kierowcy kończyli wyścigi na przestrzeni podanych lat.'
+                        />
                     </div>
                 </div>
-            );
-        } else if(this.state.loading === true) {
-            return (
-                <div>
-                    <div className='row'>
-                        {title}
-                    </div>
-                    <div className='row'>
-                        {titleAndRaces}
-                    </div>
-                    <div className='row'>
-                        {formAndBtn}
-                        {loading}
-                    </div>
-                </div>
-            )
-        } else if(Number(this.state.seasonFrom) < 1950 || Number(this.state.seasonTo) > this.state.dateYear) {
-            return (
-                <div>
-                    <div className='row'>
-                        {title}
-                    </div>
-                    <div className='row'>
-                        <div className='col-12'>
-                            <ul className='dataList'>
-                                <li>Sezony</li>
-                            </ul>
-                        </div>;
-                    </div>
-                    <div className='row'>
-                        {formAndBtn}
-                        {error}
+                <div className='row'>
+                    <div className='col-12'>
+                        <DataList >
+                            <DataListElement
+                                text='Sezon od:'
+                                value={this.state.seasonFrom}
+                            />
+                            <DataListElement
+                                text='Sezon do:'
+                                value={this.state.seasonTo}
+                            />
+                        </DataList>
                     </div>
                 </div>
-            )
-        } else {
-            return (
-                <div>
-                    <div className='row'>
-                        {title}
-                    </div>
-                    <div className='row'>
-                        {titleAndRaces}
-                    </div>
+                { this.state.data ? (
                     <div className='row'>
                         {formAndBtn}
                         <div className='col-10'>
-                            <div className='chartStatusContent'>
-                                {formMove}
-                                <Chart
-                                    key={this.state.chart}
-                                    height='96%'
-                                    chartType={this.state.chart}
-                                    data={
-                                        [...this.state.data]
-                                    }
-                                    options={{
-                                        chartArea: { left: 80, right: 40, top: 20, bottom: 130 },
-                                        legend: {position: 'none'},
-                                        fontSize: 12,
-                                        colors: ['darkorange'],
-                                        backgroundColor: { fill:'transparent' },
-                                        animation: {
-                                            duration: 1000,
-                                            easing: 'out',
-                                            startup: true,
-                                        },
-                                        hAxis: {
-                                            showTextEvery: 1,
-                                            textStyle : {
-                                                fontName: 'Open Sans',
-                                                fontSize: 12
-                                            },
-                                            slantedText: true,
-                                            slantedTextAngle: 60
-                                        },
-                                        vAxis: {
-                                            textStyle : {
-                                                fontName: 'Open Sans',
-                                                fontSize: 12,
-                                            },
-                                        },
-                                    }}
-                                />
-                            </div>
+                            { this.state.err ? (
+                                <Error error={this.state.err} />
+                            ) : (
+                                <React.Fragment>
+                                    <FormMove
+                                        prevResults={this.prevResults}
+                                        nextResults={this.nextResults}
+                                        move={this.move}
+                                        countResults={this.state.countResults}
+                                        countResultsValue={this.countResultsValue}
+                                    />
+                                    <ChartResult
+                                        chartKey={this.state.chart}
+                                        chartType={this.state.chart}
+                                        chartData={this.state.data}
+                                    />
+                                </React.Fragment>
+                            )}
                         </div>
                     </div>
-                </div>
-            )
-        }
+                ) : (
+                    <div className='row'>
+                        {formAndBtn}
+                    <div className='col-10'>
+                        <Loading />
+                    </div>
+                    </div>
+                )}
+            </div>
+        );        
     }
 }
 
