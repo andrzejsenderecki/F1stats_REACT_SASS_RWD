@@ -43,7 +43,7 @@ class FinishResults extends Component {
     chartValue = (event) => {
         this.setState({
             chart: event.target.value
-        });
+        }, this.searchSeason);
     };
 
     searchSeason = () => {
@@ -52,7 +52,6 @@ class FinishResults extends Component {
         fetch(url).then(resp => {
             return resp.json();
         }).then(json => {
-
             const resultArray = json.MRData.StandingsTable.StandingsLists.map((element) => {
                 const result = element.DriverStandings.map((element) => {
                     const data = [];

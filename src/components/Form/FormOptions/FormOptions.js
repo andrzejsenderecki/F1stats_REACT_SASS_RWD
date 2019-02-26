@@ -12,17 +12,17 @@ const FormOptions = (props) => {
                             <option value={props.optionB}>{props.optionBText}</option>
                         </select>
                         <select onChange={props.chartType}>
-                            <option value="ColumnChart">Wykres blokowy</option>
-                            <option value="LineChart">Wykres liniowy</option>
-                            <option value="ScatterChart">Wykres punktowy</option>
+                            <option value='ColumnChart'>Wykres blokowy</option>
+                            <option value='LineChart'>Wykres liniowy</option>
+                            <option value='ScatterChart'>Wykres punktowy</option>
                         </select>
                     </div>
                 ) : (
                     <div>
                         <select onChange={props.chartType}>
-                            <option value="ColumnChart">Wykres blokowy</option>
-                            <option value="LineChart">Wykres liniowy</option>
-                            <option value="ScatterChart">Wykres punktowy</option>
+                            <option value='ColumnChart'>Wykres blokowy</option>
+                            <option value='LineChart'>Wykres liniowy</option>
+                            <option value='ScatterChart'>Wykres punktowy</option>
                         </select>
                     </div>
                 )
